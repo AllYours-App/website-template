@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[NOM DE LA PHARMACIE] — Template 03</title>
+<!-- Moderne & Minimaliste / Hero pleine page
+     Couleurs : #FFFFFF blanc · #0A0A0A noir · #F0F0F0 gris clair · #9B9B9B gris texte · #00C896 vert menthe accent
+     Polices  : Plus Jakarta Sans (display 800) + DM Sans (body 300/400)
+     Signature : Hero pleine hauteur avec compteur de temps restant avant fermeture animé -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--w:#FFFFFF;--b:#0A0A0A;--gl:#F0F0F0;--gt:#9B9B9B;--g:#00C896;}
+  *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
+  body{font-family:'DM Sans',sans-serif;background:var(--w);color:var(--b);-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;} .page{display:none;} .page.active{display:block;}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 48px;display:flex;align-items:center;justify-content:space-between;mix-blend-mode:normal;}
+  .logo{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:0.9rem;letter-spacing:-0.01em;cursor:pointer;color:var(--w);}
+  .nav-r{display:flex;align-items:center;gap:28px;}
+  .nav-r a{font-size:0.82rem;color:rgba(255,255,255,.6);font-family:'DM Sans';font-weight:300;transition:color .2s;}
+  .nav-r a:hover{color:var(--w);}
+  .nav-tel{color:var(--g)!important;font-weight:500!important;}
+
+  /* HERO PLEINE PAGE */
+  .hero{height:100vh;background:var(--b);display:flex;flex-direction:column;justify-content:flex-end;padding:0 48px 72px;position:relative;overflow:hidden;}
+  .hero-bg{position:absolute;top:0;left:0;right:0;bottom:0;
+    background:radial-gradient(ellipse 60% 60% at 70% 40%, rgba(0,200,150,.12) 0%, transparent 70%);}
+  .hero-content{position:relative;z-index:1;max-width:900px;}
+  .hero-tag{display:inline-flex;align-items:center;gap:8px;margin-bottom:32px;
+    font-size:0.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--g);}
+  .hero-tag::before{content:'';width:24px;height:1px;background:var(--g);}
+  .hero h1{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;
+    font-size:clamp(3.5rem,8vw,7rem);line-height:.95;letter-spacing:-.04em;
+    color:var(--w);margin-bottom:36px;}
+  .hero h1 em{font-style:normal;color:var(--g);}
+  .hero-bottom{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:24px;}
+  .hero-desc{font-size:1rem;color:rgba(255,255,255,.5);font-weight:300;max-width:400px;line-height:1.7;}
+  .hero-cta{display:flex;flex-direction:column;align-items:flex-end;gap:12px;}
+  .btn-w{background:var(--w);color:var(--b);padding:15px 28px;border-radius:3px;
+    font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:0.85rem;
+    letter-spacing:-.01em;display:inline-block;transition:background .2s;}
+  .btn-w:hover{background:var(--g);color:var(--w);}
+  .status-live{font-size:0.75rem;color:rgba(255,255,255,.35);font-weight:300;text-align:right;}
+  #countdown{color:var(--g);font-weight:500;}
+
+  /* SECTIONS */
+  .wrap{max-width:1100px;margin:0 auto;}
+  .sec{padding:88px 48px;}
+  .sec-label{font-size:0.7rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--gt);margin-bottom:12px;}
+  .sec h2{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;
+    font-size:clamp(1.8rem,3.5vw,3rem);letter-spacing:-.03em;margin-bottom:48px;}
+
+  .services-list{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+  .svc{padding:32px 0;border-bottom:1px solid var(--gl);display:grid;grid-template-columns:200px 1fr;gap:24px;}
+  .svc:nth-child(odd){border-right:1px solid var(--gl);padding-right:48px;}
+  .svc:nth-child(even){padding-left:48px;}
+  .svc-name{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1rem;letter-spacing:-.01em;}
+  .svc-desc{font-size:0.85rem;color:var(--gt);line-height:1.7;font-weight:300;}
+
+  .contact-sec{background:var(--gl);padding:88px 48px;}
+  .contact-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;}
+  .big-tel{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;
+    font-size:clamp(2.5rem,5vw,4.5rem);letter-spacing:-.04em;color:var(--b);
+    display:block;margin:20px 0 8px;transition:color .2s;}
+  .big-tel:hover{color:var(--g);}
+  .addr{font-size:0.88rem;color:var(--gt);line-height:1.8;font-weight:300;}
+  .fi{display:flex;flex-direction:column;gap:0;}
+  .fi input,.fi textarea{background:var(--w);border:none;border-bottom:1px solid #ccc;
+    padding:14px 0;font-family:'DM Sans';font-size:0.88rem;color:var(--b);
+    outline:none;transition:border-color .2s;font-weight:300;}
+  .fi input:focus,.fi textarea:focus{border-bottom-color:var(--g);}
+  .fi textarea{min-height:90px;resize:none;margin-top:4px;}
+  .fi button{margin-top:24px;align-self:flex-start;background:var(--b);color:var(--w);
+    border:none;padding:13px 24px;font-family:'Plus Jakarta Sans',sans-serif;
+    font-weight:800;font-size:0.82rem;letter-spacing:-.01em;cursor:pointer;border-radius:3px;
+    transition:background .2s;}
+  .fi button:hover{background:var(--g);color:var(--w);}
+
+  footer{background:var(--b);color:var(--w);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:0.78rem;}
+  footer span{opacity:.3;} .fl{display:flex;gap:20px;} .fl a{opacity:.3;cursor:pointer;transition:opacity .2s;} .fl a:hover{opacity:1;}
+
+  .lp{max-width:640px;margin:0 auto;padding:100px 48px 80px;}
+  .lback{font-size:0.82rem;color:var(--gt);cursor:pointer;display:inline-block;margin-bottom:48px;transition:color .2s;}
+  .lback:hover{color:var(--b);}
+  .lp h1{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:2rem;letter-spacing:-.03em;margin-bottom:6px;}
+  .ldate{font-size:0.78rem;color:var(--gt);margin-bottom:48px;}
+  .lp h2{font-size:0.7rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--g);margin:32px 0 10px;}
+  .lp p,.lp li{font-size:0.88rem;color:#555;line-height:1.8;margin-bottom:8px;font-weight:300;}
+  .lp ul{margin-left:18px;} .lp a{color:var(--g);text-decoration:underline;}
+
+  @media(max-width:768px){
+    nav{padding:16px 20px;} .nav-r a:not(.nav-tel){display:none;}
+    .hero{padding:0 20px 48px;} .hero h1{font-size:3rem;}
+    .hero-cta{align-items:flex-start;}
+    .sec{padding:60px 20px;} .services-list{grid-template-columns:1fr;}
+    .svc{grid-template-columns:1fr;gap:8px;border-right:none!important;padding-left:0!important;padding-right:0!important;}
+    .contact-sec{padding:60px 20px;} .contact-inner{grid-template-columns:1fr;gap:40px;}
+    footer{padding:20px;} .lp{padding:90px 20px 60px;}
+  }
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo" onclick="showPage('main')">[NOM DE LA PHARMACIE]</div>
+  <div class="nav-r">
+    <a href="#services">Services</a><a href="#contact">Contact</a>
+    <a href="tel:[NUMERO_TELEPHONE_SANS_ESPACES]" class="nav-tel">[NUMÉRO DE TÉLÉPHONE]</a>
+  </div>
+</nav>
+
+<div id="page-main" class="page active">
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-tag">[VILLE] — [QUARTIER/ZONE]</div>
+      <h1>La pharmacie<br>qui <em>reste ouverte.</em></h1>
+      <div class="hero-bottom">
+        <p class="hero-desc">Vaccination, tests rapides, matériel médical et conseil pharmaceutique. Sans rendez-vous.</p>
+        <div class="hero-cta">
+          <a href="tel:[NUMERO_TELEPHONE_SANS_ESPACES]" class="btn-w">Appeler — [NUMÉRO DE TÉLÉPHONE]</a>
+          <div class="status-live">Ferme dans <span id="countdown">–</span> aujourd'hui</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="services">
+    <div class="wrap">
+      <div class="sec-label">Nos services</div>
+      <h2>Tout sur place,<br>sans attendre.</h2>
+      <div class="services-list">
+        <div class="svc"><div class="svc-name">Vaccination</div><div class="svc-desc">Grippe, Covid, DTP — sans ordonnance ni rendez-vous.</div></div>
+        <div class="svc"><div class="svc-name">Tests rapides</div><div class="svc-desc">Angine, cystite, Covid. Résultats en quelques minutes.</div></div>
+        <div class="svc"><div class="svc-name">Matériel médical</div><div class="svc-desc">Location et vente : tire-lait, tensiomètre, orthopédie.</div></div>
+        <div class="svc"><div class="svc-name">Livraison à domicile</div><div class="svc-desc">Médicaments livrés sur Anglet et communes voisines.</div></div>
+        <div class="svc"><div class="svc-name">Téléconsultation</div><div class="svc-desc">Médecin en vidéo depuis la pharmacie, sans déplacement.</div></div>
+        <div class="svc"><div class="svc-name">Parapharmacie</div><div class="svc-desc">Phytothérapie, aromathérapie, produits bio.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-sec" id="contact">
+    <div class="contact-inner">
+      <div>
+        <div class="sec-label">Nous trouver</div>
+        <a href="tel:[NUMERO_TELEPHONE_SANS_ESPACES]" class="big-tel">[NUMÉRO DE TÉLÉPHONE]</a>
+        <p class="addr">[ADRESSE COMPLÈTE]<br>[CODE POSTAL] [VILLE]<br><br>[HORAIRES_RÉSUMÉ]<br>Parking gratuit · Accès PMR</p>
+      </div>
+      <div>
+        <div class="sec-label" style="margin-bottom:24px;">Nous écrire</div>
+        <form class="fi" action="https://formspree.io/f/REMPLACER" method="POST">
+          <input type="text" name="nom" placeholder="Votre nom" required>
+          <input type="email" name="email" placeholder="Email" required>
+          <textarea name="message" placeholder="Votre question"></textarea>
+          <button type="submit">Envoyer →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© [ANNÉE] [NOM DE LA PHARMACIE]</span>
+    <div class="fl"><a onclick="showPage('mentions')">Mentions légales</a><a onclick="showPage('confidentialite')">Confidentialité</a></div>
+  </footer>
+</div>
+
+<div id="page-mentions" class="page">
+  <div class="lp"><span class="lback" onclick="showPage('main')">← Retour</span><h1>Mentions légales</h1><p class="ldate">Juin 2025</p>
+  <h2>Éditeur</h2><p>[NOM DE LA PHARMACIE] — [FORME JURIDIQUE] · [ADRESSE COMPLÈTE] · SIRET [NUMÉRO SIRET]</p>
+  <h2>Hébergement</h2><p>Vercel Inc. — <a href="https://vercel.com/legal" target="_blank">vercel.com/legal</a></p>
+  <h2>Propriété intellectuelle</h2><p>Tous contenus propriété de [NOM DE LA PHARMACIE]. Reproduction interdite.</p></div>
+  <footer><span>© [ANNÉE] [NOM DE LA PHARMACIE]</span><div class="fl"><a onclick="showPage('mentions')">Mentions légales</a><a onclick="showPage('confidentialite')">Confidentialité</a></div></footer>
+</div>
+
+<div id="page-confidentialite" class="page">
+  <div class="lp"><span class="lback" onclick="showPage('main')">← Retour</span><h1>Confidentialité</h1><p class="ldate">Juin 2025</p>
+  <h2>Données collectées</h2><p>Nom, email, téléphone (facultatif), message.</p>
+  <h2>Finalité</h2><p>Répondre à votre demande. Aucune revente.</p>
+  <h2>Vos droits</h2><p>Contact : [NUMÉRO DE TÉLÉPHONE]. Réclamation : <a href="https://cnil.fr" target="_blank">cnil.fr</a></p>
+  <h2>Cookies</h2><p>Aucun cookie publicitaire. Google Fonts peut transmettre votre IP à Google.</p></div>
+  <footer><span>© [ANNÉE] [NOM DE LA PHARMACIE]</span><div class="fl"><a onclick="showPage('mentions')">Mentions légales</a><a onclick="showPage('confidentialite')">Confidentialité</a></div></footer>
+</div>
+
+<script>
+function showPage(n){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+n).classList.add('active');window.scrollTo(0,0);}
+function updateCountdown(){
+  const now=new Date();const day=now.getDay();
+  const closes=new Date(now);
+  if(day>=1&&day<=5){closes.setHours(20,0,0,0);}
+  else if(day===6){closes.setHours(16,30,0,0);}
+  else{document.getElementById('countdown').textContent='fermé aujourd\'hui';return;}
+  const diff=closes-now;
+  if(diff<=0){document.getElementById('countdown').textContent='fermé';return;}
+  const h=Math.floor(diff/3600000);const m=Math.floor((diff%3600000)/60000);
+  document.getElementById('countdown').textContent=h+'h'+String(m).padStart(2,'0');
+}
+updateCountdown();setInterval(updateCountdown,60000);
+</script>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[NOM DE LA PHARMACIE] — Template 13</title>
+<!-- Dynamique & Coloré / Très épuré
+     Couleurs : #FFFFFF blanc · #0A0A0A noir · #FF6B35 orange vif · #F0F0F0 gris très clair · #FFE8DE orange pâle
+     Polices  : Bricolage Grotesque (display expressif variable) + DM Sans (body)
+     Signature : Une seule couleur vive (orange) utilisée avec parcimonie sur fond blanc total ; typographie XXL compensant l'absence de décoration -->
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--w:#FFFFFF;--b:#0A0A0A;--org:#FF6B35;--pale:#FFE8DE;--gl:#F0F0F0;--gt:#999;}
+  *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
+  body{font-family:'DM Sans',sans-serif;background:var(--w);color:var(--b);-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;} .page{display:none;} .page.active{display:block;}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--w);border-bottom:1px solid var(--gl);
+    padding:0 56px;height:56px;display:flex;align-items:center;justify-content:space-between;}
+  .logo{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:0.92rem;cursor:pointer;}
+  .nav-r{display:flex;align-items:center;gap:32px;}
+  .nav-r a{font-size:0.8rem;color:var(--gt);font-weight:300;transition:color .2s;}
+  .nav-r a:hover{color:var(--b);}
+  .nav-tel{color:var(--org)!important;font-weight:500!important;}
+
+  /* HERO */
+  .hero{padding:120px 56px 100px;border-bottom:1px solid var(--gl);}
+  .hero-inner{max-width:1000px;margin:0 auto;}
+  .hero-tag{display:inline-block;background:var(--pale);color:var(--org);padding:6px 16px;
+    font-size:0.7rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;margin-bottom:36px;}
+  .hero h1{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;
+    font-size:clamp(3.5rem,8vw,8rem);line-height:.93;letter-spacing:-.04em;
+    color:var(--b);margin-bottom:48px;}
+  .hero h1 span{color:var(--org);}
+  .hero-row{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:32px;}
+  .hero-sub{font-size:1rem;color:var(--gt);font-weight:300;max-width:380px;line-height:1.75;}
+  .hero-actions{display:flex;flex-direction:column;align-items:flex-end;gap:12px;}
+  .btn-org{display:inline-block;background:var(--org);color:var(--w);padding:14px 28px;
+    font-weight:500;font-size:0.85rem;transition:background .2s;}
+  .btn-org:hover{background:var(--b);}
+  .hero-note{font-size:0.72rem;color:var(--gt);font-weight:300;}
+
+  /* HORAIRES — ligne typographique */
+  .hours-line{border-top:1px solid var(--gl);border-bottom:1px solid var(--gl);}
+  .hours-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(7,1fr);}
+  .h-cell{padding:24px 20px;border-right:1px solid var(--gl);text-align:center;}
+  .h-cell:last-child{border-right:none;}
+  .h-day{font-size:0.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--gt);margin-bottom:8px;}
+  .h-time{font-family:'Bricolage Grotesque',sans-serif;font-size:0.88rem;font-weight:700;color:var(--b);}
+  .h-cell.today{background:var(--pale);}
+  .h-cell.today .h-day{color:var(--org);}
+  .h-cell.today .h-time{color:var(--org);}
+  .closed{color:var(--gl)!important;}
+
+  /* SERVICES — liste typographique pure */
+  .services{padding:96px 56px;}
+  .services-inner{max-width:1000px;margin:0 auto;}
+  .sec-label{font-size:0.68rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--org);margin-bottom:14px;}
+  .sec-h2{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(2rem,4vw,3.5rem);
+    font-weight:800;letter-spacing:-.03em;margin-bottom:56px;}
+  .srv-item{display:flex;align-items:baseline;justify-content:space-between;gap:24px;
+    padding:24px 0;border-bottom:1px solid var(--gl);}
+  .srv-item:first-of-type{border-top:1px solid var(--gl);}
+  .srv-left{display:flex;align-items:baseline;gap:24px;}
+  .srv-n{font-size:0.68rem;color:var(--gt);font-weight:300;width:24px;flex-shrink:0;}
+  .srv-name{font-family:'Bricolage Grotesque',sans-serif;font-size:1.15rem;font-weight:700;letter-spacing:-.01em;}
+  .srv-desc{font-size:0.82rem;color:var(--gt);font-weight:300;max-width:360px;text-align:right;}
+  .srv-item:hover .srv-name{color:var(--org);}
+
+  /* CONTACT */
+  .contact{padding:96px 56px;background:var(--gl);}
+  .contact-inner{max-width:1000px;margin:0 auto;}
+  .big-tel{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(3rem,7vw,7rem);
+    font-weight:800;letter-spacing:-.04em;color:var(--b);display:block;margin:20px 0 60px;
+    transition:color .2s;}
+  .big-tel:hover{color:var(--org);}
+  .c-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;}
+  .c-info h3{font-family:'Bricolage Grotesque',sans-serif;font-size:1.1rem;font-weight:800;letter-spacing:-.01em;margin-bottom:16px;}
+  .c-info p{font-size:0.85rem;color:var(--gt);line-height:1.85;font-weight:300;margin-bottom:4px;}
+  .fi{display:flex;flex-direction:column;gap:0;}
+  .fi input,.fi textarea{background:var(--w);border:none;border-bottom:1px solid #ccc;
+    padding:15px 0;font-family:'DM Sans';font-size:0.85rem;color:var(--b);font-weight:300;outline:none;transition:border-color .2s;}
+  .fi input:focus,.fi textarea:focus{border-bottom-color:var(--org);}
+  .fi input::placeholder,.fi textarea::placeholder{color:#bbb;}
+  .fi textarea{min-height:80px;resize:none;}
+  .fi button{margin-top:24px;align-self:flex-start;background:var(--b);color:var(--w);border:none;
+    padding:13px 24px;font-family:'DM Sans';font-weight:500;font-size:0.85rem;cursor:pointer;transition:background .2s;}
+  .fi button:hover{background:var(--org);}
+
+  footer{background:var(--b);color:var(--w);padding:22px 56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:0.72rem;}
+  footer span{opacity:.35;} .fl{display:flex;gap:20px;} .fl a{opacity:.35;cursor:pointer;transition:opacity .2s;} .fl a:hover{opacity:1;}
+
+  .lp{max-width:640px;margin:0 auto;padding:100px 56px 80px;}
+  .lback{font-size:0.78rem;color:var(--gt);cursor:pointer;display:inline-block;margin-bottom:48px;transition:color .2s;}
+  .lback:hover{color:var(--b);}
+  .lp h1{font-family:'Bricolage Grotesque',sans-serif;font-size:2.2rem;font-weight:800;letter-spacing:-.03em;margin-bottom:8px;}
+  .ldate{font-size:0.72rem;color:var(--gt);margin-bottom:48px;}
+  .lp h2{font-size:0.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--org);margin:32px 0 10px;}
+  .lp p,.lp li{font-size:0.88rem;color:#555;line-height:1.85;font-weight:300;margin-bottom:8px;}
+  .lp ul{margin-left:18px;} .lp a{color:var(--org);text-decoration:underline;}
+
+  @media(max-width:768px){
+    nav{padding:0 20px;} .nav-r a:not(.nav-tel){display:none;}
+    .hero{padding:90px 20px 64px;}
+    .hours-inner{grid-template-columns:repeat(3,1fr);}
+    .h-cell:nth-child(n+4):nth-child(-n+7){border-top:1px solid var(--gl);}
+    .services{padding:64px 20px;}
+    .srv-item{flex-direction:column;gap:8px;} .srv-desc{text-align:left;}
+    .contact{padding:64px 20px;} .c-grid{grid-template-columns:1fr;gap:40px;}
+    footer{padding:20px;} .lp{padding:90px 20px 60px;}
+  }
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo" onclick="showPage('main')">[NOM DE LA PHARMACIE]</div>
+  <div class="nav-r">
+    <a href="#services">Services</a><a href="#contact">Contact</a>
+    <a href="tel:[NUMERO_TELEPHONE_SANS_ESPACES]" class="nav-tel">[NUMÉRO DE TÉLÉPHONE]</a>
+  </div>
+</nav>
+
+<div id="page-main" class="page active">
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-tag">[VILLE] · [QUARTIER/ZONE]</div>
+      <h1>Votre santé,<br>notre <span>priorité.</span></h1>
+      <div class="hero-row">
+        <p class="hero-sub">Vaccination, tests rapides, matériel médical. Ouverts jusqu'à 20h en semaine, sans rendez-vous.</p>
+        <div class="hero-actions">
+          <a href="tel:[NUMERO_TELEPHONE_SANS_ESPACES]" class="btn-org">[NUMÉRO DE TÉLÉPHONE]</a>
+          <span class="hero-note">[HORAIRES_RÉSUMÉ]</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="hours-line">
+    <div class="hours-inner" id="hoursGrid">
+      <div class="h-cell" data-day="1"><div class="h-day">Lun</div><div class="h-time">[HORAIRES_LUNDI]</div></div>
+      <div class="h-cell" data-day="2"><div class="h-day">Mar</div><div class="h-time">[HORAIRES_MARDI]</div></div>
+      <div class="h-cell" data-day="3"><div class="h-day">Mer</div><div class="h-time">[HORAIRES_MERCREDI]</div></div>
+      <div class="h-cell" data-day="4"><div class="h-day">Jeu</div><div class="h-time">[HORAIRES_JEUDI]</div></div>
+      <div class="h-cell" data-day="5"><div class="h-day">Ven</div><div class="h-time">[HORAIRES_VENDREDI]</div></div>
+      <div class="h-cell" data-day="6"><div class="h-day">Sam</div><div class="h-time">[HORAIRES_SAMEDI]</div></div>
+      <div class="h-cell" data-day="0"><div class="h-day">Dim</div><div class="h-time closed">[HORAIRES_DIMANCHE]</div></div>
+    </div>
+  </div>
+
+  <section class="services" id="services">
+    <div class="services-inner">
+      <div class="sec-label">Nos services</div>
+      <div class="sec-h2">Ce que nous faisons</div>
+      <div class="srv-item"><div class="srv-left"><span class="srv-n">01</span><span class="srv-name">Vaccination</span></div><span class="srv-desc">Grippe, Covid, DTP — sans ordonnance ni rendez-vous.</span></div>
+      <div class="srv-item"><div class="srv-left"><span class="srv-n">02</span><span class="srv-name">Tests rapides</span></div><span class="srv-desc">Angine, cystite, Covid. Résultats en quelques minutes.</span></div>
+      <div class="srv-item"><div class="srv-left"><span class="srv-n">03</span><span class="srv-name">Matériel médical</span></div><span class="srv-desc">Location et vente : tire-lait, tensiomètre, orthopédie.</span></div>
+      <div class="srv-item"><div class="srv-left"><span class="srv-n">04</span><span class="srv-name">Livraison à domicile</span></div><span class="srv-desc">Médicaments livrés sur Anglet et alentours.</span></div>
+      <div class="srv-item"><div class="srv-left"><span class="srv-n">05</span><span class="srv-name">Téléconsultation</span></div><span class="srv-desc">Médecin en vidéo depuis la pharmacie.</span></div>
+      <div class="srv-item"><div class="srv-left"><span class="srv-n">06</span><span class="srv-name">Parapharmacie</span></div><span class="srv-desc">Phytothérapie, aromathérapie, produits bio.</span></div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="contact-inner">
+      <div class="sec-label">Contact</div>
+      <a href="tel:[NUMERO_TELEPHONE_SANS_ESPACES]" class="big-tel">[NUMÉRO DE TÉLÉPHONE]</a>
+      <div class="c-grid">
+        <div class="c-info">
+          <h3>Nous trouver</h3>
+          <p>[ADRESSE COMPLÈTE]</p>
+          <p>[CODE POSTAL] [VILLE] · Parking · PMR</p>
+          <p style="margin-top:12px;">Pharmacie de garde : <a href="tel:3237" style="color:var(--org);">32 37</a></p>
+        </div>
+        <form class="fi" action="https://formspree.io/f/REMPLACER" method="POST">
+          <input type="text" name="nom" placeholder="Votre nom" required>
+          <input type="email" name="email" placeholder="Email" required>
+          <textarea name="message" placeholder="Votre question"></textarea>
+          <button type="submit">Envoyer →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© [ANNÉE] [NOM DE LA PHARMACIE]</span>
+    <div class="fl"><a onclick="showPage('mentions')">Mentions légales</a><a onclick="showPage('confidentialite')">Confidentialité</a></div>
+  </footer>
+</div>
+
+<div id="page-mentions" class="page">
+  <div class="lp"><span class="lback" onclick="showPage('main')">← Retour</span><h1>Mentions légales</h1><p class="ldate">Juin 2025</p>
+  <h2>Éditeur</h2><p>[NOM DE LA PHARMACIE] — [FORME JURIDIQUE] · [ADRESSE COMPLÈTE] · SIRET [NUMÉRO SIRET]</p>
+  <h2>Hébergement</h2><p>Vercel Inc. — <a href="https://vercel.com/legal" target="_blank">vercel.com/legal</a></p>
+  <h2>Propriété intellectuelle</h2><p>Tous contenus propriété de [NOM DE LA PHARMACIE]. Reproduction interdite.</p></div>
+  <footer><span>© [ANNÉE] [NOM DE LA PHARMACIE]</span><div class="fl"><a onclick="showPage('mentions')">Mentions légales</a><a onclick="showPage('confidentialite')">Confidentialité</a></div></footer>
+</div>
+<div id="page-confidentialite" class="page">
+  <div class="lp"><span class="lback" onclick="showPage('main')">← Retour</span><h1>Confidentialité</h1><p class="ldate">Juin 2025</p>
+  <h2>Données collectées</h2><p>Nom, email, téléphone (facultatif), message.</p>
+  <h2>Finalité</h2><p>Répondre à votre demande. Aucune revente.</p>
+  <h2>Vos droits</h2><p>Contact : [NUMÉRO DE TÉLÉPHONE]. Réclamation : <a href="https://cnil.fr" target="_blank">cnil.fr</a></p>
+  <h2>Cookies</h2><p>Aucun cookie publicitaire.</p></div>
+  <footer><span>© [ANNÉE] [NOM DE LA PHARMACIE]</span><div class="fl"><a onclick="showPage('mentions')">Mentions légales</a><a onclick="showPage('confidentialite')">Confidentialité</a></div></footer>
+</div>
+
+<script>
+function showPage(n){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+n).classList.add('active');window.scrollTo(0,0);}
+const d=new Date().getDay();
+document.querySelectorAll('.h-cell[data-day]').forEach(c=>{if(parseInt(c.dataset.day)===d)c.classList.add('today');});
+</script>
+</body>
+</html>

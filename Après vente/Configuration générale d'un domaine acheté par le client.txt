@@ -1,0 +1,140 @@
+=====================================================
+PROCÉDURE TECHNIQUE - DÉVELOPPEUR
+Configuration d'un domaine acheté par le client
+=====================================================
+
+OBJECTIF : Pointer le nom de domaine (ex: peintredupont.fr) vers 
+mon hébergement (serveur) et activer le HTTPS.
+
+-----------------------------------------------------
+PRÉREQUIS (AVANT DE COMMENCER)
+-----------------------------------------------------
+1) Avoir reçu du client : 
+   - Le nom de domaine (ex: peintredupont.fr)
+   - Son identifiant de connexion (chez OVH/Gandi/...)
+   - Son mot de passe associé.
+
+2) Avoir déjà mon hébergement prêt :
+   - Si j'utilise un hébergement mutualisé (OVH, Hostinger) : noter l'IP publique du serveur (ex: 123.45.67.89).
+   - Si j'utilise Netlify/Vercel/GitHub Pages : noter l'alias fourni (ex: monportfolio.netlify.app).
+   - Si j'utilise un VPS (Serveur dédié) : noter l'IP publique du VPS.
+
+3) Avoir déjà téléversé (uploadé) les fichiers du site sur l'hébergement 
+   (ou avoir un dossier prêt à accueillir le site).
+
+-----------------------------------------------------
+ÉTAPE 1 : SE CONNECTER AU COMPTE DU CLIENT
+-----------------------------------------------------
+- Rendez-vous sur le site du registrar (OVH, Gandi, etc.).
+- Connectez-vous avec l'identifiant et le mot de passe fournis par le client.
+- NE CHANGEZ PAS le mot de passe maintenant (attendez la fin).
+
+-----------------------------------------------------
+ÉTAPE 2 : ACCÉDER À LA ZONE DNS
+-----------------------------------------------------
+Cherchez le menu "Domaines" ou "Nom de domaine" puis "Zone DNS" 
+(ou "Gérer les DNS").
+C'est le tableau de bord qui fait le lien entre le nom et l'IP.
+
+-----------------------------------------------------
+ÉTAPE 3 : MODIFIER LES ENREGISTREMENTS DNS (Le plus important)
+-----------------------------------------------------
+⚠️ RÈGLES D'OR :
+- @ (ou champ vide) = le domaine nu (peintredupont.fr)
+- www = le sous-domaine (www.peintredupont.fr)
+
+CAS N°1 : J'utilise un hébergement classique avec une IP (ex: OVH mutualisé)
+-----------------------------------------------------
+1) Supprimez les enregistrements "A" et "CNAME" existants (gardez les MX si il a des emails, mais pour un 1er site, on peut tout supprimer).
+2) Ajoutez un enregistrement TYPE A :
+   - Nom : @ (ou laissez vide)
+   - Cible : [L'IP DE VOTRE SERVEUR]
+   - TTL : 3600 (ou laisser défaut)
+3) Ajoutez un enregistrement TYPE CNAME :
+   - Nom : www
+   - Cible : @ (ou peintredupont.fr)
+   - TTL : 3600
+
+CAS N°2 : J'utilise Netlify / Vercel (pas d'IP fixe, juste un alias)
+-----------------------------------------------------
+Chez OVH, on ne peut PAS mettre de CNAME sur le domaine nu (@). 
+Voici la solution imparable (redirection 301) :
+1) Enregistrement TYPE A :
+   - Nom : @
+   - Cible : 75.2.60.5  (IP publique de Netlify, valable pour tous)
+2) Enregistrement TYPE CNAME :
+   - Nom : www
+   - Cible : [votre-site].netlify.app (ou vercel.app)
+3) ALLEZ DANS "Redirection" (sur OVH) et ajoutez :
+   - Domaine redirigé : peintredupont.fr
+   - Cible : https://www.peintredupont.fr
+   - Type : 301 (permanent)
+
+👉 ASTUCE : Si tu utilises OVH, ils ont un guide "Redirection d'un nom de domaine vers www" à suivre.
+
+-----------------------------------------------------
+ÉTAPE 4 : CONFIGURER L'HÉBERGEMENT (Ajouter le domaine)
+-----------------------------------------------------
+Même si les DNS pointent, l'hébergeur ne sait pas encore que ce domaine doit afficher VOS fichiers.
+
+- Si hébergement mutualisé (cPanel / Plesk) : 
+  Allez dans "Domaines" ou "Alias" et ajoutez "peintredupont.fr" 
+  en précisant le dossier où sont vos fichiers (ex: /www/peintre).
+
+- Si VPS (Apache/Nginx) :
+  Créez un fichier de configuration (VirtualHost) avec :
+    ServerName peintredupont.fr
+    ServerAlias www.peintredupont.fr
+    DocumentRoot /var/www/peintre
+  Puis redémarrez le serveur (systemctl restart nginx/apache2).
+
+- Si Netlify/Vercel :
+  Allez dans les paramètres du site > Domaines > Ajouter un domaine personnalisé.
+  Tapez peintredupont.fr et suivez les instructions (ils détecteront automatiquement le CNAME).
+
+-----------------------------------------------------
+ÉTAPE 5 : INSTALLER LE CERTIFICAT SSL (Passage en HTTPS)
+-----------------------------------------------------
+Le petit cadenas vert est OBLIGATOIRE pour rassurer les clients.
+
+- Chez OVH/Infomaniak mutualisé : Activez le SSL "Let's Encrypt" ou "SSL gratuit" en un clic dans l'interface d'hébergement.
+
+- Sur VPS : Installez Certbot (sudo apt install certbot python3-certbot-nginx ou apache) 
+  puis lancez : sudo certbot --nginx -d peintredupont.fr -d www.peintredupont.fr
+
+- Sur Netlify/Vercel : Le HTTPS est automatique dès que le domaine est reconnu.
+
+-----------------------------------------------------
+ÉTAPE 6 : VÉRIFICATION FINALE (TESTS)
+-----------------------------------------------------
+1) Ouvrez une fenêtre de navigation PRIVÉE (pour éviter le cache).
+2) Tapez http://peintredupont.fr -> ça doit rediriger vers https://
+3) Tapez https://peintredupont.fr -> Vérifiez le cadenas (cliquez dessus).
+4) Tapez www.peintredupont.fr -> Vérifiez que ça affiche le même site.
+5) Testez le formulaire de contact (envoyez un message test).
+
+Si tout fonctionne : BRAVO, le site est EN LIGNE !
+
+-----------------------------------------------------
+ÉTAPE 7 : RESTITUTION AU CLIENT (SÉCURITÉ)
+-----------------------------------------------------
+1) Déconnectez-vous de son compte registrar.
+2) Envoyez-lui un message :
+   "Votre site est en ligne à l'adresse https://peintredupont.fr. 
+   Je ne suis plus connecté à votre compte. Je vous conseille de 
+   changer votre mot de passe pour plus de sécurité si vous le souhaitez."
+
+3) Conservez précieusement dans un fichier sécurisé (hors ligne) :
+   - Le nom de domaine.
+   - L'identifiant du client (au cas où il le perd).
+   - La date de renouvellement du domaine (pour l'informer dans 11 mois).
+
+-----------------------------------------------------
+📌 PIÈGE À ÉVITER ABSOLUMENT
+-----------------------------------------------------
+- N'ACHÈTE PAS le domaine avec TA carte bancaire. Si tu le fais, 
+  le domaine t'appartient. Pour le céder, il faudra attendre 60 jours 
+  (période de blocage) et faire une procédure de changement de titulaire.
+  Le client doit être propriétaire du domaine depuis le JOUR 1.
+
+=====================================================

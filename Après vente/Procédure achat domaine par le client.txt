@@ -1,0 +1,91 @@
+=====================================================
+INSTRUCTIONS : ACHETER VOTRE NOM DE DOMAINE
+(À suivre par le client - Peintre en bâtiment)
+=====================================================
+
+Bonjour,
+
+Pour que votre site web soit accessible sur Internet, vous devez acheter 
+votre "nom de domaine" (ex: peintredupont.fr). Voici les étapes simples 
+à suivre. Je vous guide, mais c'est vous qui achetez avec votre carte 
+bancaire pour que le nom vous appartienne définitivement.
+
+-----------------------------------------------------
+ÉTAPE 1 : Choisir le bon nom
+-----------------------------------------------------
+- Choisissez un nom facile à retenir et à épeler.
+- Idéalement : votre métier + votre ville.
+  Exemples : peintre-dupont-lyon.fr  /  rénovation-peintre-rennes.fr
+- Évitez les chiffres, les tirets trop nombreux, et les dates.
+
+-----------------------------------------------------
+ÉTAPE 2 : Choisir le vendeur (le "Registrar")
+-----------------------------------------------------
+Je vous recommande l'un de ces 3 sites (très fiables et en français) :
+1. OVHcloud (ovh.com)    - Le plus connu.
+2. Gandi.net (gandi.net) - Très transparent sur les prix.
+3. Infomaniak (infomaniak.com) - Alternative éthique.
+
+Pour la suite, je prendrai l'exemple d'OVHcloud.
+
+-----------------------------------------------------
+ÉTAPE 3 : Créer votre compte (IMPORTANT)
+-----------------------------------------------------
+- Allez sur le site du vendeur (ex: OVHcloud) et cliquez sur "Créer un compte" 
+  ou "Se connecter".
+- SURTOUT : inscrivez-vous avec VOS vrais nom, prénom, adresse postale 
+  et adresse email. C'est pour que le domaine soit bien à votre nom 
+  (et non au mien). 
+- Validez votre compte via l'email de confirmation reçu.
+
+-----------------------------------------------------
+ÉTAPE 4 : Vérifier la disponibilité
+-----------------------------------------------------
+- Tapez le nom que vous avez choisi dans la barre de recherche.
+- Regardez si l'extension ".fr" ou ".com" est libre.
+- Si c'est pris, le site vous proposera des variantes. Choisissez 
+  celle qui vous plaît le plus (souvent .fr pour un artisan local).
+
+-----------------------------------------------------
+ÉTAPE 5 : Ajouter au panier et PAYER (QUE le domaine)
+-----------------------------------------------------
+- Ajoutez le domaine au panier.
+- ATTENTION : le site va vous proposer des options en plus 
+  (hébergement, emails pro, offre sécurité). DECOCHEZ TOUT ! 
+  Vous n'achetez que le NOM DE DOMAINE (entre 5€ et 15€ par an).
+- Entrez vos coordonnées bancaires et validez le paiement.
+- Notez bien : le paiement est annuel (pensez à le renouveler 
+  automatiquement ou notez la date d'expiration dans votre agenda).
+
+-----------------------------------------------------
+ÉTAPE 6 : CE QUE VOUS DEVEZ ME DONNER (LE PLUS IMPORTANT)
+-----------------------------------------------------
+Une fois l'achat terminé, vous devez absolument me transmettre ces 
+3 informations pour que je puisse configurer la technique :
+
+1) Le nom de domaine EXACT que vous avez acheté.
+   Exemple : peintre-dupont-lyon.fr
+
+2) Votre identifiant de connexion sur le site du vendeur (OVH/Gandi/...).
+   (Généralement votre adresse email)
+
+3) Votre mot de passe de connexion (pour que je puisse entrer dans 
+   votre espace client et "pointer" le domaine vers l'hébergement).
+
+RASSUREZ-VOUS : vous pourrez changer ce mot de passe plus tard, 
+après la mise en ligne de votre site, si vous le souhaitez. 
+Je n'ai besoin de ces accès que pour la période de configuration 
+technique (modification des DNS).
+
+-----------------------------------------------------
+ASTUCE (si vous ne voulez pas me donner votre mot de passe)
+-----------------------------------------------------
+Si vous préférez garder votre mot de passe secret, pas de problème ! 
+Vous pouvez me donner votre numéro de téléphone et on fait la 
+configuration ensemble à distance (je vous dicte les modifications 
+à faire sur votre écran). Mais me donner les accès est plus rapide.
+
+-----------------------------------------------------
+VOUS AVEZ FINI ? Envoyez-moi ces 3 infos par SMS ou email.
+Je vous confirme la bonne réception et je commence la config !
+=====================================================

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maçonnerie Ducoin — Maçon à [Ville]</title>
+<meta name="description" content="Entreprise de maçonnerie générale à [Ville] : construction, rénovation, extension, terrassement. Devis gratuit sous 48h.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  /* ── Couleurs : pierre, terre cuite, ardoise — rappel du métier ── */
+  :root{
+    --pierre:#B8A78F;
+    --terracotta:#B5502E;
+    --ardoise:#3D3B37;
+    --blanc:#FFFFFF;
+    --creme:#F6F2EC;
+    --clair:#E9E2D6;
+    --gt:#8A8078;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'DM Sans',sans-serif;background:var(--creme);color:var(--ardoise);-webkit-font-smoothing:antialiased;overflow-x:hidden;padding-bottom:38px;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+
+  /* ── BANDE SUPÉRIEURE ── */
+  header{position:sticky;top:0;z-index:100;background:var(--blanc);border-bottom:1px solid var(--clair);
+    display:flex;align-items:center;justify-content:space-between;padding:14px 40px;}
+  .logo-zone{display:flex;align-items:center;gap:14px;}
+  .logo-ph{width:48px;height:48px;background:var(--clair);border-radius:4px;display:flex;align-items:center;justify-content:center;
+    font-size:0.6rem;color:var(--gt);text-align:center;line-height:1.2;}
+  .brand-title{font-family:'Fraunces',serif;font-weight:700;font-size:1.15rem;letter-spacing:-.01em;}
+  .brand-title span{display:block;font-family:'DM Sans',sans-serif;font-weight:300;font-size:0.7rem;color:var(--gt);letter-spacing:.05em;}
+  .header-phone{display:flex;align-items:center;gap:8px;font-size:0.9rem;font-weight:500;color:var(--terracotta);}
+  .header-phone svg{flex-shrink:0;}
+
+  /* ── HERO ── */
+  .hero{padding:90px 40px;text-align:center;background:var(--ardoise);color:var(--blanc);}
+  .hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,5vw,3.4rem);letter-spacing:-.02em;margin-bottom:18px;}
+  .hero p{font-size:1rem;font-weight:300;color:var(--clair);max-width:520px;margin:0 auto 32px;line-height:1.7;}
+  .btn{display:inline-block;background:var(--terracotta);color:var(--blanc);padding:14px 32px;font-size:0.85rem;
+    font-weight:500;letter-spacing:.03em;border-radius:2px;border:none;cursor:pointer;transition:background .2s;}
+  .btn:hover{background:#943f22;}
+
+  /* ── SECTIONS générales ── */
+  section{padding:80px 40px;max-width:1100px;margin:0 auto;}
+  .eyebrow{font-size:0.7rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--terracotta);margin-bottom:10px;}
+  h2{font-family:'Fraunces',serif;font-weight:700;font-size:2rem;letter-spacing:-.02em;margin-bottom:36px;}
+
+  /* ── PRESTATIONS ── */
+  .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:28px;}
+  .service{background:var(--blanc);border:1px solid var(--clair);padding:28px 24px;border-radius:4px;}
+  .service h3{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:700;margin-bottom:10px;}
+  .service p{font-size:0.88rem;font-weight:300;color:#5a5650;line-height:1.7;}
+  .service svg{margin-bottom:14px;color:var(--terracotta);}
+
+  /* ── RÉALISATIONS (photos bâtiment) ── */
+  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;}
+  .photo-ph{aspect-ratio:4/3;background:var(--clair);border-radius:4px;display:flex;align-items:center;justify-content:center;
+    color:var(--gt);font-size:0.75rem;text-align:center;padding:12px;}
+
+  /* ── ÉQUIPE ── */
+  .team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:28px;}
+  .team-card{text-align:center;}
+  .team-photo{aspect-ratio:1/1;background:var(--clair);border-radius:50%;margin:0 auto 14px;max-width:150px;
+    display:flex;align-items:center;justify-content:center;color:var(--gt);font-size:0.7rem;text-align:center;padding:10px;}
+  .team-card h4{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;}
+  .team-card span{font-size:0.8rem;color:var(--gt);}
+
+  /* ── À PROPOS ── */
+  .about{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+  .about .photo-ph{aspect-ratio:3/2;}
+  .about p{font-size:0.92rem;font-weight:300;color:#5a5650;line-height:1.8;margin-bottom:14px;}
+
+  /* ── FORMULAIRE DE CONTACT ── */
+  .contact-section{background:var(--clair);}
+  .contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
+  .contact-info h3{font-family:'Fraunces',serif;font-size:1.2rem;margin-bottom:14px;}
+  .contact-info p{font-size:0.9rem;color:#5a5650;margin-bottom:10px;font-weight:300;}
+  .contact-info a{color:var(--terracotta);font-weight:500;}
+  form{display:flex;flex-direction:column;gap:14px;}
+  input,textarea{font-family:'DM Sans',sans-serif;padding:12px 14px;border:1px solid var(--gt);border-radius:2px;
+    font-size:0.88rem;background:var(--blanc);color:var(--ardoise);}
+  input:focus,textarea:focus{outline:1px solid var(--terracotta);}
+  textarea{resize:vertical;min-height:110px;}
+  form .btn{align-self:flex-start;}
+
+  /* ── FOOTER (adapté du modèle fourni) ── */
+  footer{position:fixed;bottom:0;left:0;right:0;z-index:200;background:var(--ardoise);padding:8px 24px;
+    display:flex;justify-content:space-between;align-items:center;gap:24px;font-size:0.75rem;}
+  footer span{color:rgba(255,255,255,.35);}
+  footer a{color:rgba(255,255,255,.35);cursor:pointer;transition:color .2s;}
+  footer a:hover{color:rgba(255,255,255,.7);}
+  #contact-trigger{background:none;border:none;cursor:pointer;font:inherit;font-size:0.75rem;
+    color:rgba(255,255,255,.35);padding:0;transition:color .2s;letter-spacing:.04em;}
+  #contact-trigger:hover{color:var(--blanc);}
+  #contact-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:998;}
+  #contact-modal{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
+    background:var(--blanc);color:var(--ardoise);padding:2rem;z-index:999;
+    width:min(300px,88vw);flex-direction:column;gap:1rem;border-radius:4px;}
+  #contact-modal.open,#contact-overlay.open{display:flex;}
+  #contact-close{position:absolute;top:.75rem;right:.75rem;background:none;border:none;
+    font-size:1rem;cursor:pointer;color:var(--gt);line-height:1;}
+  .contact-modal-name{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;margin:0;}
+  .contact-modal-link{display:flex;align-items:center;gap:.6rem;color:var(--ardoise);
+    text-decoration:none;font-size:0.88rem;font-weight:300;}
+  .contact-modal-link:hover{text-decoration:underline;}
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:900px){
+    header{padding:12px 16px;flex-wrap:wrap;gap:10px;}
+    .about,.contact-wrap{grid-template-columns:1fr;}
+    section{padding:56px 20px;}
+    footer{padding:8px 12px;font-size:0.55rem;display:grid;grid-template-columns:1fr 1fr;gap:6px;text-align:center;align-items:center;}
+    footer span,footer a,#contact-trigger{text-align:center;font-size:0.55rem;letter-spacing:normal;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ════ BANDE SUPÉRIEURE ════ -->
+<header>
+  <div class="logo-zone">
+    <div class="logo-ph">LOGO</div>
+    <div class="brand-title">Maçonnerie Ducoin<span>Construction & Rénovation</span></div>
+  </div>
+  <a href="tel:+33771717229" class="header-phone">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12 19.79 19.79 0 0 1 1.08 3.4 2 2 0 0 1 3.06 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z"/></svg>
+    07 71 71 72 29
+  </a>
+</header>
+
+<!-- ════ HERO ════ -->
+<section class="hero" style="max-width:none;padding:90px 40px;">
+  <h1>Maçon à [Ville]<br>depuis [XX] ans</h1>
+  <p>Construction, rénovation, extension et terrassement. Une équipe de maçons qualifiés pour des travaux solides et soignés.</p>
+  <button class="btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Demander un devis gratuit</button>
+</section>
+
+<!-- ════ PRESTATIONS ════ -->
+<section id="prestations">
+  <div class="eyebrow">Nos prestations</div>
+  <h2>Ce que nous réalisons</h2>
+  <div class="services-grid">
+    <div class="service">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>
+      <h3>Construction neuve</h3>
+      <p>Gros œuvre, fondations, élévation de murs, dalles et charpente en coordination avec vos autres corps de métier.</p>
+    </div>
+    <div class="service">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 0 0 1 1h3m6 0h3a1 1 0 0 0 1-1V10m-9 11V15h4v6"/></svg>
+      <h3>Rénovation</h3>
+      <p>Reprise de fondations, ouverture de mur porteur, rénovation de façade et remise aux normes.</p>
+    </div>
+    <div class="service">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="9" width="18" height="12" rx="1"/><path d="M9 9V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4"/></svg>
+      <h3>Extension</h3>
+      <p>Agrandissement de maison, véranda, garage attenant, surélévation adaptée à votre terrain.</p>
+    </div>
+    <div class="service">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 20h20M4 20V10l4-3 4 3v10M12 20V7l4-4 4 4v13"/></svg>
+      <h3>Terrassement & clôtures</h3>
+      <p>Préparation de terrain, allées, murets et clôtures maçonnées pour finaliser vos extérieurs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ RÉALISATIONS (photos du bâtiment) ════ -->
+<section id="realisations" style="background:var(--blanc);max-width:none;">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="eyebrow">Réalisations</div>
+    <h2>Quelques chantiers récents</h2>
+    <div class="gallery">
+      <div class="photo-ph">[Photo chantier / façade terminée]</div>
+      <div class="photo-ph">[Photo extension réalisée]</div>
+      <div class="photo-ph">[Photo mur / clôture]</div>
+      <div class="photo-ph">[Photo intérieur / gros œuvre]</div>
+      <div class="photo-ph">[Photo avant/après]</div>
+      <div class="photo-ph">[Photo équipe sur chantier]</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ ÉQUIPE ════ -->
+<section id="equipe">
+  <div class="eyebrow">L'équipe</div>
+  <h2>Qui sommes-nous</h2>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-photo">[Photo]</div>
+      <h4>Prénom Nom</h4>
+      <span>Gérant / Maçon</span>
+    </div>
+    <div class="team-card">
+      <div class="team-photo">[Photo]</div>
+      <h4>Prénom Nom</h4>
+      <span>Chef de chantier</span>
+    </div>
+    <div class="team-card">
+      <div class="team-photo">[Photo]</div>
+      <h4>Prénom Nom</h4>
+      <span>Maçon qualifié</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════ À PROPOS ════ -->
+<section id="apropos" style="background:var(--blanc);max-width:none;">
+  <div class="about" style="max-width:1100px;margin:0 auto;">
+    <div class="photo-ph">[Photo bâtiment / atelier de l'entreprise]</div>
+    <div>
+      <div class="eyebrow">Notre entreprise</div>
+      <h2>À propos</h2>
+      <p>Entreprise de maçonnerie familiale basée à [Ville], nous intervenons dans un rayon de [XX] km pour tous vos projets de construction et rénovation.</p>
+      <p>Devis gratuit, chantiers assurés, matériaux locaux privilégiés dès que possible.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ CONTACT ════ -->
+<section id="contact" class="contact-section" style="max-width:none;">
+  <div class="contact-wrap" style="max-width:1100px;margin:0 auto;">
+    <div class="contact-info">
+      <div class="eyebrow">Contact</div>
+      <h2>Demander un devis</h2>
+      <p>Téléphone : <a href="tel:+33771717229">07 71 71 72 29</a></p>
+      <p>Email : <a href="mailto:ducoin.co@gmail.com">ducoin.co@gmail.com</a></p>
+      <p>Zone d'intervention : [Ville] et alentours</p>
+    </div>
+    <form action="https://formspree.io/f/VOTRE_ID" method="POST">
+      <input type="text" name="nom" placeholder="Nom et prénom" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="tel" name="telephone" placeholder="Téléphone (facultatif)">
+      <input type="text" name="ville" placeholder="Ville du chantier">
+      <textarea name="message" placeholder="Décrivez votre projet" required></textarea>
+      <button type="submit" class="btn">Envoyer la demande</button>
+    </form>
+  </div>
+</section>
+
+<!-- ════ FOOTER ════ -->
+<footer>
+  <span>© 2026 Maçonnerie Ducoin</span>
+  <button id="contact-trigger">Site réalisé par P-A. Ducoin</button>
+  <a href="#" onclick="alert('Mentions légales à compléter')">Mentions légales</a>
+  <a href="#" onclick="alert('Confidentialité à compléter')">Confidentialité</a>
+</footer>
+
+<div id="contact-overlay"></div>
+<div id="contact-modal" role="dialog" aria-modal="true">
+  <button id="contact-close" aria-label="Fermer">&#x2715;</button>
+  <p class="contact-modal-name">Pierre-Antton Ducoin</p>
+  <a href="tel:+33771717229" class="contact-modal-link">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12 19.79 19.79 0 0 1 1.08 3.4 2 2 0 0 1 3.06 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z"/></svg>
+    07 71 71 72 29
+  </a>
+  <a href="mailto:ducoin.co@gmail.com" class="contact-modal-link">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+    ducoin.co@gmail.com
+  </a>
+  <a href="" target="_blank" class="contact-modal-link">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="3" rx="2" ry="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
+    Site web
+  </a>
+</div>
+
+<script>
+const _cm=document.getElementById('contact-modal');
+const _co=document.getElementById('contact-overlay');
+const _cc=document.getElementById('contact-close');
+const _open=()=>{_cm.classList.add('open');_co.classList.add('open');};
+const _shut=()=>{_cm.classList.remove('open');_co.classList.remove('open');};
+document.querySelectorAll('#contact-trigger').forEach(btn=>btn.addEventListener('click',_open));
+_cc.addEventListener('click',_shut);
+_co.addEventListener('click',_shut);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_shut();});
+</script>
+
+</body>
+</html>

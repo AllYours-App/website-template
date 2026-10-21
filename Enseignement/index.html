@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Ecole primaire publique de Bassussarry</title>
+
+  <script>
+    const SUPABASE_URL  = 'https://esjglamjkrriipsjxkip.supabase.co';
+    const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVzamdsYW1qa3JyaWlwc2p4a2lwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI1ODY2NjIsImV4cCI6MjA5ODE2MjY2Mn0.OPV_dC7QduGKvYTREsTMUb8G7hGk2TS3ZMqynxJdpPw';
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --anth:    #3d2b1f;
+      --blanc:   #fdf8f0;
+      --creme:   #f5ebe0;
+      --creme-fort: #c9b896;
+      --gt:      #8b7355;
+      --rouge:   #b85c38;
+      --terra:   #d4a373;
+      --sauge:   #5f8d4e;
+      --border:  #e6d5c3;
+      --bg:      #fef6ee;
+      --bg-warm: #faf3eb;
+      --admin:   #6b9080;
+      --warm-shadow: 0 4px 20px rgba(61,43,31,.12);
+      --warm-gradient: linear-gradient(135deg, #fef6ee 0%, #f9f0e6 50%, #f5ebe0 100%);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 14px;
+      color: var(--anth);
+      background: var(--warm-gradient);
+      background-image: url('images/fondecran.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+    }
+
+    /* ── LOGIN ── */
+    #screen-login {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--warm-gradient);
+      background-image: radial-gradient(circle at 15% 85%, rgba(212,163,115,.15) 0%, transparent 55%), radial-gradient(circle at 85% 15%, rgba(95,141,78,.12) 0%, transparent 55%);
+    }
+
+    .login-box {
+      background: var(--blanc);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      width: min(360px, 92vw);
+      box-shadow: var(--warm-shadow);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .login-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--terra) 0%, var(--rouge) 50%, var(--terra) 100%);
+    }
+
+    .login-logo {
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, var(--creme) 0%, var(--bg-warm) 100%);
+      border: 1.5px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.25rem;
+      box-shadow: 0 2px 8px rgba(61,43,31,.08);
+    }
+
+    .login-box h1 {
+      font-family: 'Lora', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--anth);
+      margin-bottom: .35rem;
+    }
+
+    .login-subtitle {
+      font-size: .78rem;
+      color: var(--gt);
+      margin-bottom: 1.75rem;
+      font-weight: 400;
+    }
+
+    .login-box label {
+      display: block;
+      font-size: .72rem;
+      color: var(--gt);
+      margin-bottom: .4rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      text-align: left;
+    }
+
+    .login-box input[type="password"] {
+      width: 100%;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: .65rem .85rem;
+      font-size: .875rem;
+      outline: none;
+      font-family: inherit;
+      margin-bottom: 1rem;
+      background: var(--creme);
+      transition: border-color .2s;
+    }
+
+    .login-box input[type="password"]:focus { border-color: var(--terra); background: var(--blanc); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .6rem 1.1rem;
+      font-size: .82rem;
+      font-weight: 500;
+      font-family: inherit;
+      cursor: pointer;
+      border: 1.5px solid var(--terra);
+      background: linear-gradient(135deg, var(--terra) 0%, #c49a6c 100%);
+      color: var(--blanc);
+      border-radius: 8px;
+      transition: all .2s ease;
+      white-space: nowrap;
+      box-shadow: 0 2px 6px rgba(212,163,115,.25);
+    }
+
+    .btn:hover {
+      background: linear-gradient(135deg, #c49a6c 0%, var(--terra) 100%);
+      border-color: #c49a6c;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(212,163,115,.35);
+    }
+    .btn.outline {
+      background: var(--blanc);
+      color: var(--anth);
+      border-color: var(--border);
+      box-shadow: 0 2px 6px rgba(61,43,31,.1);
+    }
+    .btn.outline:hover {
+      background: var(--creme);
+      border-color: var(--terra);
+      transform: translateY(-1px);
+    }
+    .btn.danger {
+      background: linear-gradient(135deg, var(--rouge) 0%, #a04030 100%);
+      border-color: var(--rouge);
+      color: var(--blanc);
+      box-shadow: 0 2px 6px rgba(184,92,56,.25);
+    }
+    .btn.danger:hover {
+      background: linear-gradient(135deg, #a04030 0%, var(--rouge) 100%);
+      border-color: #a04030;
+      transform: translateY(-1px);
+    }
+    .btn.small { padding: .35rem .75rem; font-size: .75rem; }
+    .btn-full { width: 100%; justify-content: center; }
+
+    .login-error { font-size: .8rem; color: var(--rouge); margin-top: .75rem; display: none; }
+
+    /* ── LAYOUT ── */
+    #screen-main { display: none; flex-direction: column; min-height: 100vh; }
+
+    /* ── HEADER ── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--creme-fort);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 12px rgba(61,43,31,.06);
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .85rem 2rem;
+      gap: 1.5rem;
+    }
+
+    .header-brand { display: flex; align-items: center; gap: .85rem; flex-shrink: 0; }
+
+    .logo {
+      width: 38px; height: 38px;
+      background: linear-gradient(135deg, var(--creme) 0%, var(--bg-warm) 100%);
+      border: 1.5px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(61,43,31,.08);
+    }
+
+    .site-title {
+      font-family: 'Lora', serif;
+      font-size: .95rem;
+      font-weight: 600;
+      letter-spacing: -.01em;
+      white-space: nowrap;
+      color: var(--anth);
+    }
+
+    .header-phone { font-size: .82rem; color: var(--gt); white-space: nowrap; }
+
+    /* ── BARRE ADMIN ── */
+    #admin-bar {
+      display: none;
+      background: linear-gradient(135deg, var(--sauge) 0%, #4a7a5a 100%);
+      color: #fff;
+      padding: .5rem 2rem;
+      font-size: .75rem;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 8px rgba(61,43,31,.1);
+    }
+
+    #admin-bar.visible { display: flex; }
+    #admin-bar span { opacity: .9; flex: 1; font-size: .72rem; font-weight: 500; }
+
+    #admin-bar button {
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.3);
+      color: #fff;
+      padding: .35rem .85rem;
+      font-size: .72rem;
+      font-family: inherit;
+      cursor: pointer;
+      white-space: nowrap;
+      border-radius: 6px;
+      transition: all .2s ease;
+    }
+
+    #admin-bar button:hover {
+      background: rgba(255,255,255,.25);
+      transform: translateY(-1px);
+    }
+
+    /* ── BURGER ── */
+    .nav-toggle {
+      background: none; border: none; cursor: pointer;
+      padding: .4rem; color: var(--anth); display: flex; align-items: center;
+    }
+
+    /* ── NAV DÉROULANTE VERTICALE ── */
+    nav {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 240px;
+      background: linear-gradient(180deg, var(--blanc) 0%, var(--creme) 100%);
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+      display: none;
+      z-index: 200;
+      box-shadow: var(--warm-shadow);
+      overflow: hidden;
+    }
+
+    nav.open { display: block; }
+
+    .nav-list { list-style: none; display: flex; flex-direction: column; }
+    .nav-list li { display: flex; align-items: center; border-bottom: 1px solid var(--border); }
+    .nav-list li:last-child { border-bottom: none; }
+
+    .nav-list li a {
+      flex: 1;
+      display: block;
+      padding: .75rem 1.1rem;
+      font-size: .875rem;
+      font-weight: 500;
+      color: var(--gt);
+      text-decoration: none;
+      transition: all .2s ease;
+      white-space: nowrap;
+    }
+
+    .nav-list li a:hover { color: var(--anth); background: var(--bg-warm); }
+    .nav-list li a.active { color: var(--terra); font-weight: 600; background: var(--bg-warm); border-left: 3px solid var(--terra); }
+
+    .tab-admin-actions { display: none; align-items: center; gap: .25rem; padding: 0 .4rem; }
+    .tab-admin-actions.visible { display: flex; }
+
+    .tab-btn {
+      background: none; border: none; cursor: pointer;
+      color: var(--gt); font-size: .8rem; padding: .2rem .3rem;
+      transition: color .15s;
+    }
+
+    .tab-btn:hover { color: var(--anth); }
+    .tab-btn.del:hover { color: var(--rouge); }
+
+    .nav-add-tab { display: none; align-items: center; padding: .5rem 1rem; }
+    .nav-add-tab.visible { display: flex; }
+
+    /* ── MAIN ── */
+    main { flex: 1; margin-top: 68px; margin-bottom: 44px; }
+    body.admin-mode main { margin-top: 98px; }
+
+    .tab-panel { display: none; padding: 2rem 2.5rem; max-width: 820px; }
+    .tab-panel.active { display: block; }
+
+    /* ── BLOCS ── */
+    .content-block {
+      margin-bottom: 1.75rem;
+      padding: 1.5rem;
+      padding-bottom: 1.75rem;
+      background: var(--creme-fort);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(61,43,31,.05);
+    }
+    .content-block:last-child { margin-bottom: 0; }
+
+    .block-text {
+      line-height: 1.8;
+      font-size: .9rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      color: var(--anth);
+    }
+
+    .block-image img {
+      max-width: 100%;
+      display: block;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(61,43,31,.1);
+    }
+
+    .block-controls { display: none; gap: .4rem; margin-top: .65rem; }
+    body.admin-mode .block-controls { display: flex; }
+
+    .editor-toolbar { display: none; gap: .5rem; margin-bottom: 1.75rem; flex-wrap: wrap; align-items: center; padding-bottom: 1.25rem; border-bottom: 1px dashed var(--border); }
+    body.admin-mode .editor-toolbar { display: flex; }
+
+    /* ── MODALES ── */
+    .overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(61,43,31,.35); z-index: 500;
+      align-items: center; justify-content: center;
+      backdrop-filter: blur(4px);
+    }
+
+    .overlay.open { display: flex; }
+
+    .modal {
+      background: linear-gradient(135deg, var(--blanc) 0%, var(--creme) 100%);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      width: min(420px, 92vw);
+      position: relative;
+      box-shadow: 0 12px 40px rgba(61,43,31,.18);
+    }
+
+    .modal h2 {
+      font-family: 'Lora', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+      color: var(--anth);
+    }
+
+    .modal label {
+      display: block;
+      font-size: .72rem;
+      color: var(--gt);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: .35rem;
+    }
+
+    .modal input[type="text"],
+    .modal input[type="password"],
+    .modal textarea {
+      width: 100%;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: .6rem .8rem;
+      font-size: .875rem;
+      font-family: inherit;
+      outline: none;
+      margin-bottom: 1rem;
+      resize: vertical;
+      background: var(--creme);
+      transition: border-color .2s;
+    }
+
+    .modal input:focus, .modal textarea:focus { border-color: var(--terra); background: var(--blanc); }
+    .modal-actions { display: flex; gap: .5rem; justify-content: flex-end; margin-top: .5rem; }
+
+    .modal-close {
+      position: absolute; top: .85rem; right: .85rem;
+      background: none; border: none; font-size: 1.1rem;
+      cursor: pointer; color: var(--gt); line-height: 1;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 200;
+      background: linear-gradient(135deg, var(--anth) 0%, #2d1f15 100%);
+      padding: 6px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-size: .75rem;
+      flex-wrap: wrap;
+      min-height: 10px;
+      box-shadow: 0 -2px 12px rgba(61,43,31,.15);
+    }
+
+    .footer-left,
+    .footer-center,
+    .footer-right {
+      display: flex;
+      align-items: center;
+    }
+
+    .footer-left {
+      flex: 1;
+    }
+
+    .footer-center {
+      flex: 1;
+      justify-content: center;
+    }
+
+    .footer-right {
+      flex: 1;
+      justify-content: flex-end;
+    }
+
+    footer span { color: rgba(253,248,240,.75); white-space: nowrap; }
+
+    footer a, footer button.footer-link {
+      color: rgba(253,248,240,.75);
+      cursor: pointer;
+      transition: all .2s ease;
+      background: none; border: none;
+      font: inherit; font-size: .75rem;
+      padding: 0; letter-spacing: .04em;
+      white-space: nowrap;
+    }
+
+    footer a:hover, footer button.footer-link:hover { color: var(--terra); }
+
+    .mobile-only { display: none; }
+    .desktop-only { display: inline; }
+
+    /* ── LÉGALES ── */
+    .page { display: none; }
+    .page.active { display: block; }
+    .lp { max-width: 640px; margin: 0 auto; padding: 100px 48px 80px; }
+    .lback { font-size: .8rem; color: var(--gt); cursor: pointer; display: inline-block; margin-bottom: 48px; transition: color .2s; }
+    .lback:hover { color: var(--anth); }
+    .lp h1 { font-family: 'Lora', serif; font-size: 2rem; font-weight: 600; letter-spacing: -.02em; margin-bottom: 8px; }
+    .lp h2 { font-size: .68rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--terra); margin: 32px 0 10px; }
+    .lp p, .lp li { font-size: .88rem; color: #555; line-height: 1.85; font-weight: 300; margin-bottom: 8px; }
+    .lp ul { margin-left: 18px; }
+    .lp a { color: var(--terra); text-decoration: underline; }
+
+    .empty-state { color: var(--gt); font-size: .875rem; padding: 2.5rem 0; font-style: italic; }
+
+    .spinner {
+      display: inline-block;
+      width: 18px; height: 18px;
+      border: 2px solid var(--border);
+      border-top-color: var(--terra);
+      border-radius: 50%;
+      animation: spin .6s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .block-image-caption {
+      font-size: .8rem;
+      color: var(--gt);
+      margin-top: .5rem;
+      font-style: italic;
+    }
+
+    #contact-overlay { display: none; position: fixed; inset: 0; background: rgba(61,43,31,.4); z-index: 998; backdrop-filter: blur(4px); }
+    #contact-modal {
+      display: none; position: fixed; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      background: linear-gradient(135deg, var(--blanc) 0%, var(--creme) 100%);
+      color: var(--anth);
+      padding: 2rem; z-index: 999;
+      width: min(300px,88vw);
+      flex-direction: column; gap: 1rem; border-radius: 16px;
+      box-shadow: 0 12px 40px rgba(61,43,31,.18);
+      border: 1px solid var(--border);
+    }
+    #contact-modal.open, #contact-overlay.open { display: flex; }
+    #contact-close { position: absolute; top: .85rem; right: .85rem; background: none; border: none; font-size: 1.1rem; cursor: pointer; color: var(--gt); line-height: 1; }
+    .contact-modal-name { font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 600; margin: 0; }
+    .contact-modal-link { display: flex; align-items: center; gap: .6rem; color: var(--anth); text-decoration: none; font-size: .88rem; font-weight: 300; transition: color .2s; }
+    .contact-modal-link:hover { color: var(--terra); }
+
+    @media (max-width: 600px) {
+      .header-top {
+        padding: .6rem .75rem;
+        gap: .5rem;
+        flex-wrap: wrap;
+      }
+      .header-brand {
+        flex: 1;
+        min-width: 0;
+      }
+      .site-title {
+        font-size: .75rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .logo {
+        width: 32px;
+        height: 32px;
+        flex-shrink: 0;
+      }
+      .header-phone { display: none; }
+      .nav-toggle {
+        padding: .3rem;
+      }
+      nav { width: 100%; }
+      .tab-panel { padding: 1.25rem 1rem; }
+      #admin-bar { padding: .4rem 1rem; font-size: .7rem; }
+      .modal { padding: 1.5rem 1.25rem; width: min(340px, 94vw); }
+      main { margin-bottom: 56px; }
+      footer {
+        padding: 8px 12px;
+        gap: 8px;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .footer-left {
+        flex: none;
+        width: 100%;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      .footer-center {
+        flex: none;
+        width: 100%;
+        justify-content: center;
+      }
+      .footer-right {
+        display: none;
+      }
+      .mobile-only {
+        display: inline;
+      }
+      .desktop-only {
+        display: none;
+      }
+      footer span, footer a, footer button.footer-link {
+        font-size: .68rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════ LOGIN ═══════════════════ -->
+<div id="screen-login">
+  <div class="login-box">
+    <div class="login-logo">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z" stroke="#c4713a" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M9 21V12h6v9" stroke="#c4713a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h1>Ecole de Bassussarry</h1>
+    <p class="login-subtitle">Espace famille</p>
+    <label for="pwd-input">Mot de passe</label>
+    <input type="password" id="pwd-input" placeholder="••••••••" autocomplete="current-password">
+    <button class="btn btn-full" onclick="doLogin()">Accéder au site</button>
+    <p class="login-error" id="login-error">Mot de passe incorrect.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════ SITE ═══════════════════ -->
+<div id="screen-main">
+  <header>
+    <div id="admin-bar">
+      <span>Mode administration</span>
+      <button onclick="openModal('modal-change-pwd')">Changer les mots de passe</button>
+      <button onclick="openModal('modal-change-phone')">Modifier le téléphone</button>
+      <button onclick="logout()">Déconnexion</button>
+    </div>
+    <div class="header-top">
+      <div class="header-brand">
+        <div class="logo">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z" stroke="#c4713a" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M9 21V12h6v9" stroke="#c4713a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <button class="nav-toggle" id="nav-toggle" onclick="toggleNav()" aria-label="Menu">
+          <svg id="icon-burger" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <span class="site-title">Ecole primaire publique de Bassussarry</span>
+      </div>
+      <span class="header-phone" id="header-phone">01 23 45 67 89</span>
+      <button id="visitor-logout-btn" class="btn small outline" onclick="logout()" style="display:none">Déconnexion</button>
+    </div>
+    <nav id="main-nav">
+      <ul class="nav-list" id="nav-list"></ul>
+    </nav>
+  </header>
+
+  <main id="main-content"></main>
+
+  <footer>
+    <div class="footer-left">
+      <span>© 2026 Ecole Bassussarry</span>
+      <a class="mobile-only" onclick="showLegal('mentions')">Mentions légales</a>
+    </div>
+    <div class="footer-center">
+      <button class="footer-link" id="contact-trigger">Site réalisé par P-A. Ducoin</button>
+    </div>
+    <div class="footer-right">
+      <a class="desktop-only" onclick="showLegal('mentions')">Mentions légales</a>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════════ LÉGALES ═══════════════════ -->
+<div id="page-mentions" class="page">
+  <div class="lp">
+    <span class="lback" onclick="hideLegal()">← Retour</span>
+    <h1>Mentions légales</h1>
+    <h2>Éditeur du site</h2>
+    <p>Pierre-Antton Ducoin<br>Mail : ducoin.co@gmail.com<br>Téléphone : 07 71 71 72 29<br>Responsable de publication : Nelly Ducoin</p>
+    <h2>Hébergement</h2>
+    <p>Vercel Inc. — <a href="https://vercel.com/legal" target="_blank">vercel.com/legal</a></p>
+    <h2>Responsabilité</h2>
+    <p>Les informations présentes sont données à titre indicatif et peuvent évoluer.</p>
+  </div>
+  <footer>
+    <button class="footer-link" onclick="hideLegal()">Retour</button>
+    <a onclick="showLegal('mentions')">Mentions légales</a>
+  </footer>
+</div>
+
+<!-- ═══════════════════ CONTACT ═══════════════════ -->
+<div id="contact-overlay" onclick="closeContact()"></div>
+<div id="contact-modal" role="dialog" aria-modal="true">
+  <button id="contact-close" onclick="closeContact()">✕</button>
+  <p class="contact-modal-name">Pierre-Antton Ducoin</p>
+  <a href="tel:+33771717229" class="contact-modal-link">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12 19.79 19.79 0 0 1 1.08 3.4 2 2 0 0 1 3.06 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z"/></svg>
+    07 71 71 72 29
+  </a>
+  <a href="mailto:ducoin.co@gmail.com" class="contact-modal-link">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+    ducoin.co@gmail.com
+  </a>
+</div>
+
+<!-- ═══════════════════ MODALES ADMIN ═══════════════════ -->
+
+<div class="overlay" id="overlay-modal-add-tab" onclick="closeModal('modal-add-tab')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal('modal-add-tab')">✕</button>
+    <h2>Nouvel onglet</h2>
+    <label>Nom de l'onglet</label>
+    <input type="text" id="new-tab-name" placeholder="Ex : Galerie, Infos…">
+    <div class="modal-actions">
+      <button class="btn outline small" onclick="closeModal('modal-add-tab')">Annuler</button>
+      <button class="btn small" onclick="createTab()">Créer</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay-modal-rename-tab" onclick="closeModal('modal-rename-tab')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal('modal-rename-tab')">✕</button>
+    <h2>Renommer l'onglet</h2>
+    <label>Nouveau nom</label>
+    <input type="text" id="rename-tab-input">
+    <input type="hidden" id="rename-tab-id">
+    <div class="modal-actions">
+      <button class="btn outline small" onclick="closeModal('modal-rename-tab')">Annuler</button>
+      <button class="btn small" onclick="renameTab()">Renommer</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay-modal-add-text" onclick="closeModal('modal-add-text')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal('modal-add-text')">✕</button>
+    <h2>Ajouter un texte</h2>
+    <label>Contenu</label>
+    <textarea id="new-text-content" rows="6" placeholder="Votre texte…"></textarea>
+    <input type="hidden" id="new-text-tab">
+    <div class="modal-actions">
+      <button class="btn outline small" onclick="closeModal('modal-add-text')">Annuler</button>
+      <button class="btn small" onclick="addTextBlock()">Ajouter</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay-modal-edit-text" onclick="closeModal('modal-edit-text')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal('modal-edit-text')">✕</button>
+    <h2>Modifier le texte</h2>
+    <label>Contenu</label>
+    <textarea id="edit-text-content" rows="6"></textarea>
+    <input type="hidden" id="edit-text-id">
+    <input type="hidden" id="edit-text-tab">
+    <div class="modal-actions">
+      <button class="btn outline small" onclick="closeModal('modal-edit-text')">Annuler</button>
+      <button class="btn small" onclick="saveEditText()">Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay-modal-change-pwd" onclick="closeModal('modal-change-pwd')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal('modal-change-pwd')">✕</button>
+    <h2>Changer les mots de passe</h2>
+    <label>Mot de passe visiteurs</label>
+    <input type="password" id="new-visitor-pwd" placeholder="Laisser vide pour ne pas changer">
+    <label>Mot de passe admin</label>
+    <input type="password" id="new-admin-pwd" placeholder="Laisser vide pour ne pas changer">
+    <p id="pwd-save-msg" style="font-size:.8rem;color:green;margin-bottom:.5rem;display:none">Enregistré.</p>
+    <div class="modal-actions">
+      <button class="btn outline small" onclick="closeModal('modal-change-pwd')">Annuler</button>
+      <button class="btn small" onclick="savePasswords()">Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay-modal-confirm-del" onclick="closeModal('modal-confirm-del')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal('modal-confirm-del')">✕</button>
+    <h2>Supprimer cet onglet ?</h2>
+    <p style="font-size:.85rem;color:#555;margin-bottom:1.25rem">Tout le contenu sera supprimé définitivement.</p>
+    <input type="hidden" id="confirm-del-id">
+    <div class="modal-actions">
+      <button class="btn outline small" onclick="closeModal('modal-confirm-del')">Annuler</button>
+      <button class="btn danger small" onclick="confirmDeleteTab()">Supprimer</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay-modal-add-image" onclick="closeModal('modal-add-image')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal('modal-add-image')">✕</button>
+    <h2>Ajouter des documents</h2>
+    <label>Texte (optionnel)</label>
+    <textarea id="new-image-caption" rows="4" placeholder="Votre texte…"></textarea>
+    <input type="hidden" id="new-image-tab">
+    <div id="new-image-preview" style="margin-bottom:1rem;font-size:.8rem;color:var(--gt)"></div>
+    <div class="modal-actions">
+      <button class="btn outline small" onclick="closeModal('modal-add-image')">Annuler</button>
+      <button class="btn small" id="new-image-confirm" onclick="confirmAddImages()">Envoyer</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay-modal-change-phone" onclick="closeModal('modal-change-phone')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal('modal-change-phone')">✕</button>
+    <h2>Modifier le téléphone</h2>
+    <label>Numéro</label>
+    <input type="text" id="new-phone-input" placeholder="01 23 45 67 89">
+    <div class="modal-actions">
+      <button class="btn outline small" onclick="closeModal('modal-change-phone')">Annuler</button>
+      <button class="btn small" onclick="savePhone()">Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ LOGIQUE ═══════════════════ -->
+<script>
+  // ── Client Supabase léger (sans npm) ──
+  const supa = (() => {
+    const h = () => ({ 'Content-Type': 'application/json', 'apikey': SUPABASE_ANON, 'Authorization': 'Bearer ' + SUPABASE_ANON });
+
+    const from = (table) => ({
+      select: (cols = '*') => ({
+        order: (col, { ascending = true } = {}) => ({
+          async data() {
+            const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}?select=${cols}&order=${col}.${ascending?'asc':'desc'}`, { headers: h() });
+            return r.json();
+          }
+        }),
+        eq: (col, val) => ({
+          async data() {
+            const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}?select=${cols}&${col}=eq.${val}`, { headers: h() });
+            return r.json();
+          },
+          order: (col2, { ascending = true } = {}) => ({
+            async data() {
+              const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}?select=${cols}&tab_id=eq.${val}&order=${col2}.${ascending?'asc':'desc'}`, { headers: h() });
+              return r.json();
+            }
+          })
+        }),
+        async data() {
+          const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}?select=${cols}`, { headers: h() });
+          return r.json();
+        }
+      }),
+      insert: (payload) => ({
+        select: () => ({
+          async data() {
+            const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
+              method: 'POST',
+              headers: { ...h(), 'Prefer': 'return=representation' },
+              body: JSON.stringify(payload)
+            });
+            return r.json();
+          }
+        })
+      }),
+      update: (payload) => ({
+        eq: (col, val) => ({
+          async data() {
+            const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}?${col}=eq.${val}`, {
+              method: 'PATCH',
+              headers: { ...h(), 'Prefer': 'return=representation' },
+              body: JSON.stringify(payload)
+            });
+            return r.json();
+          }
+        })
+      }),
+      delete: () => ({
+        eq: (col, val) => ({
+          async data() {
+            const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}?${col}=eq.${val}`, {
+              method: 'DELETE',
+              headers: h()
+            });
+            return r.ok;
+          }
+        })
+      })
+    });
+
+    // Storage
+    const storage = {
+      from: (bucket) => ({
+        upload: async (path, file) => {
+          const r = await fetch(`${SUPABASE_URL}/storage/v1/object/${bucket}/${path}`, {
+            method: 'POST',
+            headers: { 'apikey': SUPABASE_ANON, 'Authorization': 'Bearer ' + SUPABASE_ANON },
+            body: file
+          });
+          return r.json();
+        },
+        remove: async (paths) => {
+          const r = await fetch(`${SUPABASE_URL}/storage/v1/object/${bucket}`, {
+            method: 'DELETE',
+            headers: { ...h() },
+            body: JSON.stringify({ prefixes: paths })
+          });
+          return r.json();
+        },
+        getPublicUrl: (path) => `${SUPABASE_URL}/storage/v1/object/public/${bucket}/${path}`
+      })
+    };
+
+    return { from, storage };
+  })();
+
+  // ── État ──
+  let isAdmin     = false;
+  let activeTabId = null;
+  let tabs        = [];
+
+  // ── Hash SHA-256 ──
+  async function sha256(str) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+  }
+
+  // ────────────────────────────────────────────
+  // LOGIN
+  // ────────────────────────────────────────────
+  window.doLogin = async function() {
+    const pwd = document.getElementById('pwd-input').value.trim();
+    if (!pwd) return;
+    const hash = await sha256(pwd);
+
+    const rows = await supa.from('config').select('*').data();
+
+    // Premier lancement : table vide → initialiser
+    if (!rows || rows.length === 0) {
+      const [vHash, aHash] = await Promise.all([sha256('visiteur2026'), sha256('admin2026')]);
+      await supa.from('config').insert({ key: 'visitor_pwd', value: vHash }).select().data();
+      await supa.from('config').insert({ key: 'admin_pwd',   value: aHash }).select().data();
+      alert('Premier lancement.\nMot de passe visiteur : visiteur2026\nMot de passe admin : admin2026\n\nChangez-les immédiatement en vous connectant en admin.');
+      return;
+    }
+
+    const get = (key) => (rows.find(r => r.key === key) || {}).value;
+    const vHash = get('visitor_pwd');
+    const aHash = get('admin_pwd');
+
+    if (hash === aHash) { isAdmin = true;  enterSite(); }
+    else if (hash === vHash) { isAdmin = false; enterSite(); }
+    else { document.getElementById('login-error').style.display = 'block'; }
+  };
+
+  document.getElementById('pwd-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') window.doLogin();
+  });
+
+  function enterSite() {
+    document.getElementById('screen-login').style.display = 'none';
+    const sm = document.getElementById('screen-main');
+    sm.style.display = 'flex';
+    sm.style.flexDirection = 'column';
+    if (isAdmin) {
+      document.getElementById('admin-bar').classList.add('visible');
+      document.body.classList.add('admin-mode');
+      document.getElementById('visitor-logout-btn').style.display = 'none';
+    } else {
+      document.getElementById('visitor-logout-btn').style.display = '';
+    }
+    loadTabs();
+    loadPhone();
+  }
+
+  window.logout = function() {
+    isAdmin = false;
+    document.body.classList.remove('admin-mode');
+    document.getElementById('admin-bar').classList.remove('visible');
+    document.getElementById('visitor-logout-btn').style.display = 'none';
+    document.getElementById('screen-main').style.display = 'none';
+    document.getElementById('screen-login').style.display = 'flex';
+    document.getElementById('pwd-input').value = '';
+    document.getElementById('login-error').style.display = 'none';
+    tabs = []; activeTabId = null;
+  };
+
+  // ────────────────────────────────────────────
+  // ONGLETS
+  // ────────────────────────────────────────────
+  async function loadTabs() {
+    const rows = await supa.from('tabs').select('*').order('sort_order').data();
+    tabs = rows || [];
+    renderNav();
+    if (tabs.length > 0) activateTab(tabs[0].id);
+    else renderEmptyMain();
+  }
+
+  function renderEmptyMain() {
+    document.getElementById('main-content').innerHTML =
+      '<div class="tab-panel active"><p class="empty-state">' +
+      (isAdmin ? 'Aucun onglet. Créez-en un via le "+" dans la navigation.' : 'Aucun contenu pour le moment.') +
+      '</p></div>';
+  }
+
+  function renderNav() {
+    const nav = document.getElementById('nav-list');
+    nav.innerHTML = '';
+
+    tabs.forEach(tab => {
+      const li = document.createElement('li');
+
+      const a = document.createElement('a');
+      a.href = '#';
+      a.textContent = tab.name;
+      a.dataset.tabId = tab.id;
+      a.addEventListener('click', e => { e.preventDefault(); activateTab(tab.id); document.getElementById('main-nav').classList.remove('open'); });
+      li.appendChild(a);
+
+      if (isAdmin) {
+        const actions = document.createElement('div');
+        actions.className = 'tab-admin-actions visible';
+
+        const renBtn = document.createElement('button');
+        renBtn.className = 'tab-btn';
+        renBtn.title = 'Renommer';
+        renBtn.innerHTML = '<svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M11.5 2.5l2 2-9 9H2.5v-2l9-9z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>';
+        renBtn.onclick = () => openRenameTab(tab.id, tab.name);
+
+        const delBtn = document.createElement('button');
+        delBtn.className = 'tab-btn del';
+        delBtn.title = 'Supprimer';
+        delBtn.innerHTML = '<svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 4h10M6 4V3h4v1M5 4v8h6V4H5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        delBtn.onclick = () => openConfirmDeleteTab(tab.id);
+
+        actions.appendChild(renBtn);
+        actions.appendChild(delBtn);
+        li.appendChild(actions);
+      }
+
+      nav.appendChild(li);
+    });
+
+    if (isAdmin) {
+      const liAdd = document.createElement('li');
+      liAdd.innerHTML = '<div class="nav-add-tab visible"><button class="tab-btn" title="Nouvel onglet" onclick="openModal(\'modal-add-tab\')"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>';
+      nav.appendChild(liAdd);
+    }
+
+    if (activeTabId) {
+      const active = nav.querySelector(`[data-tab-id="${activeTabId}"]`);
+      if (active) active.classList.add('active');
+    }
+  }
+
+  async function activateTab(tabId) {
+    activeTabId = tabId;
+    document.querySelectorAll('.nav-list a').forEach(a =>
+      a.classList.toggle('active', a.dataset.tabId === tabId)
+    );
+    document.getElementById('main-content').innerHTML = '<div class="tab-panel active"><div class="spinner"></div></div>';
+    const blocks = await loadBlocks(tabId);
+    renderTabContent(tabId, blocks);
+  }
+
+  async function loadBlocks(tabId) {
+    const rows = await supa.from('blocks').select('*').eq('tab_id', tabId).order('created_at', { ascending: false }).data();
+    return rows || [];
+  }
+
+  function renderTabContent(tabId, blocks) {
+    const main = document.getElementById('main-content');
+    main.innerHTML = '';
+    const panel = document.createElement('div');
+    panel.className = 'tab-panel active';
+
+    if (isAdmin) {
+      const toolbar = document.createElement('div');
+      toolbar.className = 'editor-toolbar';
+
+      const addTextBtn = document.createElement('button');
+      addTextBtn.className = 'btn small outline';
+      addTextBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 4h10M3 8h6M3 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> Ajouter un texte';
+      addTextBtn.onclick = () => openAddText(tabId);
+
+      const addImgBtn = document.createElement('button');
+      addImgBtn.className = 'btn small outline';
+      addImgBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="1" stroke="currentColor" stroke-width="1.5"/><circle cx="5.5" cy="5.5" r="1" fill="currentColor"/><path d="M2 11l3.5-3.5L8 10l2-2 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Ajouter une photo';
+      addImgBtn.onclick = () => openAddImage(tabId);
+
+      toolbar.appendChild(addTextBtn);
+      toolbar.appendChild(addImgBtn);
+      panel.appendChild(toolbar);
+    }
+
+    if (blocks.length === 0) {
+      const empty = document.createElement('p');
+      empty.className = 'empty-state';
+      empty.textContent = isAdmin ? 'Aucun contenu. Ajoutez un texte ou une photo.' : 'Aucun contenu pour le moment.';
+      panel.appendChild(empty);
+    }
+
+    blocks.forEach(block => {
+      const div = document.createElement('div');
+      div.className = 'content-block';
+
+      if (block.type === 'text') {
+        const p = document.createElement('div');
+        p.className = 'block-text';
+        p.textContent = block.content;
+        if (block.created_at) {
+          const date = document.createElement('p');
+          date.style.cssText = 'font-size:.72rem;color:var(--gt);margin-top:.35rem';
+          date.textContent = new Date(block.created_at).toLocaleDateString('fr-FR', { day:'numeric', month:'long', year:'numeric' });
+          div.appendChild(date);
+        }
+        div.appendChild(p);
+      } else if (block.type === 'image') {
+        const wrap = document.createElement('div');
+        wrap.className = 'block-image';
+        if (block.created_at) {
+          const date = document.createElement('p');
+          date.style.cssText = 'font-size:.72rem;color:var(--gt);margin-bottom:.35rem';
+          date.textContent = new Date(block.created_at).toLocaleDateString('fr-FR', { day:'numeric', month:'long', year:'numeric' });
+          wrap.appendChild(date);
+        }
+        const img = document.createElement('img');
+        img.src = block.content;
+        img.alt = block.caption || '';
+        wrap.appendChild(img);
+        if (block.caption) {
+          const cap = document.createElement('p');
+          cap.className = 'block-image-caption';
+          cap.textContent = block.caption;
+          wrap.appendChild(cap);
+        }
+        div.appendChild(wrap);
+      }
+
+      if (isAdmin) {
+        const ctrl = document.createElement('div');
+        ctrl.className = 'block-controls';
+
+        if (block.type === 'text') {
+          const editBtn = document.createElement('button');
+          editBtn.className = 'btn small outline';
+          editBtn.textContent = 'Modifier';
+          editBtn.onclick = () => openEditText(tabId, block.id, block.content);
+          ctrl.appendChild(editBtn);
+        }
+
+        const delBtn = document.createElement('button');
+        delBtn.className = 'btn small danger';
+        delBtn.textContent = 'Supprimer';
+        delBtn.onclick = () => deleteBlock(tabId, block.id, block.storage_path);
+        ctrl.appendChild(delBtn);
+        div.appendChild(ctrl);
+      }
+
+      panel.appendChild(div);
+    });
+
+    main.appendChild(panel);
+  }
+
+  // ────────────────────────────────────────────
+  // CRUD ONGLETS
+  // ────────────────────────────────────────────
+  window.createTab = async function() {
+    const name = document.getElementById('new-tab-name').value.trim();
+    if (!name) return;
+    const rows = await supa.from('tabs').insert({ name, sort_order: tabs.length }).select().data();
+    const newTab = Array.isArray(rows) ? rows[0] : rows;
+    tabs.push(newTab);
+    document.getElementById('new-tab-name').value = '';
+    closeModal('modal-add-tab');
+    renderNav();
+    activateTab(newTab.id);
+  };
+
+  function openRenameTab(tabId, currentName) {
+    document.getElementById('rename-tab-input').value = currentName;
+    document.getElementById('rename-tab-id').value    = tabId;
+    openModal('modal-rename-tab');
+  }
+
+  window.renameTab = async function() {
+    const tabId = document.getElementById('rename-tab-id').value;
+    const name  = document.getElementById('rename-tab-input').value.trim();
+    if (!name) return;
+    await supa.from('tabs').update({ name }).eq('id', tabId).data();
+    tabs = tabs.map(t => t.id === tabId ? { ...t, name } : t);
+    closeModal('modal-rename-tab');
+    renderNav();
+  };
+
+  function openConfirmDeleteTab(tabId) {
+    document.getElementById('confirm-del-id').value = tabId;
+    openModal('modal-confirm-del');
+  }
+
+  window.confirmDeleteTab = async function() {
+    const tabId = document.getElementById('confirm-del-id').value;
+    closeModal('modal-confirm-del');
+
+    // Supprimer les blocs (et fichiers storage)
+    const blocks = await loadBlocks(tabId);
+    const storagePaths = blocks.filter(b => b.storage_path).map(b => b.storage_path);
+    if (storagePaths.length) await supa.storage.from('site-images').remove(storagePaths);
+    await supa.from('blocks').delete().eq('tab_id', tabId).data();
+    await supa.from('tabs').delete().eq('id', tabId).data();
+
+    tabs = tabs.filter(t => t.id !== tabId);
+    if (activeTabId === tabId) activeTabId = null;
+    renderNav();
+    if (tabs.length > 0) activateTab(tabs[0].id);
+    else renderEmptyMain();
+  };
+
+  // ────────────────────────────────────────────
+  // CRUD BLOCS
+  // ────────────────────────────────────────────
+  function openAddText(tabId) {
+    document.getElementById('new-text-content').value = '';
+    document.getElementById('new-text-tab').value     = tabId;
+    openModal('modal-add-text');
+  }
+
+  window.addTextBlock = async function() {
+    const tabId   = document.getElementById('new-text-tab').value;
+    const content = document.getElementById('new-text-content').value.trim();
+    if (!content) return;
+    const blocks = await loadBlocks(tabId);
+    await supa.from('blocks').insert({ tab_id: tabId, type: 'text', content, sort_order: blocks.length }).select().data();
+    closeModal('modal-add-text');
+    activateTab(tabId);
+  };
+
+  function openEditText(tabId, blockId, content) {
+    document.getElementById('edit-text-content').value = content;
+    document.getElementById('edit-text-id').value      = blockId;
+    document.getElementById('edit-text-tab').value     = tabId;
+    openModal('modal-edit-text');
+  }
+
+  window.saveEditText = async function() {
+    const tabId   = document.getElementById('edit-text-tab').value;
+    const blockId = document.getElementById('edit-text-id').value;
+    const content = document.getElementById('edit-text-content').value.trim();
+    if (!content) return;
+    await supa.from('blocks').update({ content }).eq('id', blockId).data();
+    closeModal('modal-edit-text');
+    activateTab(tabId);
+  };
+
+let _pendingImageFiles = [];
+
+  function openAddImage(tabId) {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.multiple = true;
+    input.onchange = () => {
+      const files = Array.from(input.files);
+      if (!files.length) return;
+      _pendingImageFiles = files;
+      document.getElementById('new-image-tab').value = tabId;
+      document.getElementById('new-image-caption').value = '';
+      document.getElementById('new-image-preview').textContent =
+        files.length === 1 ? `1 photo sélectionnée : ${files[0].name}` : `${files.length} photos sélectionnées`;
+      openModal('modal-add-image');
+    };
+    input.click();
+  }
+
+  window.confirmAddImages = async function() {
+    const tabId   = document.getElementById('new-image-tab').value;
+    const caption = document.getElementById('new-image-caption').value.trim();
+    const files   = _pendingImageFiles;
+    if (!files.length) return;
+
+    closeModal('modal-add-image');
+
+    const main = document.getElementById('main-content');
+    const info = document.createElement('p');
+    info.style.cssText = 'padding:1rem 2rem;font-size:.85rem;color:var(--gt)';
+    info.textContent = `Envoi de ${files.length} photo(s)…`;
+    main.prepend(info);
+
+    const blocks = await loadBlocks(tabId);
+    let order = blocks.length;
+
+    for (const file of files) {
+      const path = `${tabId}/${Date.now()}_${file.name}`;
+      await supa.storage.from('site-images').upload(path, file);
+      const url = supa.storage.from('site-images').getPublicUrl(path);
+      await supa.from('blocks').insert({
+        tab_id: tabId, type: 'image', content: url,
+        storage_path: path, sort_order: order++,
+        caption: caption || null
+      }).select().data();
+    }
+
+    _pendingImageFiles = [];
+    activateTab(tabId);
+  };
+  
+  async function deleteBlock(tabId, blockId, storagePath) {
+    if (!confirm('Supprimer ce bloc ?')) return;
+    if (storagePath) await supa.storage.from('site-images').remove([storagePath]);
+    await supa.from('blocks').delete().eq('id', blockId).data();
+    activateTab(tabId);
+  }
+
+  // ────────────────────────────────────────────
+  // MOTS DE PASSE
+  // ────────────────────────────────────────────
+  // ────────────────────────────────────────────
+  // TÉLÉPHONE
+  // ────────────────────────────────────────────
+  async function loadPhone() {
+    const rows = await supa.from('config').select('*').eq('key', 'phone').data();
+    const phone = rows && rows.length > 0 ? rows[0].value : '01 23 45 67 89';
+    document.getElementById('header-phone').textContent = phone;
+  }
+
+  window.savePhone = async function() {
+    const phone = document.getElementById('new-phone-input').value.trim();
+    if (!phone) return;
+
+    const rows = await supa.from('config').select('*').eq('key', 'phone').data();
+    if (rows && rows.length > 0) {
+      await supa.from('config').update({ value: phone }).eq('key', 'phone').data();
+    } else {
+      await supa.from('config').insert({ key: 'phone', value: phone }).select().data();
+    }
+
+    document.getElementById('header-phone').textContent = phone;
+    closeModal('modal-change-phone');
+  };
+
+  // ────────────────────────────────────────────
+  // MOTS DE PASSE
+  // ────────────────────────────────────────────
+  window.savePasswords = async function() {
+    const vPwd = document.getElementById('new-visitor-pwd').value;
+    const aPwd = document.getElementById('new-admin-pwd').value;
+    if (!vPwd && !aPwd) return;
+
+    if (vPwd) {
+      const h = await sha256(vPwd);
+      await supa.from('config').update({ value: h }).eq('key', 'visitor_pwd').data();
+    }
+    if (aPwd) {
+      const h = await sha256(aPwd);
+      await supa.from('config').update({ value: h }).eq('key', 'admin_pwd').data();
+    }
+
+    document.getElementById('new-visitor-pwd').value = '';
+    document.getElementById('new-admin-pwd').value   = '';
+    const msg = document.getElementById('pwd-save-msg');
+    msg.style.display = 'block';
+    setTimeout(() => { msg.style.display = 'none'; }, 3000);
+  };
+
+  // ────────────────────────────────────────────
+  // MODALES
+  // ────────────────────────────────────────────
+  window.openModal  = id => document.getElementById(`overlay-${id}`).classList.add('open');
+  window.closeModal = id => document.getElementById(`overlay-${id}`).classList.remove('open');
+
+  // ────────────────────────────────────────────
+  // LÉGALES
+  // ────────────────────────────────────────────
+  window.showLegal = function(page) {
+    document.getElementById('screen-main').style.display = 'none';
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(`page-${page}`).classList.add('active');
+  };
+
+  window.hideLegal = function() {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('screen-main').style.display = 'flex';
+  };
+
+  // ────────────────────────────────────────────
+  // CONTACT
+  // ────────────────────────────────────────────
+  document.getElementById('contact-trigger').addEventListener('click', () => {
+    document.getElementById('contact-overlay').classList.add('open');
+    document.getElementById('contact-modal').classList.add('open');
+  });
+
+  // ── Menu déroulant vertical ──
+  window.toggleNav = function() {
+    const nav = document.getElementById('main-nav');
+    nav.classList.toggle('open');
+  };
+
+  document.addEventListener('click', function(e) {
+    const nav    = document.getElementById('main-nav');
+    const toggle = document.getElementById('nav-toggle');
+    if (nav && nav.classList.contains('open') && !nav.contains(e.target) && !toggle.contains(e.target)) {
+      nav.classList.remove('open');
+    }
+  });
+
+  window.closeContact = function() {
+    document.getElementById('contact-overlay').classList.remove('open');
+    document.getElementById('contact-modal').classList.remove('open');
+  };
+</script>
+
+<!--
+═══════════════════════════════════════════════════════════════
+README — SUPABASE SETUP
+═══════════════════════════════════════════════════════════════
+
+1. CRÉER UN PROJET sur https://supabase.com (Free plan)
+
+2. TABLES — coller dans SQL Editor > New query :
+
+create table config (
+  id   bigint generated always as identity primary key,
+  key  text unique not null,
+  value text not null
+);
+
+create table tabs (
+  id         uuid default gen_random_uuid() primary key,
+  name       text not null,
+  sort_order integer default 0
+);
+
+create table blocks (
+  id           uuid default gen_random_uuid() primary key,
+  tab_id       uuid references tabs(id) on delete cascade,
+  type         text not null,        -- 'text' | 'image'
+  content      text not null,        -- texte ou URL publique
+  storage_path text,                 -- chemin Storage (images uniquement)
+  sort_order   integer default 0
+);
+
+3. RLS (Row Level Security) — dans Authentication > Policies,
+   ou coller dans SQL Editor :
+
+alter table config enable row level security;
+alter table tabs   enable row level security;
+alter table blocks enable row level security;
+
+create policy "public read-write" on config for all using (true) with check (true);
+create policy "public read-write" on tabs   for all using (true) with check (true);
+create policy "public read-write" on blocks for all using (true) with check (true);
+
+4. STORAGE — dans Storage > New bucket :
+   Nom : site-images
+   Public bucket : OUI (cocher)
+
+   Puis dans Policies de ce bucket :
+   Allow public read  : authenticated = false → select → true
+   Allow public write : authenticated = false → insert → true
+   Allow public delete: authenticated = false → delete → true
+
+   Ou via SQL :
+   create policy "public" on storage.objects for all using (bucket_id = 'site-images') with check (bucket_id = 'site-images');
+
+5. CONFIG dans le fichier HTML :
+   SUPABASE_URL  = votre Project URL (Settings > API)
+   SUPABASE_ANON = votre anon public key (Settings > API)
+
+6. PREMIER LANCEMENT :
+   Ouvrir le site, taper n'importe quoi → message avec les mots de passe par défaut
+   visiteur : visiteur2026
+   admin    : admin2026
+   → Se connecter en admin et les changer immédiatement.
+
+═══════════════════════════════════════════════════════════════
+-->
+</body>
+</html>
