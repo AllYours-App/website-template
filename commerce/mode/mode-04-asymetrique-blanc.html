@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[NOM BOUTIQUE] — [VILLE]</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF;
+  --bg2:#F6F4F0;
+  --b:#111111;
+  --mid:#888880;
+  --line:#E4E2DE;
+  --acc:#D44E2A;
+  --acc-light:#FDF0EC;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Work Sans',sans-serif;background:var(--bg);color:var(--b);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--line);padding:0 48px;height:56px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;letter-spacing:.02em;cursor:pointer;}
+.nav-links{display:flex;gap:28px;}
+.nav-links a{font-size:0.78rem;color:var(--mid);font-weight:300;transition:color .2s;}
+.nav-links a:hover{color:var(--b);}
+.nav-tel{color:var(--acc)!important;font-weight:500!important;}
+
+/* HERO ASYMÉTRIQUE */
+.hero{margin-top:56px;display:grid;grid-template-columns:6fr 4fr;min-height:88vh;}
+.hero-l{padding:72px 56px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;}
+.hero-watermark{position:absolute;bottom:-30px;left:-10px;font-family:'Syne',sans-serif;font-size:clamp(120px,18vw,220px);font-weight:800;color:rgba(0,0,0,.03);line-height:1;letter-spacing:-.04em;user-select:none;pointer-events:none;white-space:nowrap;}
+.hero-top{position:relative;z-index:1;}
+.hero-kicker{font-size:0.68rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin-bottom:28px;}
+.hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(3.5rem,8vw,7.5rem);line-height:.92;letter-spacing:-.03em;margin-bottom:36px;}
+.hero h1 span{color:var(--acc);}
+.hero-sub{font-size:0.95rem;color:var(--mid);font-weight:300;max-width:420px;line-height:1.75;margin-bottom:40px;}
+.hero-actions{display:flex;gap:12px;align-items:center;}
+.btn-acc{display:inline-block;background:var(--acc);color:#fff;padding:14px 28px;font-weight:500;font-size:0.82rem;letter-spacing:.04em;transition:background .2s;}
+.btn-acc:hover{background:var(--b);}
+.btn-text{font-size:0.82rem;color:var(--mid);font-weight:300;letter-spacing:.04em;display:flex;align-items:center;gap:6px;}
+.btn-text:hover{color:var(--b);}
+.hero-bottom{position:relative;z-index:1;display:flex;gap:40px;}
+.hs{display:flex;flex-direction:column;gap:4px;}
+.hs-val{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--acc);}
+.hs-lbl{font-size:0.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);font-weight:300;}
+/* Panneau droit */
+.hero-r{background:var(--bg2);display:flex;flex-direction:column;justify-content:space-between;padding:72px 40px;border-left:1px solid var(--line);}
+.hr-lbl{font-size:0.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);margin-bottom:24px;font-weight:300;}
+.h-row{padding:14px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;}
+.h-row:first-of-type{border-top:1px solid var(--line);}
+.h-day{font-size:0.82rem;color:var(--mid);font-weight:300;}
+.h-time{font-family:'Syne',sans-serif;font-size:0.88rem;font-weight:700;color:var(--b);}
+.h-row.today .h-day{color:var(--acc);}
+.h-row.today .h-time{color:var(--acc);}
+.hr-addr{margin-top:32px;font-size:0.78rem;color:var(--mid);line-height:1.8;font-weight:300;}
+.hr-tel{font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;color:var(--b);display:block;margin-top:20px;}
+
+/* CATÉGORIES */
+.categories{padding:80px 48px;background:var(--b);}
+.cat-inner{max-width:1200px;margin:0 auto;}
+.cat-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:40px;}
+.cat-label{font-size:0.65rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:6px;}
+.cat-title{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;color:#fff;}
+.cat-see-all{font-size:0.78rem;color:rgba(255,255,255,.35);font-weight:300;border-bottom:1px solid rgba(255,255,255,.1);transition:all .2s;}
+.cat-see-all:hover{color:#fff;border-color:rgba(255,255,255,.5);}
+.cat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;}
+.cat-card{position:relative;overflow:hidden;aspect-ratio:2/3;background:rgba(255,255,255,.06);cursor:pointer;}
+.cat-card:hover .cat-img{transform:scale(1.05);}
+.cat-img{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .4s ease;}
+.cat-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 60%);}
+.cat-info{position:absolute;bottom:0;left:0;right:0;padding:16px 14px;}
+.cat-name{font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;color:#fff;margin-bottom:2px;}
+.cat-count{font-size:0.65rem;color:rgba(255,255,255,.4);font-weight:300;}
+
+/* PRODUITS LISTE */
+.products{padding:80px 48px;max-width:1200px;margin:0 auto;}
+.prod-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:36px;flex-wrap:wrap;gap:12px;}
+.ph-left .kicker{font-size:0.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin-bottom:6px;}
+.ph-left .title{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;}
+.sort{font-size:0.78rem;background:var(--bg2);border:1px solid var(--line);color:var(--b);padding:8px 12px;cursor:pointer;font-family:'Work Sans';}
+.prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px 16px;}
+.pcard{cursor:pointer;}
+.pcard-img{background:var(--bg2);aspect-ratio:3/4;position:relative;overflow:hidden;margin-bottom:12px;}
+.pcard-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:0.72rem;color:var(--mid);}
+.pcard-hover{position:absolute;bottom:0;left:0;right:0;background:var(--b);color:#fff;text-align:center;padding:10px;font-size:0.7rem;font-weight:500;letter-spacing:.06em;transform:translateY(100%);transition:transform .2s;}
+.pcard:hover .pcard-hover{transform:translateY(0);}
+.pcard-bdg{position:absolute;top:10px;left:10px;font-size:0.58rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;}
+.bdg-new{background:var(--acc);color:#fff;}
+.bdg-sale{background:var(--b);color:#fff;}
+.pcard-brand{font-size:0.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);margin-bottom:3px;font-weight:300;}
+.pcard-name{font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;margin-bottom:6px;}
+.pcard-price{font-size:0.9rem;font-weight:500;}
+.pcard-price .s{color:var(--acc);}
+.pcard-price .old{font-size:0.78rem;color:var(--mid);text-decoration:line-through;margin-left:6px;}
+
+/* INFO */
+.info{background:var(--acc);padding:72px 48px;}
+.info-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
+.info-l .il-label{font-size:0.65rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:14px;font-weight:300;}
+.info-l h2{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:800;color:#fff;line-height:1.1;margin-bottom:16px;}
+.info-l p{font-size:0.88rem;color:rgba(255,255,255,.65);font-weight:300;line-height:1.8;}
+.info-r{display:flex;flex-direction:column;gap:0;}
+.ir-row{padding:16px 0;border-bottom:1px solid rgba(255,255,255,.15);display:flex;gap:16px;}
+.ir-row:last-child{border-bottom:none;}
+.ir-lbl{font-size:0.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:4px;}
+.ir-val{font-size:0.88rem;color:rgba(255,255,255,.8);line-height:1.6;}
+
+footer{background:var(--b);color:rgba(255,255,255,.25);padding:22px 48px;display:flex;justify-content:space-between;align-items:center;font-size:0.72rem;}
+.fl{display:flex;gap:20px;}
+.fl a{cursor:pointer;transition:color .2s;}
+.fl a:hover{color:rgba(255,255,255,.7);}
+
+@media(max-width:1024px){.prod-grid{grid-template-columns:repeat(3,1fr);}..cat-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:768px){
+  nav{padding:0 20px;} .nav-links{display:none;}
+  .hero{grid-template-columns:1fr;}
+  .hero-l{padding:80px 20px 40px;}
+  .hero-r{padding:40px 20px;}
+  .categories{padding:60px 20px;} .cat-grid{grid-template-columns:repeat(2,1fr);}
+  .products{padding:60px 20px;} .prod-grid{grid-template-columns:repeat(2,1fr);}
+  .info{padding:60px 20px;} .info-inner{grid-template-columns:1fr;gap:40px;}
+  footer{padding:20px;flex-direction:column;gap:12px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">[NOM BOUTIQUE]</div>
+  <div class="nav-links">
+    <a href="#">Femme</a><a href="#">Homme</a><a href="#">Enfant</a><a href="#">Accessoires</a><a href="#info">Boutique</a>
+    <a href="tel:[TELEPHONE]" class="nav-tel">[TELEPHONE]</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-l">
+    <div class="hero-watermark">MODE</div>
+    <div class="hero-top">
+      <div class="hero-kicker">[VILLE] · Collection Été 2025</div>
+      <h1>Votre<br>style,<br><span>ici.</span></h1>
+      <p class="hero-sub">Prêt-à-porter femme, homme et enfant, sélectionné avec soin. Marques locales et européennes, en boutique et sur commande.</p>
+      <div class="hero-actions">
+        <a href="#" class="btn-acc">Explorer la collection</a>
+        <a href="#info" class="btn-text">Nous trouver →</a>
+      </div>
+    </div>
+    <div class="hero-bottom">
+      <div class="hs"><div class="hs-val">−50%</div><div class="hs-lbl">Soldes</div></div>
+      <div class="hs"><div class="hs-val">80 €</div><div class="hs-lbl">Livraison offerte</div></div>
+      <div class="hs"><div class="hs-val">30 j</div><div class="hs-lbl">Retour gratuit</div></div>
+    </div>
+  </div>
+  <div class="hero-r">
+    <div>
+      <div class="hr-lbl">Horaires</div>
+      <div class="h-row" data-day="1"><span class="h-day">Lundi</span><span class="h-time">[HORAIRES_LUNDI]</span></div>
+      <div class="h-row" data-day="2"><span class="h-day">Mardi</span><span class="h-time">[HORAIRES_MARDI]</span></div>
+      <div class="h-row" data-day="3"><span class="h-day">Mercredi</span><span class="h-time">[HORAIRES_MERCREDI]</span></div>
+      <div class="h-row" data-day="4"><span class="h-day">Jeudi</span><span class="h-time">[HORAIRES_JEUDI]</span></div>
+      <div class="h-row" data-day="5"><span class="h-day">Vendredi</span><span class="h-time">[HORAIRES_VENDREDI]</span></div>
+      <div class="h-row" data-day="6"><span class="h-day">Samedi</span><span class="h-time">[HORAIRES_SAMEDI]</span></div>
+      <div class="h-row" data-day="0"><span class="h-day">Dimanche</span><span class="h-time" style="color:var(--mid)">Fermé</span></div>
+    </div>
+    <div>
+      <a href="tel:[TELEPHONE]" class="hr-tel">[TELEPHONE]</a>
+      <p class="hr-addr">[ADRESSE]<br>[CODE POSTAL] [VILLE]</p>
+    </div>
+  </div>
+</section>
+
+<section class="categories">
+  <div class="cat-inner">
+    <div class="cat-header">
+      <div>
+        <div class="cat-label">Nos univers</div>
+        <div class="cat-title">Explorer</div>
+      </div>
+      <a href="#" class="cat-see-all">Voir tout →</a>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card"><div class="cat-img"></div><div class="cat-overlay"></div><div class="cat-info"><div class="cat-name">Femme</div><div class="cat-count">32 articles</div></div></div>
+      <div class="cat-card"><div class="cat-img"></div><div class="cat-overlay"></div><div class="cat-info"><div class="cat-name">Homme</div><div class="cat-count">24 articles</div></div></div>
+      <div class="cat-card"><div class="cat-img"></div><div class="cat-overlay"></div><div class="cat-info"><div class="cat-name">Enfant</div><div class="cat-count">18 articles</div></div></div>
+      <div class="cat-card"><div class="cat-img"></div><div class="cat-overlay"></div><div class="cat-info"><div class="cat-name">Accessoires</div><div class="cat-count">41 articles</div></div></div>
+      <div class="cat-card"><div class="cat-img"></div><div class="cat-overlay"></div><div class="cat-info"><div class="cat-name">Linge Basque</div><div class="cat-count">15 articles</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="products">
+  <div class="prod-header">
+    <div class="ph-left">
+      <div class="kicker">Coup de cœur</div>
+      <div class="title">Sélection du moment</div>
+    </div>
+    <select class="sort"><option>Nouveautés</option><option>Prix croissant</option><option>Promotions</option></select>
+  </div>
+  <div class="prod-grid">
+    <div class="pcard">
+      <div class="pcard-img"><span class="pcard-bdg bdg-new">Nouveau</span><div class="pcard-ph">[Photo]</div><div class="pcard-hover">Voir le produit →</div></div>
+      <div class="pcard-brand">[Marque]</div>
+      <div class="pcard-name">Robe Itsas</div>
+      <div class="pcard-price">89 €</div>
+    </div>
+    <div class="pcard">
+      <div class="pcard-img"><div class="pcard-ph">[Photo]</div><div class="pcard-hover">Voir le produit →</div></div>
+      <div class="pcard-brand">[Marque]</div>
+      <div class="pcard-name">Chemise Lin Izpegi</div>
+      <div class="pcard-price">72 €</div>
+    </div>
+    <div class="pcard">
+      <div class="pcard-img"><span class="pcard-bdg bdg-sale">−30%</span><div class="pcard-ph">[Photo]</div><div class="pcard-hover">Voir le produit →</div></div>
+      <div class="pcard-brand">[Marque]</div>
+      <div class="pcard-name">Espadrilles Larrun</div>
+      <div class="pcard-price"><span class="s">42 €</span><span class="old">59 €</span></div>
+    </div>
+    <div class="pcard">
+      <div class="pcard-img"><div class="pcard-ph">[Photo]</div><div class="pcard-hover">Voir le produit →</div></div>
+      <div class="pcard-brand">[Marque]</div>
+      <div class="pcard-name">T-shirt Ikurrina</div>
+      <div class="pcard-price">34 €</div>
+    </div>
+  </div>
+</section>
+
+<section class="info" id="info">
+  <div class="info-inner">
+    <div class="info-l">
+      <div class="il-label">La boutique</div>
+      <h2>[NOM BOUTIQUE]<br>— depuis [ANNÉE]</h2>
+      <p>Au cœur de [VILLE] depuis [NOMBRE] ans. Marques européennes engagées et artisanat local sélectionnés avec soin.</p>
+    </div>
+    <div class="info-r">
+      <div class="ir-row"><div><div class="ir-lbl">Adresse</div><div class="ir-val">[ADRESSE]<br>[CODE POSTAL] [VILLE]</div></div></div>
+      <div class="ir-row"><div><div class="ir-lbl">Horaires</div><div class="ir-val">Lun–Sam : 9h30 → 19h30<br>Dim juil–août : 10h → 13h</div></div></div>
+      <div class="ir-row"><div><div class="ir-lbl">Contact</div><div class="ir-val"><a href="tel:[TELEPHONE]" style="color:rgba(255,255,255,.8)">[TELEPHONE]</a><br>[EMAIL]</div></div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© [ANNÉE] [NOM BOUTIQUE] — [VILLE]</span>
+  <div class="fl"><a>Mentions légales</a><a>CGV</a><a>Confidentialité</a></div>
+</footer>
+
+<script>
+const d=new Date().getDay();
+document.querySelectorAll('.h-row[data-day]').forEach(r=>{if(parseInt(r.dataset.day)===d)r.classList.add('today');});
+</script>
+
+</body>
+</html>

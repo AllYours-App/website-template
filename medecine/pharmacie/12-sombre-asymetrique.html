@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[NOM DE LA PHARMACIE] — Template 12</title>
+<!-- Sombre & Premium / Asymétrique et décalé
+     Couleurs : #0D0D0D noir · #161616 panel · #222222 gris foncé · #E4E4E4 blanc cassé · #39E5B6 vert menthe néon
+     Polices  : Syne (display futuriste) + Outfit (body moderne)
+     Signature : Numéro de téléphone découpé en très grand sur fond sombre, layout 70/30 avec panneau néon à droite -->
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0D0D0D;--panel:#161616;--mid:#222222;--fg:#E4E4E4;--neo:#39E5B6;--dim:#444;--gt:#666;}
+  *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
+  body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  a{color:inherit;text-decoration:none;} .page{display:none;} .page.active{display:block;}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,13,13,.9);
+    backdrop-filter:blur(10px);border-bottom:1px solid var(--mid);
+    padding:0 48px;height:56px;display:flex;align-items:center;justify-content:space-between;}
+  .logo{font-family:'Syne',sans-serif;font-weight:800;font-size:0.9rem;letter-spacing:.02em;cursor:pointer;}
+  .nav-r{display:flex;align-items:center;gap:28px;}
+  .nav-r a{font-size:0.78rem;color:var(--gt);font-weight:300;transition:color .2s;}
+  .nav-r a:hover{color:var(--fg);}
+  .nav-tel{color:var(--neo)!important;font-weight:500!important;}
+
+  /* HERO ASYMÉTRIQUE */
+  .hero{margin-top:56px;display:grid;grid-template-columns:7fr 3fr;min-height:88vh;}
+  .hero-l{padding:80px 56px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;}
+  .hero-top{display:flex;flex-direction:column;}
+  .h-tag{font-size:0.68rem;font-weight:300;letter-spacing:.16em;text-transform:uppercase;color:var(--neo);margin-bottom:40px;}
+  .hero h1{font-family:'Syne',sans-serif;font-size:clamp(3.5rem,8vw,8rem);
+    font-weight:800;line-height:.92;letter-spacing:-.03em;color:var(--fg);margin-bottom:0;}
+  .hero h1 .neo{color:var(--neo);}
+  .hero-bottom{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:24px;padding-top:40px;}
+  .hero-sub{font-size:0.9rem;color:var(--gt);font-weight:200;max-width:360px;line-height:1.8;}
+  .btn-neo{background:var(--neo);color:var(--bg);padding:14px 28px;
+    font-family:'Syne',sans-serif;font-weight:700;font-size:0.82rem;letter-spacing:.02em;
+    transition:background .2s;box-shadow:0 0 28px rgba(57,229,182,.2);}
+  .btn-neo:hover{background:var(--fg);}
+
+  /* Panneau droit néon */
+  .hero-r{background:var(--panel);border-left:1px solid var(--mid);padding:56px 32px;
+    display:flex;flex-direction:column;justify-content:center;}
+  .hr-tag{font-size:0.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--neo);margin-bottom:24px;font-weight:300;}
+  .h-item{padding:12px 0;border-bottom:1px solid var(--mid);display:flex;flex-direction:column;gap:3px;}
+  .h-item:first-of-type{border-top:1px solid var(--mid);}
+  .h-day{font-size:0.72rem;color:var(--gt);font-weight:200;letter-spacing:.04em;}
+  .h-time{font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;color:var(--fg);}
+  .h-item.today .h-day,.h-item.today .h-time{color:var(--neo);}
+  .closed{color:var(--dim)!important;}
+  .hr-addr{margin-top:28px;font-size:0.72rem;color:var(--dim);line-height:1.8;font-weight:200;}
+  .hr-tel{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--neo);display:block;margin-top:16px;}
+
+  /* TEL GÉANT */
+  .tel-giant{padding:64px 56px;border-top:1px solid var(--mid);border-bottom:1px solid var(--mid);overflow:hidden;}
+  .tel-label{font-size:0.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gt);margin-bottom:12px;font-weight:200;}
+  .tel-big{font-family:'Syne',sans-serif;font-size:clamp(3rem,9vw,9rem);font-weight:800;
+    color:var(--fg);letter-spacing:-.04em;display:block;transition:color .2s;line-height:1;}
+  .tel-big:hover{color:var(--neo);}
+
+  /* SERVICES */
+  .services{padding:80px 56px;max-width:1200px;margin:0 auto;}
+  .sec-label{font-size:0.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--neo);margin-bottom:10px;font-weight:200;}
+  .sec-h2{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3.5vw,3rem);font-weight:800;letter-spacing:-.03em;margin-bottom:48px;}
+  .srv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--mid);}
+  .srv-card{background:var(--panel);padding:36px 28px;transition:background .25s;}
+  .srv-card:hover{background:var(--mid);}
+  .srv-card:hover .srv-num{color:var(--neo);}
+  .srv-num{font-family:'Syne',sans-serif;font-size:0.68rem;font-weight:700;color:var(--dim);letter-spacing:.1em;margin-bottom:16px;transition:color .25s;}
+  .srv-name{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:var(--fg);margin-bottom:10px;letter-spacing:-.01em;}
+  .srv-desc{font-size:0.82rem;color:var(--gt);line-height:1.7;font-weight:200;}
+
+  /* CONTACT */
+  .contact{padding:80px 56px;background:var(--panel);border-top:1px solid var(--mid);}
+  .contact-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;}
+  .c-label{font-size:0.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--neo);margin-bottom:12px;font-weight:200;}
+  .c-h2{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;letter-spacing:-.03em;margin-bottom:24px;}
+  .c-info p{font-size:0.82rem;color:var(--gt);line-height:1.9;font-weight:200;margin-bottom:4px;}
+  .fi{display:flex;flex-direction:column;gap:0;}
+  .fi input,.fi textarea{background:var(--bg);border:none;border-bottom:1px solid var(--mid);
+    padding:15px 0;font-family:'Outfit';font-size:0.82rem;color:var(--fg);font-weight:200;outline:none;transition:border-color .2s;}
+  .fi input::placeholder,.fi textarea::placeholder{color:var(--dim);}
+  .fi input:focus,.fi textarea:focus{border-bottom-color:var(--neo);}
+  .fi textarea{min-height:80px;resize:none;}
+  .fi button{margin-top:28px;align-self:flex-start;background:var(--neo);color:var(--bg);border:none;
+    padding:13px 24px;font-family:'Syne',sans-serif;font-weight:700;font-size:0.78rem;
+    letter-spacing:.02em;cursor:pointer;transition:background .2s;}
+  .fi button:hover{background:var(--fg);}
+
+  footer{background:var(--bg);border-top:1px solid var(--mid);padding:20px 56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:0.7rem;}
+  footer span{color:var(--dim);} .fl{display:flex;gap:20px;} .fl a{color:var(--dim);cursor:pointer;transition:color .2s;} .fl a:hover{color:var(--neo);}
+
+  .lp{max-width:600px;margin:0 auto;padding:100px 48px 80px;}
+  .lback{font-size:0.7rem;color:var(--dim);cursor:pointer;display:inline-block;margin-bottom:48px;transition:color .2s;}
+  .lback:hover{color:var(--gt);}
+  .lp h1{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;letter-spacing:-.02em;margin-bottom:8px;}
+  .ldate{font-size:0.7rem;color:var(--dim);margin-bottom:48px;}
+  .lp h2{font-size:0.62rem;font-weight:200;letter-spacing:.16em;text-transform:uppercase;color:var(--neo);margin:32px 0 10px;}
+  .lp p,.lp li{font-size:0.85rem;color:var(--gt);line-height:1.9;font-weight:200;margin-bottom:8px;}
+  .lp ul{margin-left:18px;} .lp a{color:var(--neo);text-decoration:underline;}
+
+  @media(max-width:768px){
+    nav{padding:0 20px;} .nav-r a:not(.nav-tel){display:none;}
+    .hero{grid-template-columns:1fr;} .hero-l{padding:80px 20px 40px;} .hero-r{padding:32px 20px;}
+    .tel-giant{padding:48px 20px;}
+    .services{padding:60px 20px;} .srv-grid{grid-template-columns:1fr;}
+    .contact{padding:60px 20px;} .contact-inner{grid-template-columns:1fr;gap:40px;}
+    footer{padding:20px;} .lp{padding:90px 20px 60px;}
+  }
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo" onclick="showPage('main')">[NOM DE LA PHARMACIE]</div>
+  <div class="nav-r">
+    <a href="#services">Services</a><a href="#contact">Contact</a>
+    <a href="tel:[NUMERO_TELEPHONE_SANS_ESPACES]" class="nav-tel">[NUMÉRO DE TÉLÉPHONE]</a>
+  </div>
+</nav>
+
+<div id="page-main" class="page active">
+  <section class="hero">
+    <div class="hero-l">
+      <div class="hero-top">
+        <div class="h-tag">[VILLE] · [QUARTIER/ZONE] · Pharmacie indépendante</div>
+        <h1>Votre<br>pharmacie<br><span class="neo">de quartier.</span></h1>
+      </div>
+      <div class="hero-bottom">
+        <p class="hero-sub">Conseil, vaccination, tests rapides et matériel médical. Sans rendez-vous, ouverts jusqu'à 20h.</p>
+        <a href="tel:[NUMERO_TELEPHONE_SANS_ESPACES]" class="btn-neo">Nous appeler</a>
+      </div>
+    </div>
+    <div class="hero-r">
+      <div class="hr-tag">Horaires</div>
+      <div class="h-item" data-day="1"><div class="h-day">Lundi</div><div class="h-time">[HORAIRES_LUNDI]</div></div>
+      <div class="h-item" data-day="2"><div class="h-day">Mardi</div><div class="h-time">[HORAIRES_MARDI]</div></div>
+      <div class="h-item" data-day="3"><div class="h-day">Mercredi</div><div class="h-time">[HORAIRES_MERCREDI]</div></div>
+      <div class="h-item" data-day="4"><div class="h-day">Jeudi</div><div class="h-time">[HORAIRES_JEUDI]</div></div>
+      <div class="h-item" data-day="5"><div class="h-day">Vendredi</div><div class="h-time">[HORAIRES_VENDREDI]</div></div>
+      <div class="h-item" data-day="6"><div class="h-day">Samedi</div><div class="h-time">[HORAIRES_SAMEDI]</div></div>
+      <div class="h-item" data-day="0"><div class="h-day">Dimanche</div><div class="h-time closed">[HORAIRES_DIMANCHE]</div></div>
+      <a href="tel:[NUMERO_TELEPHONE_SANS_ESPACES]" class="hr-tel">[NUMÉRO DE TÉLÉPHONE]</a>
+      <p class="hr-addr">[ADRESSE COMPLÈTE]<br>[CODE POSTAL] [VILLE] · Parking · PMR</p>
+    </div>
+  </section>
+
+  <div class="tel-giant">
+    <div class="tel-label">Appelez-nous</div>
+    <a href="tel:[NUMERO_TELEPHONE_SANS_ESPACES]" class="tel-big">[NUMÉRO DE TÉLÉPHONE]</a>
+  </div>
+
+  <section class="services" id="services">
+    <div class="sec-label">Ce que nous faisons</div>
+    <div class="sec-h2">Nos services</div>
+    <div class="srv-grid">
+      <div class="srv-card"><div class="srv-num">01</div><div class="srv-name">Vaccination</div><p class="srv-desc">Grippe, Covid, DTP — sans ordonnance ni rendez-vous.</p></div>
+      <div class="srv-card"><div class="srv-num">02</div><div class="srv-name">Tests rapides</div><p class="srv-desc">Angine, cystite, Covid. Résultats en quelques minutes.</p></div>
+      <div class="srv-card"><div class="srv-num">03</div><div class="srv-name">Matériel médical</div><p class="srv-desc">Location et vente : tire-lait, tensiomètre, orthopédie.</p></div>
+      <div class="srv-card"><div class="srv-num">04</div><div class="srv-name">Livraison</div><p class="srv-desc">Médicaments livrés sur Anglet et alentours.</p></div>
+      <div class="srv-card"><div class="srv-num">05</div><div class="srv-name">Téléconsultation</div><p class="srv-desc">Médecin en vidéo depuis la pharmacie.</p></div>
+      <div class="srv-card"><div class="srv-num">06</div><div class="srv-name">Parapharmacie</div><p class="srv-desc">Phytothérapie, aromathérapie, produits bio.</p></div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="contact-inner">
+      <div>
+        <div class="c-label">Nous trouver</div>
+        <div class="c-h2">Contact</div>
+        <div class="c-info">
+          <p>[ADRESSE COMPLÈTE]</p>
+          <p>[CODE POSTAL] [VILLE] · Parking · PMR</p>
+          <p style="margin-top:16px;">Garde : <a href="tel:3237" style="color:var(--neo);">32 37</a></p>
+        </div>
+      </div>
+      <div>
+        <div class="c-label" style="margin-bottom:24px;">Nous écrire</div>
+        <form class="fi" action="https://formspree.io/f/REMPLACER" method="POST">
+          <input type="text" name="nom" placeholder="Votre nom" required>
+          <input type="email" name="email" placeholder="Email" required>
+          <textarea name="message" placeholder="Votre question"></textarea>
+          <button type="submit">Envoyer →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© [ANNÉE] [NOM DE LA PHARMACIE]</span>
+    <div class="fl"><a onclick="showPage('mentions')">Mentions légales</a><a onclick="showPage('confidentialite')">Confidentialité</a></div>
+  </footer>
+</div>
+
+<div id="page-mentions" class="page">
+  <div class="lp"><span class="lback" onclick="showPage('main')">← Retour</span><h1>Mentions légales</h1><p class="ldate">Juin 2025</p>
+  <h2>Éditeur</h2><p>[NOM DE LA PHARMACIE] — [FORME JURIDIQUE] · [ADRESSE COMPLÈTE] · SIRET [NUMÉRO SIRET]</p>
+  <h2>Hébergement</h2><p>Vercel Inc. — <a href="https://vercel.com/legal" target="_blank">vercel.com/legal</a></p>
+  <h2>Propriété intellectuelle</h2><p>Tous contenus propriété de [NOM DE LA PHARMACIE]. Reproduction interdite.</p></div>
+  <footer><span>© [ANNÉE] [NOM DE LA PHARMACIE]</span><div class="fl"><a onclick="showPage('mentions')">Mentions légales</a><a onclick="showPage('confidentialite')">Confidentialité</a></div></footer>
+</div>
+<div id="page-confidentialite" class="page">
+  <div class="lp"><span class="lback" onclick="showPage('main')">← Retour</span><h1>Confidentialité</h1><p class="ldate">Juin 2025</p>
+  <h2>Données collectées</h2><p>Nom, email, téléphone (facultatif), message.</p>
+  <h2>Finalité</h2><p>Répondre à votre demande. Aucune revente.</p>
+  <h2>Vos droits</h2><p>Contact : [NUMÉRO DE TÉLÉPHONE]. Réclamation : <a href="https://cnil.fr" target="_blank">cnil.fr</a></p>
+  <h2>Cookies</h2><p>Aucun cookie publicitaire.</p></div>
+  <footer><span>© [ANNÉE] [NOM DE LA PHARMACIE]</span><div class="fl"><a onclick="showPage('mentions')">Mentions légales</a><a onclick="showPage('confidentialite')">Confidentialité</a></div></footer>
+</div>
+
+<script>
+function showPage(n){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+n).classList.add('active');window.scrollTo(0,0);}
+const d=new Date().getDay();
+document.querySelectorAll('.h-item[data-day]').forEach(r=>{if(parseInt(r.dataset.day)===d)r.classList.add('today');});
+</script>
+</body>
+</html>

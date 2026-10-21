@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[NOM BOUTIQUE] — [VILLE]</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEEBE6;
+  --w:#F8F6F2;
+  --panel:#E4E0DA;
+  --b:#1D1C1A;
+  --mid:#7A7670;
+  --line:#D6D2CB;
+  --acc:#3D6B5E;
+  --acc-mid:#5A8D7E;
+  --acc-light:#E8F0EE;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--b);-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+img{display:block;width:100%;}
+
+nav{position:sticky;top:0;z-index:100;background:var(--w);border-bottom:1px solid var(--line);}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 48px;height:58px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-family:'Crimson Pro',serif;font-size:1.5rem;font-weight:600;letter-spacing:.02em;}
+.nav-links{display:flex;gap:24px;}
+.nav-links a{font-size:0.8rem;font-weight:300;color:var(--mid);transition:color .2s;letter-spacing:.04em;}
+.nav-links a:hover{color:var(--b);}
+.nav-right{display:flex;gap:16px;align-items:center;}
+.nav-tel{font-size:0.82rem;color:var(--acc);font-weight:600;}
+
+/* HERO — grands blocs de couleur */
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:84vh;}
+.hero-l{background:var(--acc);padding:72px 56px;display:flex;flex-direction:column;justify-content:space-between;}
+.hero-eyebrow{font-size:0.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.4);font-weight:300;margin-bottom:32px;display:flex;align-items:center;gap:10px;}
+.hero-eyebrow::before{content:'';width:16px;height:1px;background:rgba(255,255,255,.3);}
+.hero h1{font-family:'Crimson Pro',serif;font-size:clamp(3rem,6vw,5.5rem);font-weight:600;line-height:1.0;color:#fff;margin-bottom:28px;letter-spacing:-.01em;}
+.hero h1 em{font-style:italic;font-weight:400;color:rgba(255,255,255,.55);}
+.hero-sub{font-size:0.95rem;color:rgba(255,255,255,.55);font-weight:300;line-height:1.8;max-width:360px;margin-bottom:48px;}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-w{background:#fff;color:var(--acc);padding:13px 26px;font-weight:600;font-size:0.82rem;letter-spacing:.04em;transition:background .2s;}
+.btn-w:hover{background:var(--acc-light);}
+.btn-ghost-w{background:transparent;color:rgba(255,255,255,.6);padding:13px 26px;font-weight:300;font-size:0.82rem;border:1px solid rgba(255,255,255,.2);transition:all .2s;}
+.btn-ghost-w:hover{border-color:rgba(255,255,255,.6);color:#fff;}
+.hero-bottom{display:flex;gap:32px;}
+.hs{display:flex;flex-direction:column;gap:4px;}
+.hs-val{font-family:'Crimson Pro',serif;font-size:1.8rem;font-weight:600;color:#fff;}
+.hs-lbl{font-size:0.65rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);font-weight:300;}
+.hero-r{background:var(--w);display:flex;flex-direction:column;}
+.hero-img{flex:1;background:var(--panel);}
+.hero-img-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:0.78rem;color:var(--mid);font-style:italic;}
+.hero-caption{padding:20px 28px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;}
+.hc-label{font-size:0.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);font-weight:300;}
+.hc-val{font-family:'Crimson Pro',serif;font-size:1rem;font-weight:600;}
+
+/* SOLDES BANDE */
+.soldes-band{background:var(--b);padding:14px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.sb-items{display:flex;gap:40px;flex-wrap:wrap;}
+.sb-item{font-size:0.78rem;color:rgba(255,255,255,.5);font-weight:300;letter-spacing:.04em;}
+.sb-item strong{color:#fff;font-weight:600;}
+.sb-cta{font-size:0.78rem;color:var(--acc-mid);font-weight:600;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--acc-mid);}
+
+/* ONGLETS */
+.tabs{background:var(--w);border-bottom:1px solid var(--line);position:sticky;top:58px;z-index:90;}
+.tabs-inner{max-width:1280px;margin:0 auto;padding:0 48px;display:flex;gap:0;overflow-x:auto;scrollbar-width:none;}
+.tabs-inner::-webkit-scrollbar{display:none;}
+.tab{padding:16px 20px;font-size:0.8rem;font-weight:400;color:var(--mid);border:none;background:transparent;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;letter-spacing:.04em;transition:color .2s,border-color .2s;}
+.tab:hover{color:var(--b);}
+.tab.active{color:var(--acc);border-bottom-color:var(--acc);font-weight:600;}
+
+/* PRODUITS */
+.products{padding:60px 48px;max-width:1280px;margin:0 auto;}
+.ph{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:36px;flex-wrap:wrap;gap:12px;}
+.ph-left .kicker{font-size:0.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin-bottom:6px;}
+.ph-left .title{font-family:'Crimson Pro',serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:600;}
+.sort{font-family:'Space Grotesk',sans-serif;font-size:0.8rem;background:var(--w);border:1px solid var(--line);color:var(--b);padding:8px 12px;cursor:pointer;}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px 14px;}
+.pcard{background:var(--w);cursor:pointer;}
+.pcard-img{background:var(--panel);aspect-ratio:3/4;position:relative;overflow:hidden;}
+.pcard-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:0.72rem;color:var(--mid);}
+.pcard-hover{position:absolute;bottom:0;left:0;right:0;background:var(--acc);color:#fff;text-align:center;padding:10px;font-size:0.7rem;font-weight:600;letter-spacing:.06em;transform:translateY(100%);transition:transform .2s;}
+.pcard:hover .pcard-hover{transform:translateY(0);}
+.pcard-bdg{position:absolute;top:10px;left:10px;font-size:0.58rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;}
+.bdg-new{background:var(--acc);color:#fff;}
+.bdg-sale{background:var(--b);color:#fff;}
+.pcard-body{padding:14px 16px 18px;}
+.pcard-brand{font-size:0.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);margin-bottom:3px;font-weight:300;}
+.pcard-name{font-family:'Crimson Pro',serif;font-size:1.05rem;font-weight:600;margin-bottom:6px;}
+.pcard-price{font-size:0.88rem;font-weight:600;}
+.pcard-price .s{color:var(--acc);}
+.pcard-price .old{font-size:0.78rem;color:var(--mid);text-decoration:line-through;margin-left:6px;font-weight:300;}
+.pcard-colors{display:flex;gap:4px;margin-top:8px;}
+.pdot{width:11px;height:11px;border-radius:50%;border:1.5px solid rgba(0,0,0,.1);}
+
+/* ENGAGEMENTS */
+.eng{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--w);}
+.eng-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);}
+.eng-item{padding:28px 32px;border-right:1px solid var(--line);display:flex;align-items:flex-start;gap:14px;}
+.eng-item:last-child{border-right:none;}
+.eng-icon{flex-shrink:0;margin-top:2px;}
+.eng-icon svg{width:18px;height:18px;stroke:var(--acc);fill:none;stroke-width:1.5;}
+.eng-title{font-size:0.85rem;font-weight:600;margin-bottom:3px;}
+.eng-desc{font-size:0.75rem;color:var(--mid);font-weight:300;line-height:1.55;}
+
+/* INFO */
+.info{background:var(--acc);padding:72px 48px;}
+.info-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
+.info-l .label{font-size:0.65rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:14px;}
+.info-l h2{font-family:'Crimson Pro',serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:600;color:#fff;line-height:1.15;margin-bottom:16px;}
+.info-l p{font-size:0.88rem;color:rgba(255,255,255,.55);font-weight:300;line-height:1.8;}
+.info-r{background:rgba(255,255,255,.08);padding:32px;}
+.ir-row{padding:16px 0;border-bottom:1px solid rgba(255,255,255,.1);display:flex;gap:16px;}
+.ir-row:last-child{border-bottom:none;padding-bottom:0;}
+.ir-lbl{font-size:0.62px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:4px;font-weight:300;font-size:0.62rem;}
+.ir-val{font-size:0.88rem;color:rgba(255,255,255,.7);line-height:1.6;}
+
+footer{background:var(--b);color:rgba(255,255,255,.2);padding:22px 48px;display:flex;justify-content:space-between;align-items:center;font-size:0.72rem;}
+.fl{display:flex;gap:20px;}
+.fl a{cursor:pointer;transition:color .2s;}
+.fl a:hover{color:rgba(255,255,255,.6);}
+
+@media(max-width:1024px){.grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:768px){
+  .nav-inner{padding:0 20px;} .nav-links{display:none;}
+  .hero{grid-template-columns:1fr;}
+  .hero-l{padding:72px 20px 48px;}
+  .hero-r{min-height:300px;}
+  .soldes-band{padding:12px 20px;}
+  .tabs-inner{padding:0 20px;}
+  .products{padding:40px 20px;} .grid{grid-template-columns:repeat(2,1fr);}
+  .eng-inner{grid-template-columns:1fr 1fr;}
+  .info{padding:60px 20px;} .info-inner{grid-template-columns:1fr;gap:36px;}
+  footer{padding:20px;flex-direction:column;gap:12px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">[NOM BOUTIQUE]</div>
+    <div class="nav-links">
+      <a href="#">Femme</a><a href="#">Homme</a><a href="#">Enfant</a><a href="#">Accessoires</a><a href="#">Linge Basque</a><a href="#">Soldes</a>
+    </div>
+    <div class="nav-right">
+      <a href="tel:[TELEPHONE]" class="nav-tel">[TELEPHONE]</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-l">
+    <div>
+      <div class="hero-eyebrow">[VILLE] · Été 2025</div>
+      <h1>La mode,<br>avec l'âme<br><em>du Pays.</em></h1>
+      <p class="hero-sub">Vêtements femme, homme et enfant sélectionnés avec soin. Marques locales et européennes, en boutique et sur commande.</p>
+      <div class="hero-actions">
+        <a href="#" class="btn-w">Découvrir</a>
+        <a href="#info" class="btn-ghost-w">Nous trouver</a>
+      </div>
+    </div>
+    <div class="hero-bottom">
+      <div class="hs"><div class="hs-val">−50%</div><div class="hs-lbl">Soldes</div></div>
+      <div class="hs"><div class="hs-val">80 €</div><div class="hs-lbl">Livraison offerte</div></div>
+      <div class="hs"><div class="hs-val">30 j</div><div class="hs-lbl">Retour gratuit</div></div>
+    </div>
+  </div>
+  <div class="hero-r">
+    <div class="hero-img"><div class="hero-img-ph">[Photo ambiance boutique]</div></div>
+    <div class="hero-caption">
+      <div class="hc-label">Nouveautés</div>
+      <div class="hc-val">Collection Été 2025</div>
+    </div>
+  </div>
+</section>
+
+<div class="soldes-band">
+  <div class="sb-items">
+    <div class="sb-item"><strong>Livraison offerte</strong> dès 80 €</div>
+    <div class="sb-item"><strong>Retours gratuits</strong> 30 jours</div>
+    <div class="sb-item"><strong>Soldes d'été</strong> jusqu'à −50%</div>
+  </div>
+  <a href="#" class="sb-cta">Voir les soldes →</a>
+</div>
+
+<div class="tabs">
+  <div class="tabs-inner">
+    <button class="tab active">Accueil</button>
+    <button class="tab">Femme</button>
+    <button class="tab">Homme</button>
+    <button class="tab">Enfant</button>
+    <button class="tab">Accessoires</button>
+    <button class="tab">Linge Basque</button>
+    <button class="tab">Soldes 🔥</button>
+  </div>
+</div>
+
+<section class="products">
+  <div class="ph">
+    <div class="ph-left">
+      <div class="kicker">Sélection du moment</div>
+      <div class="title">Nos coups de cœur</div>
+    </div>
+    <select class="sort"><option>Nouveautés</option><option>Prix croissant</option><option>Promotions</option></select>
+  </div>
+  <div class="grid">
+    <div class="pcard">
+      <div class="pcard-img"><span class="pcard-bdg bdg-new">Nouveau</span><div class="pcard-ph">[Photo]</div><div class="pcard-hover">Voir le produit →</div></div>
+      <div class="pcard-body"><div class="pcard-brand">[Marque]</div><div class="pcard-name">Robe Itsas</div><div class="pcard-price">89 €</div><div class="pcard-colors"><div class="pdot" style="background:#BF1C2E;"></div><div class="pdot" style="background:#1B5E3B;"></div><div class="pdot" style="background:#1E1E1E;"></div></div></div>
+    </div>
+    <div class="pcard">
+      <div class="pcard-img"><div class="pcard-ph">[Photo]</div><div class="pcard-hover">Voir le produit →</div></div>
+      <div class="pcard-body"><div class="pcard-brand">[Marque]</div><div class="pcard-name">Chemise Lin Izpegi</div><div class="pcard-price">72 €</div><div class="pcard-colors"><div class="pdot" style="background:#F5F0E8;"></div><div class="pdot" style="background:#6B625A;"></div></div></div>
+    </div>
+    <div class="pcard">
+      <div class="pcard-img"><span class="pcard-bdg bdg-sale">−30%</span><div class="pcard-ph">[Photo]</div><div class="pcard-hover">Voir le produit →</div></div>
+      <div class="pcard-body"><div class="pcard-brand">[Marque]</div><div class="pcard-name">Espadrilles Larrun</div><div class="pcard-price"><span class="s">42 €</span><span class="old">59 €</span></div></div>
+    </div>
+    <div class="pcard">
+      <div class="pcard-img"><div class="pcard-ph">[Photo]</div><div class="pcard-hover">Voir le produit →</div></div>
+      <div class="pcard-body"><div class="pcard-brand">[Marque]</div><div class="pcard-name">Tote Bag Makilak</div><div class="pcard-price">54 €</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="eng">
+  <div class="eng-inner">
+    <div class="eng-item">
+      <div class="eng-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div><div class="eng-title">Sélection rigoureuse</div><div class="eng-desc">Marques européennes et créateurs locaux choisis pour leur qualité.</div></div>
+    </div>
+    <div class="eng-item">
+      <div class="eng-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+      <div><div class="eng-title">Boutique en ville</div><div class="eng-desc">Venez essayer, notre équipe vous conseille avec plaisir.</div></div>
+    </div>
+    <div class="eng-item">
+      <div class="eng-icon"><svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg></div>
+      <div><div class="eng-title">Retours 30 jours</div><div class="eng-desc">Retour gratuit en boutique ou par courrier.</div></div>
+    </div>
+    <div class="eng-item">
+      <div class="eng-icon"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 5v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+      <div><div class="eng-title">Livraison rapide</div><div class="eng-desc">Expédition 24h, offerte dès 80 € d'achat.</div></div>
+    </div>
+  </div>
+</div>
+
+<section class="info" id="info">
+  <div class="info-inner">
+    <div class="info-l">
+      <div class="label">La boutique</div>
+      <h2>[NOM BOUTIQUE]<br>— [VILLE], depuis [ANNÉE]</h2>
+      <p>Au cœur de [VILLE] depuis [NOMBRE] ans, notre boutique sélectionne vêtements et accessoires alliant artisanat local et marques européennes engagées.</p>
+    </div>
+    <div class="info-r">
+      <div class="ir-row"><div><div class="ir-lbl">Adresse</div><div class="ir-val">[ADRESSE]<br>[CODE POSTAL] [VILLE]</div></div></div>
+      <div class="ir-row"><div><div class="ir-lbl">Horaires</div><div class="ir-val">Lun–Sam : 9h30 → 19h30<br>Dim juil–août : 10h → 13h</div></div></div>
+      <div class="ir-row"><div><div class="ir-lbl">Contact</div><div class="ir-val"><a href="tel:[TELEPHONE]" style="color:rgba(255,255,255,.7)">[TELEPHONE]</a><br>[EMAIL]</div></div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© [ANNÉE] [NOM BOUTIQUE] — [VILLE]</span>
+  <div class="fl"><a>Mentions légales</a><a>CGV</a><a>Confidentialité</a></div>
+</footer>
+
+</body>
+</html>

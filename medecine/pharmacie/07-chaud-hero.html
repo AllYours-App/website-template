@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[NOM DE LA PHARMACIE] — Template 07</title>
+<!-- Chaud & Humain / Hero pleine page
+     Couleurs : #1C0F0A brun nuit · #F5EDE3 crème · #D4845A terracotta · #8B5E3C brun moyen · #FFFFFF blanc
+     Polices  : Cormorant Garamond (display élégant) + Jost (body propre)
+     Signature : Hero pleine hauteur avec dégradé brun chaud, texte centré poétique, scroll indicator animé -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--dark:#1C0F0A;--cream:#F5EDE3;--acc:#D4845A;--mid:#8B5E3C;--w:#FFFFFF;--gt:#9A8070;}
+  *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
+  body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--dark);-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;} .page{display:none;} .page.active{display:block;}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 48px;
+    display:flex;align-items:center;justify-content:space-between;}
+  .logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--w);cursor:pointer;letter-spacing:.02em;}
+  .nav-r{display:flex;align-items:center;gap:28px;}
+  .nav-r a{font-size:0.8rem;color:rgba(255,255,255,.55);font-weight:300;transition:color .2s;letter-spacing:.04em;}
+  .nav-r a:hover{color:var(--w);}
+  .nav-tel{color:var(--acc)!important;font-weight:500!important;}
+
+  /* HERO PLEINE PAGE */
+  .hero{height:100vh;background:var(--dark);position:relative;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;}
+  .hero-grad{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 60%,rgba(212,132,90,.18) 0%,transparent 70%);}
+  .hero-content{position:relative;z-index:1;padding:0 24px;}
+  .hero-pre{font-size:0.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin-bottom:32px;font-weight:500;}
+  .hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,9vw,8rem);
+    font-weight:400;line-height:1.0;color:var(--w);letter-spacing:-.02em;margin-bottom:12px;}
+  .hero h1 em{font-style:italic;color:var(--acc);}
+  .hero-sub{font-size:1rem;color:rgba(255,255,255,.45);font-weight:300;max-width:480px;margin:24px auto 48px;line-height:1.75;letter-spacing:.02em;}
+  .hero-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+  .btn-cream{background:var(--cream);color:var(--dark);padding:14px 30px;font-weight:500;font-size:0.85rem;letter-spacing:.06em;text-transform:uppercase;transition:background .2s;}
+  .btn-cream:hover{background:var(--acc);color:var(--w);}
+  .btn-ghost{background:transparent;color:rgba(255,255,255,.5);padding:14px 30px;font-weight:300;font-size:0.85rem;letter-spacing:.06em;text-transform:uppercase;border:1px solid rgba(255,255,255,.15);transition:all .2s;}
+  .btn-ghost:hover{border-color:var(--acc);color:var(--acc);}
+  .scroll-hint{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;}
+  .scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,rgba(255,255,255,.3),transparent);animation:scrollPulse 2s ease-in-out infinite;}
+  @keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(1)}50%{opacity:.8;transform:scaleY(1.1)}}
+  .scroll-txt{font-size:0.65rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.25);font-weight:300;}
+
+  /* HORAIRES BANDE */
+  .hours-band{background:var(--acc);padding:32px 48px;display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap;}
+  .hb-item{text-align:center;}
+  .hb-day{font-size:0.65rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:6px;font-weight:500;}
+  .hb-time{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--w);font-weight:600;}
+  .hb-sep{width:1px;height:40px;background:rgba(255,255,255,.2);}
+
+  /* SERVICES */
+  .services{padding:88px 48px;max-width:1000px;margin:0 auto;}
+  .sec-pre{font-size:0.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);font-weight:500;text-align:center;margin-bottom:16px;}
+  .sec-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:400;text-align:center;margin-bottom:56px;letter-spacing:-.01em;}
+  .srv-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:40px 60px;}
+  .srv-item{display:flex;gap:20px;align-items:flex-start;}
+  .srv-dot{width:8px;height:8px;border-radius:50%;background:var(--acc);flex-shrink:0;margin-top:6px;}
+  .srv-name{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;margin-bottom:6px;}
+  .srv-desc{font-size:0.85rem;color:var(--gt);line-height:1.7;font-weight:300;}
+
+  /* CONTACT */
+  .contact{padding:88px 48px;background:var(--dark);}
+  .contact-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;}
+  .c-pre{font-size:0.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);font-weight:500;margin-bottom:16px;}
+  .c-h2{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:400;color:var(--w);margin-bottom:24px;}
+  .c-info p{font-size:0.88rem;color:rgba(255,255,255,.4);line-height:1.85;font-weight:300;margin-bottom:4px;}
+  .c-tel{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--acc);display:block;margin:24px 0 8px;}
+  .fi{display:flex;flex-direction:column;gap:0;}
+  .fi input,.fi textarea{background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,.12);
+    padding:16px 0;font-family:'Jost';font-size:0.88rem;color:var(--w);font-weight:300;outline:none;
+    transition:border-color .2s;}
+  .fi input::placeholder,.fi textarea::placeholder{color:rgba(255,255,255,.25);}
+  .fi input:focus,.fi textarea:focus{border-bottom-color:var(--acc);}
+  .fi textarea{min-height:80px;resize:none;}
+  .fi button{margin-top:28px;align-self:flex-start;background:var(--acc);color:var(--w);border:none;
+    padding:13px 26px;font-family:'Jost';font-weight:500;font-size:0.85rem;letter-spacing:.04em;cursor:pointer;transition:background .2s;}
+  .fi button:hover{background:var(--cream);color:var(--dark);}
+
+  footer{background:rgba(0,0,0,.3);color:var(--cream);padding:22px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:0.75rem;}
+  footer span{opacity:.35;} .fl{display:flex;gap:20px;} .fl a{opacity:.35;cursor:pointer;} .fl a:hover{opacity:.7;}
+
+  .lp{max-width:600px;margin:0 auto;padding:100px 48px 80px;}
+  .lback{font-size:0.8rem;color:var(--gt);cursor:pointer;display:inline-block;margin-bottom:48px;}
+  .lback:hover{color:var(--dark);}
+  .lp h1{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:400;margin-bottom:6px;}
+  .ldate{font-size:0.75rem;color:var(--gt);margin-bottom:48px;}
+  .lp h2{font-size:0.68rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin:32px 0 10px;}
+  .lp p,.lp li{font-size:0.88rem;color:#555;line-height:1.8;font-weight:300;margin-bottom:8px;}
+  .lp ul{margin-left:18px;} .lp a{color:var(--acc);text-decoration:underline;}
+
+  @media(max-width:768px){
+    nav{padding:16px 20px;} .nav-r a:not(.nav-tel){display:none;}
+    .hero h1{font-size:3.5rem;}
+    .hours-band{gap:20px;padding:24px 20px;} .hb-sep{display:none;}
+    .services{padding:60px 20px;} .srv-grid{grid-template-columns:1fr;}
+    .contact{padding:60px 20px;} .contact-inner{grid-template-columns:1fr;gap:40px;}
+    footer{padding:20px;} .lp{padding:90px 20px 60px;}
+  }
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo" onclick="showPage('main')">[NOM DE LA PHARMACIE]</div>
+  <div class="nav-r">
+    <a href="#services">Services</a><a href="#contact">Contact</a>
+    <a href="tel:[NUMERO_TELEPHONE_SANS_ESPACES]" class="nav-tel">[NUMÉRO DE TÉLÉPHONE]</a>
+  </div>
+</nav>
+
+<div id="page-main" class="page active">
+  <section class="hero">
+    <div class="hero-grad"></div>
+    <div class="hero-content">
+      <div class="hero-pre">[VILLE] · [QUARTIER/ZONE]</div>
+      <h1>Là où<br>la santé<br>est <em>humaine.</em></h1>
+      <p class="hero-sub">Conseil, vaccination, tests rapides. Une équipe à votre écoute, ouverte jusqu'à 20h en semaine.</p>
+      <div class="hero-actions">
+        <a href="tel:[NUMERO_TELEPHONE_SANS_ESPACES]" class="btn-cream">[NUMÉRO DE TÉLÉPHONE]</a>
+        <a href="#services" class="btn-ghost">Nos services</a>
+      </div>
+    </div>
+    <div class="scroll-hint"><div class="scroll-line"></div><div class="scroll-txt">Découvrir</div></div>
+  </section>
+
+  <div class="hours-band">
+    <div class="hb-item"><div class="hb-day">Lun – Ven</div><div class="hb-time">[HORAIRES_SEMAINE]</div></div>
+    <div class="hb-sep"></div>
+    <div class="hb-item"><div class="hb-day">Samedi</div><div class="hb-time">[HORAIRES_SAMEDI]</div></div>
+    <div class="hb-sep"></div>
+    <div class="hb-item"><div class="hb-day">Dimanche</div><div class="hb-time">[HORAIRES_DIMANCHE]</div></div>
+    <div class="hb-sep"></div>
+    <div class="hb-item"><div class="hb-day">Téléphone</div><div class="hb-time">[NUMÉRO DE TÉLÉPHONE]</div></div>
+  </div>
+
+  <section class="services" id="services">
+    <div class="sec-pre">Ce que nous proposons</div>
+    <div class="sec-h2">Nos services</div>
+    <div class="srv-grid">
+      <div class="srv-item"><div class="srv-dot"></div><div><div class="srv-name">Vaccination</div><p class="srv-desc">Grippe, Covid, DTP — sans ordonnance ni rendez-vous.</p></div></div>
+      <div class="srv-item"><div class="srv-dot"></div><div><div class="srv-name">Tests rapides</div><p class="srv-desc">Angine, cystite, Covid. Résultats en quelques minutes.</p></div></div>
+      <div class="srv-item"><div class="srv-dot"></div><div><div class="srv-name">Matériel médical</div><p class="srv-desc">Location et vente : tire-lait, tensiomètre, orthopédie.</p></div></div>
+      <div class="srv-item"><div class="srv-dot"></div><div><div class="srv-name">Livraison à domicile</div><p class="srv-desc">Médicaments livrés sur Anglet et communes voisines.</p></div></div>
+      <div class="srv-item"><div class="srv-dot"></div><div><div class="srv-name">Téléconsultation</div><p class="srv-desc">Médecin en vidéo depuis la pharmacie.</p></div></div>
+      <div class="srv-item"><div class="srv-dot"></div><div><div class="srv-name">Parapharmacie</div><p class="srv-desc">Phytothérapie, aromathérapie, produits bio.</p></div></div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="contact-inner">
+      <div class="c-info">
+        <div class="c-pre">Nous trouver</div>
+        <div class="c-h2">Venez nous voir</div>
+        <p>[ADRESSE COMPLÈTE]</p>
+        <p>[CODE POSTAL] [VILLE]</p>
+        <p>Parking gratuit · Accès PMR</p>
+        <a href="tel:[NUMERO_TELEPHONE_SANS_ESPACES]" class="c-tel">[NUMÉRO DE TÉLÉPHONE]</a>
+        <p>Garde : <a href="tel:3237" style="color:var(--acc);">32 37</a></p>
+      </div>
+      <div>
+        <div class="c-pre" style="margin-bottom:24px;">Nous écrire</div>
+        <form class="fi" action="https://formspree.io/f/REMPLACER" method="POST">
+          <input type="text" name="nom" placeholder="Votre nom" required>
+          <input type="email" name="email" placeholder="Email" required>
+          <textarea name="message" placeholder="Votre question"></textarea>
+          <button type="submit">Envoyer →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© [ANNÉE] [NOM DE LA PHARMACIE]</span>
+    <div class="fl"><a onclick="showPage('mentions')">Mentions légales</a><a onclick="showPage('confidentialite')">Confidentialité</a></div>
+  </footer>
+</div>
+
+<div id="page-mentions" class="page">
+  <div class="lp"><span class="lback" onclick="showPage('main')">← Retour</span><h1>Mentions légales</h1><p class="ldate">Juin 2025</p>
+  <h2>Éditeur</h2><p>[NOM DE LA PHARMACIE] — [FORME JURIDIQUE] · [ADRESSE COMPLÈTE] · SIRET [NUMÉRO SIRET]</p>
+  <h2>Hébergement</h2><p>Vercel Inc. — <a href="https://vercel.com/legal" target="_blank">vercel.com/legal</a></p>
+  <h2>Propriété intellectuelle</h2><p>Tous contenus propriété de [NOM DE LA PHARMACIE]. Reproduction interdite.</p></div>
+  <footer><span>© [ANNÉE] [NOM DE LA PHARMACIE]</span><div class="fl"><a onclick="showPage('mentions')">Mentions légales</a><a onclick="showPage('confidentialite')">Confidentialité</a></div></footer>
+</div>
+<div id="page-confidentialite" class="page">
+  <div class="lp"><span class="lback" onclick="showPage('main')">← Retour</span><h1>Confidentialité</h1><p class="ldate">Juin 2025</p>
+  <h2>Données collectées</h2><p>Nom, email, téléphone (facultatif), message.</p>
+  <h2>Finalité</h2><p>Répondre à votre demande. Aucune revente.</p>
+  <h2>Vos droits</h2><p>Contact : [NUMÉRO DE TÉLÉPHONE]. Réclamation : <a href="https://cnil.fr" target="_blank">cnil.fr</a></p>
+  <h2>Cookies</h2><p>Aucun cookie publicitaire.</p></div>
+  <footer><span>© [ANNÉE] [NOM DE LA PHARMACIE]</span><div class="fl"><a onclick="showPage('mentions')">Mentions légales</a><a onclick="showPage('confidentialite')">Confidentialité</a></div></footer>
+</div>
+
+<script>
+function showPage(n){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+n).classList.add('active');window.scrollTo(0,0);}
+</script>
+</body>
+</html>

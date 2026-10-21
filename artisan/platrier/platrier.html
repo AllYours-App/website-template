@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Etxe Plâtrerie – Artisan Plâtrier Pays Basque</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bleu: #1E40AF;
+    --bleu-clair: #3B82F6;
+    --accent: #F59E0B;
+    --texte: #1F2937;
+    --fond: #F9FAFB;
+    --blanc: #ffffff;
+    --gris-moyen: #6B7280;
+    --gris-clair: #E5E7EB;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--texte);
+    background: var(--fond);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--blanc);
+    border-bottom: 3px solid var(--accent);
+    padding: 0 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .logo-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--bleu);
+    letter-spacing: -0.5px;
+  }
+  .logo-sub {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gris-moyen);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--bleu); }
+  .nav-cta {
+    background: var(--bleu);
+    color: var(--blanc) !important;
+    padding: 9px 20px;
+    border-radius: 6px;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: #1a37a0 !important; color: var(--blanc) !important; }
+
+  /* HERO */
+  .hero {
+    background: var(--bleu);
+    position: relative;
+    overflow: hidden;
+    padding: 5rem 2.5rem 4rem;
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: 45%;
+    background: linear-gradient(135deg, #1a37a0 0%, #152e8a 100%);
+    clip-path: polygon(12% 0, 100% 0, 100% 100%, 0% 100%);
+  }
+  .hero-stripes {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 6px;
+    display: flex;
+    flex-direction: column;
+  }
+  .stripe { flex: 1; }
+  .stripe:nth-child(1) { background: var(--accent); }
+  .stripe:nth-child(2) { background: var(--bleu-clair); }
+  .stripe:nth-child(3) { background: var(--accent); }
+  .stripe:nth-child(4) { background: var(--bleu-clair); }
+  .stripe:nth-child(5) { background: var(--accent); }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    padding-left: 1.5rem;
+  }
+  .hero-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 2px;
+    background: var(--accent);
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    font-weight: 900;
+    color: var(--blanc);
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+  .hero-desc {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    max-width: 460px;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--texte);
+    padding: 14px 28px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: #d97706; transform: translateY(-1px); }
+  .btn-outline {
+    border: 1.5px solid rgba(255,255,255,0.35);
+    color: var(--blanc);
+    padding: 13px 24px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 15px;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.06); }
+
+  .hero-stats {
+    position: absolute;
+    right: 2.5rem;
+    bottom: 2.5rem;
+    z-index: 2;
+    display: flex;
+    gap: 2rem;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--blanc);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .stat-sep {
+    width: 1px;
+    background: rgba(255,255,255,0.2);
+    align-self: stretch;
+  }
+
+  /* SAVOIR-FAIRE */
+  .section { padding: 5rem 2.5rem; }
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--bleu-clair);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 700;
+    color: var(--texte);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  .section-intro {
+    font-size: 1rem;
+    color: var(--gris-moyen);
+    max-width: 520px;
+    line-height: 1.75;
+    margin-bottom: 3rem;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+  .service-card {
+    background: var(--blanc);
+    border-radius: 10px;
+    padding: 1.75rem;
+    border: 1px solid var(--gris-clair);
+    transition: box-shadow 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .service-card:hover { box-shadow: 0 8px 32px rgba(30,64,175,0.10); transform: translateY(-3px); }
+  .service-card:hover::before { opacity: 1; }
+  .service-icon {
+    width: 48px;
+    height: 48px;
+    background: #EFF6FF;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+    font-size: 22px;
+  }
+  .service-card h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--texte);
+    margin-bottom: 0.6rem;
+  }
+  .service-card p {
+    font-size: 0.9rem;
+    color: var(--gris-moyen);
+    line-height: 1.65;
+  }
+
+  /* RÉALISATIONS */
+  .realisations {
+    background: var(--bleu);
+    padding: 5rem 2.5rem;
+  }
+  .realisations .section-eyebrow { color: var(--accent); }
+  .realisations .section-title { color: var(--blanc); }
+  .realisations .section-intro { color: rgba(255,255,255,0.65); }
+
+  .galerie-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+  }
+  .galerie-item {
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: flex-end;
+    padding: 1.2rem;
+  }
+  .galerie-item.large {
+    grid-column: span 2;
+    aspect-ratio: auto;
+  }
+  .galerie-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: rgba(255,255,255,0.15);
+  }
+  .galerie-label {
+    position: relative;
+    z-index: 1;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.8);
+  }
+  .galerie-tag {
+    display: inline-block;
+    background: rgba(245,158,11,0.25);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 5px;
+  }
+
+  /* ATOUTS */
+  .atouts {
+    padding: 5rem 2.5rem;
+    background: var(--fond);
+  }
+  .atouts-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .atouts-visual {
+    background: var(--blanc);
+    border-radius: 12px;
+    border: 1px solid var(--gris-clair);
+    padding: 2.5rem;
+    position: relative;
+  }
+  .atouts-badge {
+    position: absolute;
+    top: -18px;
+    right: 24px;
+    background: var(--accent);
+    color: var(--texte);
+    font-weight: 800;
+    font-size: 13px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+  .process-steps { list-style: none; }
+  .process-step {
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--gris-clair);
+  }
+  .process-step:last-child { border-bottom: none; }
+  .step-num {
+    width: 32px;
+    height: 32px;
+    background: var(--bleu);
+    color: var(--blanc);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .step-content h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--texte);
+    margin-bottom: 3px;
+  }
+  .step-content p {
+    font-size: 0.85rem;
+    color: var(--gris-moyen);
+    line-height: 1.5;
+  }
+
+  .atouts-list { list-style: none; }
+  .atout-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    margin-bottom: 1.75rem;
+  }
+  .atout-icon {
+    width: 40px;
+    height: 40px;
+    background: #FFFBEB;
+    border: 1.5px solid #FDE68A;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .atout-text h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--texte);
+    margin-bottom: 3px;
+  }
+  .atout-text p {
+    font-size: 0.875rem;
+    color: var(--gris-moyen);
+    line-height: 1.6;
+  }
+
+  /* ZONE */
+  .zone {
+    padding: 3rem 2.5rem;
+    background: #EFF6FF;
+    border-top: 4px solid var(--accent);
+    border-bottom: 4px solid var(--accent);
+    text-align: center;
+  }
+  .zone p {
+    font-size: 0.95rem;
+    color: var(--bleu);
+    font-weight: 500;
+  }
+  .zone strong { font-weight: 800; }
+  .zone-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  .zone-pill {
+    background: var(--blanc);
+    border: 1px solid #BFDBFE;
+    color: var(--bleu);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 5px 14px;
+    border-radius: 20px;
+  }
+
+  /* TÉMOIGNAGES */
+  .temoignages {
+    padding: 5rem 2.5rem;
+    background: var(--blanc);
+  }
+  .temoignages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .temoignage-card {
+    background: var(--fond);
+    border-radius: 10px;
+    padding: 1.75rem;
+    border-left: 4px solid var(--bleu-clair);
+  }
+  .stars {
+    color: var(--accent);
+    font-size: 16px;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+  }
+  .temoignage-card blockquote {
+    font-size: 0.95rem;
+    color: var(--texte);
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+    font-style: italic;
+  }
+  .temoignage-author {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--bleu);
+  }
+  .temoignage-lieu {
+    font-size: 12px;
+    color: var(--gris-moyen);
+    margin-top: 2px;
+  }
+
+  /* CONTACT CTA */
+  .contact-cta {
+    background: var(--texte);
+    padding: 5rem 2.5rem;
+    text-align: center;
+  }
+  .contact-cta h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--blanc);
+    margin-bottom: 1rem;
+  }
+  .contact-cta p {
+    color: rgba(255,255,255,0.6);
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .contact-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-accent-solid {
+    background: var(--accent);
+    color: var(--texte);
+    padding: 15px 32px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    transition: background 0.2s;
+    display: inline-block;
+  }
+  .btn-accent-solid:hover { background: #d97706; }
+  .btn-tel {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1.5px solid rgba(255,255,255,0.25);
+    color: var(--blanc);
+    padding: 14px 28px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: border-color 0.2s;
+  }
+  .btn-tel:hover { border-color: rgba(255,255,255,0.6); }
+
+  /* FOOTER */
+  footer {
+    background: #111827;
+    padding: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-brand .logo-mark { color: var(--blanc); font-size: 20px; }
+  .footer-brand .logo-sub { color: var(--accent); font-size: 10px; }
+  .footer-right {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+  }
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+  .footer-links a {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--blanc); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <span class="logo-mark">Etxe Plâtrerie</span>
+    <span class="logo-sub">Pays Basque</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Savoir-faire</a></li>
+    <li><a href="#">Réalisations</a></li>
+    <li><a href="#">À propos</a></li>
+    <li><a href="#" class="nav-cta">Demander un devis</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-stripes">
+    <div class="stripe"></div>
+    <div class="stripe"></div>
+    <div class="stripe"></div>
+    <div class="stripe"></div>
+    <div class="stripe"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Artisan qualifié RGE · Depuis 1998</p>
+    <h1>L'enduit parfait,<br><em>chez vous</em><br>au Pays Basque</h1>
+    <p class="hero-desc">
+      Plâtrier-staff de père en fils, nous mettons 25 ans de savoir-faire
+      basque au service de vos intérieurs et façades. Travail soigné, délais tenus, devis gratuit.
+    </p>
+    <div class="hero-actions">
+      <a href="#" class="btn-primary">Demander un devis gratuit</a>
+      <a href="#" class="btn-outline">Voir nos réalisations</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">500+</div>
+      <div class="stat-label">chantiers</div>
+    </div>
+    <div class="stat-sep"></div>
+    <div class="stat">
+      <div class="stat-num">25</div>
+      <div class="stat-label">ans d'expérience</div>
+    </div>
+    <div class="stat-sep"></div>
+    <div class="stat">
+      <div class="stat-num">4.9★</div>
+      <div class="stat-label">avis clients</div>
+    </div>
+  </div>
+</section>
+
+<!-- SAVOIR-FAIRE -->
+<section class="section">
+  <p class="section-eyebrow">Nos prestations</p>
+  <h2 class="section-title">Un métier, <br>une exigence</h2>
+  <p class="section-intro">
+    Du doublage à la décoration, chaque intervention est réalisée à la main,
+    avec des matériaux sélectionnés pour leur durabilité et leur rendu.
+  </p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🏠</div>
+      <h3>Plâtrerie intérieure</h3>
+      <p>Doublage, cloisons, plafonds tendus et faux-plafonds. Finitions lisses ou texturées selon vos souhaits.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🪟</div>
+      <h3>Enduit façade</h3>
+      <p>Ravalement et enduit traditionnel à la chaux, dans le respect de l'architecture basque. Couleurs sur mesure.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">✨</div>
+      <h3>Staff et décoration</h3>
+      <p>Moulures, corniches, rosaces et éléments décoratifs taillés à la main. Reproduction de l'existant.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔨</div>
+      <h3>Rénovation</h3>
+      <p>Traitement des fissures, reprise d'enduit, isolation thermique par l'intérieur (ITI). Devis précis et rapide.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏗️</div>
+      <h3>Neuf & construction</h3>
+      <p>Collaboration avec architectes et maîtres d'œuvre. Respect du planning et des normes DTU.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🌿</div>
+      <h3>Enduits naturels</h3>
+      <p>Chaux, argile, badigeons : des matériaux sains et respirants pour un intérieur basque authentique.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RÉALISATIONS -->
+<section class="realisations">
+  <p class="section-eyebrow">Nos réalisations</p>
+  <h2 class="section-title">Ce que nos mains ont créé</h2>
+  <p class="section-intro">Quelques chantiers récents, des maisons basques traditionnelles aux constructions contemporaines.</p>
+  <div class="galerie-grid">
+    <div class="galerie-item large">
+      <div class="galerie-placeholder">📷</div>
+      <div class="galerie-label">
+        <div class="galerie-tag">Façade</div>
+        <div>Villa basque – Biarritz</div>
+      </div>
+    </div>
+    <div class="galerie-item">
+      <div class="galerie-placeholder">📷</div>
+      <div class="galerie-label">
+        <div class="galerie-tag">Intérieur</div>
+        <div>Salon – Saint-Jean-de-Luz</div>
+      </div>
+    </div>
+    <div class="galerie-item">
+      <div class="galerie-placeholder">📷</div>
+      <div class="galerie-label">
+        <div class="galerie-tag">Staff</div>
+        <div>Maison de maître – Bayonne</div>
+      </div>
+    </div>
+    <div class="galerie-item">
+      <div class="galerie-placeholder">📷</div>
+      <div class="galerie-label">
+        <div class="galerie-tag">Rénovation</div>
+        <div>Appartement – Anglet</div>
+      </div>
+    </div>
+    <div class="galerie-item">
+      <div class="galerie-placeholder">📷</div>
+      <div class="galerie-label">
+        <div class="galerie-tag">Enduit naturel</div>
+        <div>Maison neuve – Hasparren</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POURQUOI NOUS -->
+<section class="atouts">
+  <div class="atouts-inner">
+    <div class="atouts-visual">
+      <div class="atouts-badge">✅ Artisan RGE certifié</div>
+      <p class="section-eyebrow">Notre méthode</p>
+      <h2 class="section-title" style="font-size:1.6rem;">Du premier contact<br>à la réception</h2>
+      <ul class="process-steps">
+        <li class="process-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Visite et devis gratuit</h4>
+            <p>On se déplace sous 48h pour évaluer votre chantier, sans engagement.</p>
+          </div>
+        </li>
+        <li class="process-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Choix des matériaux</h4>
+            <p>Échantillons, teintes et textures – vous décidez, on conseille.</p>
+          </div>
+        </li>
+        <li class="process-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Réalisation soignée</h4>
+            <p>Chantier propre, délais respectés, communication régulière.</p>
+          </div>
+        </li>
+        <li class="process-step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h4>Livraison et garantie</h4>
+            <p>Visite de réception et garantie décennale incluse.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <p class="section-eyebrow">Pourquoi nous choisir</p>
+      <h2 class="section-title">L'artisanat basque,<br>sans compromis</h2>
+      <ul class="atouts-list">
+        <li class="atout-item">
+          <div class="atout-icon">🤝</div>
+          <div class="atout-text">
+            <h4>Un interlocuteur unique</h4>
+            <p>Pas de sous-traitance. C'est Mikel qui décroche le téléphone, établit le devis et pose lui-même l'enduit.</p>
+          </div>
+        </li>
+        <li class="atout-item">
+          <div class="atout-icon">📅</div>
+          <div class="atout-text">
+            <h4>Délais tenus</h4>
+            <p>Nous planifions honnêtement. Si un imprévu survient, vous êtes prévenus le jour même.</p>
+          </div>
+        </li>
+        <li class="atout-item">
+          <div class="atout-icon">💰</div>
+          <div class="atout-text">
+            <h4>Tarif juste et transparent</h4>
+            <p>Devis détaillé, sans surprise. Éligible aux aides MaPrimeRénov pour l'isolation.</p>
+          </div>
+        </li>
+        <li class="atout-item">
+          <div class="atout-icon">🏠</div>
+          <div class="atout-text">
+            <h4>Connaissance du bâti local</h4>
+            <p>Maisons basques, colombages, pierre de taille – on connaît la matière, les contraintes, le style.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ZONE GÉOGRAPHIQUE -->
+<div class="zone">
+  <p><strong>Interventions dans tout le Pays Basque</strong> – Labourd, Basse-Navarre et Soule</p>
+  <div class="zone-pills">
+    <span class="zone-pill">Bayonne</span>
+    <span class="zone-pill">Biarritz</span>
+    <span class="zone-pill">Anglet</span>
+    <span class="zone-pill">Saint-Jean-de-Luz</span>
+    <span class="zone-pill">Hendaye</span>
+    <span class="zone-pill">Cambo-les-Bains</span>
+    <span class="zone-pill">Mauléon-Licharre</span>
+    <span class="zone-pill">Saint-Palais</span>
+    <span class="zone-pill">Hasparren</span>
+    <span class="zone-pill">Saint-Jean-Pied-de-Port</span>
+  </div>
+</div>
+
+<!-- TÉMOIGNAGES -->
+<section class="temoignages">
+  <p class="section-eyebrow">Avis clients</p>
+  <h2 class="section-title">Ils nous font confiance</h2>
+  <div class="temoignages-grid">
+    <div class="temoignage-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Ravalement de notre maison basque à Sare. Résultat impeccable, couleurs parfaitement dans le ton local. Mikel a été de très bon conseil sur la teinte de la chaux."</blockquote>
+      <div class="temoignage-author">Maïté et Gorka A.</div>
+      <div class="temoignage-lieu">Sare · Facade + enduit chaux</div>
+    </div>
+    <div class="temoignage-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Plafond cassé suite à une fuite. Intervention rapide, réparation invisible. On ne voit plus rien. Prix honnête et chantier laissé propre. Je recommande sans hésiter."</blockquote>
+      <div class="temoignage-author">Sylvie M.</div>
+      <div class="temoignage-lieu">Biarritz · Réparation plafond</div>
+    </div>
+    <div class="temoignage-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Doublage et isolation d'un appartement entier à Bayonne. Travail propre, délais respectés, et le résultat final est vraiment beau. Très bon rapport qualité-prix."</blockquote>
+      <div class="temoignage-author">Thomas B.</div>
+      <div class="temoignage-lieu">Bayonne · Doublage + isolation</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT CTA -->
+<section class="contact-cta">
+  <h2>Un projet ? Parlons-en.</h2>
+  <p>Devis gratuit sous 48h. Intervention dans tout le Pays Basque.</p>
+  <div class="contact-actions">
+    <a href="#" class="btn-accent-solid">Demander un devis en ligne</a>
+    <a href="tel:+33600000000" class="btn-tel">📞 06 00 00 00 00</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand logo">
+    <span class="logo-mark">Etxe Plâtrerie</span>
+    <span class="logo-sub" style="margin-left: 8px;">Artisan RGE · Pays Basque</span>
+  </div>
+  <ul class="footer-links">
+    <li><a href="#">Mentions légales</a></li>
+    <li><a href="#">Politique de confidentialité</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <div class="footer-right">© 2025 Etxe Plâtrerie</div>
+</footer>
+
+</body>
+</html>

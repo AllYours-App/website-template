@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[NOM DE LA PHARMACIE] — Template 04</title>
+<!-- Moderne & Minimaliste / Asymétrique et décalé
+     Couleurs : #FFFFFF blanc · #141414 noir · #F5F5F5 gris bg · #D1D1D1 ligne · #FF3D00 rouge-orange accent
+     Polices  : Bebas Neue (display) + Inter (body 300/400)
+     Signature : Numéro de téléphone XXL qui traverse la page en diagonal en fond watermark -->
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--w:#FFFFFF;--b:#141414;--bg:#F5F5F5;--line:#D1D1D1;--r:#FF3D00;--gt:#888;}
+  *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
+  body{font-family:'Inter',sans-serif;background:var(--w);color:var(--b);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  a{color:inherit;text-decoration:none;} .page{display:none;} .page.active{display:block;}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--w);border-bottom:1px solid var(--line);
+    padding:0 48px;height:54px;display:flex;align-items:center;justify-content:space-between;}
+  .logo{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.05em;cursor:pointer;}
+  .nav-r{display:flex;align-items:center;gap:28px;}
+  .nav-r a{font-size:0.78rem;color:var(--gt);font-weight:300;transition:color .2s;letter-spacing:.02em;}
+  .nav-r a:hover{color:var(--b);}
+  .nav-tel{color:var(--r)!important;font-weight:500!important;}
+
+  /* HERO asymétrique */
+  .hero{margin-top:54px;display:grid;grid-template-columns:5fr 3fr;min-height:90vh;}
+  .hero-l{padding:80px 48px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;}
+  .wm{position:absolute;bottom:-40px;left:-20px;font-family:'Bebas Neue',sans-serif;
+    font-size:clamp(100px,18vw,200px);color:rgba(0,0,0,.04);white-space:nowrap;letter-spacing:-.02em;user-select:none;pointer-events:none;}
+  .hero-tag{font-size:0.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--r);margin-bottom:24px;}
+  .hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,10vw,9rem);
+    line-height:.92;letter-spacing:-.01em;color:var(--b);margin-bottom:32px;}
+  .hero-sub{font-size:0.9rem;color:var(--gt);font-weight:300;max-width:400px;line-height:1.75;margin-bottom:40px;}
+  .btn-r{display:inline-block;background:var(--r);color:var(--w);padding:14px 28px;
+    font-size:0.82rem;font-weight:500;letter-spacing:.04em;transition:background .2s;}
+  .btn-r:hover{background:var(--b);}
+
+  .hero-r{background:var(--b);padding:80px 40px;display:flex;flex-direction:column;justify-content:center;}
+  .hero-r .lbl{font-size:0.65rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--r);margin-bottom:28px;}
+  .h-item{padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:center;}
+  .h-item .d{font-size:0.82rem;color:rgba(255,255,255,.35);font-weight:300;}
+  .h-item .t{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.04em;color:var(--w);}
+  .h-item.today .d{color:var(--r);}
+  .h-item.today .t{color:var(--r);}
+  .h-item .cl{color:rgba(255,255,255,.15);}
+  .hero-addr{margin-top:40px;font-size:0.78rem;color:rgba(255,255,255,.25);line-height:1.8;font-weight:300;}
+
+  /* SERVICES */
+  .services{padding:88px 48px;background:var(--bg);}
+  .srv-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:48px;flex-wrap:wrap;gap:16px;}
+  .srv-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,5rem);letter-spacing:-.01em;}
+  .srv-lbl{font-size:0.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--r);}
+  .srv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+  .srv-item{background:var(--w);padding:32px 28px;position:relative;overflow:hidden;transition:background .25s;}
+  .srv-item:hover{background:var(--b);}
+  .srv-item:hover .si-name{color:var(--w);}
+  .srv-item:hover .si-desc{color:rgba(255,255,255,.4);}
+  .si-name{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.02em;margin-bottom:10px;transition:color .25s;}
+  .si-desc{font-size:0.82rem;color:var(--gt);line-height:1.65;font-weight:300;transition:color .25s;}
+
+  /* CONTACT */
+  .contact{padding:88px 48px;display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:1200px;margin:0 auto;}
+  .contact-l .lbl{font-size:0.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--r);margin-bottom:20px;}
+  .contact-l h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,5rem);line-height:.95;letter-spacing:-.01em;margin-bottom:32px;}
+  .contact-l p{font-size:0.88rem;color:var(--gt);line-height:1.8;font-weight:300;margin-bottom:6px;}
+  .tel{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--b);display:block;margin:24px 0 8px;letter-spacing:.02em;transition:color .2s;}
+  .tel:hover{color:var(--r);}
+  .fi{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line);}
+  .fi input,.fi textarea{border:none;border-bottom:1px solid var(--line);padding:16px 0;
+    font-family:'Inter';font-size:0.85rem;color:var(--b);font-weight:300;background:transparent;outline:none;transition:border-color .2s;}
+  .fi input:focus,.fi textarea:focus{border-bottom-color:var(--r);}
+  .fi textarea{min-height:80px;resize:none;}
+  .fi button{margin-top:24px;align-self:flex-start;background:var(--b);color:var(--w);border:none;
+    padding:13px 24px;font-family:'Inter';font-weight:500;font-size:0.82rem;letter-spacing:.04em;cursor:pointer;transition:background .2s;}
+  .fi button:hover{background:var(--r);}
+
+  footer{background:var(--b);color:var(--w);padding:22px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:0.75rem;}
+  footer span{opacity:.3;} .fl{display:flex;gap:20px;} .fl a{opacity:.3;cursor:pointer;} .fl a:hover{opacity:1;}
+
+  .lp{max-width:640px;margin:0 auto;padding:100px 48px 80px;}
+  .lback{font-size:0.78rem;color:var(--gt);cursor:pointer;display:inline-block;margin-bottom:48px;}
+  .lback:hover{color:var(--b);}
+  .lp h1{font-family:'Bebas Neue',sans-serif;font-size:3rem;letter-spacing:.02em;margin-bottom:6px;}
+  .ldate{font-size:0.75rem;color:var(--gt);margin-bottom:48px;}
+  .lp h2{font-size:0.68rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--r);margin:32px 0 10px;}
+  .lp p,.lp li{font-size:0.85rem;color:#555;line-height:1.8;margin-bottom:8px;font-weight:300;}
+  .lp ul{margin-left:18px;} .lp a{color:var(--r);text-decoration:underline;}
+
+  @media(max-width:768px){
+    nav{padding:0 20px;} .nav-r a:not(.nav-tel){display:none;}
+    .hero{grid-template-columns:1fr;}
+    .hero-l{padding:80px 20px 40px;}
+    .hero-r{padding:40px 20px;}
+    .services{padding:60px 20px;} .srv-grid{grid-template-columns:1fr;}
+    .contact{padding:60px 20px;grid-template-columns:1fr;gap:40px;}
+    footer{padding:20px;} .lp{padding:90px 20px 60px;}
+  }
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo" onclick="showPage('main')">[NOM DE LA PHARMACIE]</div>
+  <div class="nav-r">
+    <a href="#services">Services</a><a href="#contact">Contact</a>
+    <a href="tel:[NUMERO_TELEPHONE_SANS_ESPACES]" class="nav-tel">[NUMÉRO DE TÉLÉPHONE]</a>
+  </div>
+</nav>
+
+<div id="page-main" class="page active">
+  <section class="hero">
+    <div class="hero-l">
+      <div class="wm">SANTÉ</div>
+      <div class="hero-tag">[VILLE] · [QUARTIER/ZONE]</div>
+      <h1>Votre<br>Pharmacie<br>de Quartier</h1>
+      <p class="hero-sub">Conseil pharmaceutique, vaccination, tests rapides. Ouverts jusqu'à 20h en semaine, sans rendez-vous.</p>
+      <a href="tel:[NUMERO_TELEPHONE_SANS_ESPACES]" class="btn-r">Appeler — [NUMÉRO DE TÉLÉPHONE]</a>
+    </div>
+    <div class="hero-r">
+      <div class="lbl">Horaires</div>
+      <div class="h-item" data-day="1"><span class="d">Lundi</span><span class="t">[HORAIRES_LUNDI]</span></div>
+      <div class="h-item" data-day="2"><span class="d">Mardi</span><span class="t">[HORAIRES_MARDI]</span></div>
+      <div class="h-item" data-day="3"><span class="d">Mercredi</span><span class="t">[HORAIRES_MERCREDI]</span></div>
+      <div class="h-item" data-day="4"><span class="d">Jeudi</span><span class="t">[HORAIRES_JEUDI]</span></div>
+      <div class="h-item" data-day="5"><span class="d">Vendredi</span><span class="t">[HORAIRES_VENDREDI]</span></div>
+      <div class="h-item" data-day="6"><span class="d">Samedi</span><span class="t">[HORAIRES_SAMEDI]</span></div>
+      <div class="h-item" data-day="0"><span class="d">Dimanche</span><span class="t cl">[HORAIRES_DIMANCHE]</span></div>
+      <p class="hero-addr">[ADRESSE COMPLÈTE]<br>[CODE POSTAL] [VILLE]<br>Parking · PMR</p>
+    </div>
+  </section>
+
+  <section class="services" id="services">
+    <div class="srv-head">
+      <div class="srv-title">Nos Services</div>
+      <div class="srv-lbl">Ce que nous faisons</div>
+    </div>
+    <div class="srv-grid">
+      <div class="srv-item"><div class="si-name">Vaccination</div><p class="si-desc">Grippe, Covid, DTP — sans ordonnance ni rendez-vous.</p></div>
+      <div class="srv-item"><div class="si-name">Tests Rapides</div><p class="si-desc">Angine, cystite, Covid. Résultats en quelques minutes.</p></div>
+      <div class="srv-item"><div class="si-name">Matériel Médical</div><p class="si-desc">Location et vente : tire-lait, tensiomètre, orthopédie.</p></div>
+      <div class="srv-item"><div class="si-name">Livraison</div><p class="si-desc">Médicaments livrés à domicile sur Anglet.</p></div>
+      <div class="srv-item"><div class="si-name">Téléconsult.</div><p class="si-desc">Médecin en vidéo depuis la pharmacie.</p></div>
+      <div class="srv-item"><div class="si-name">Parapharmacie</div><p class="si-desc">Phytothérapie, aromathérapie, produits bio.</p></div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="contact-l">
+      <div class="lbl">Contact & Accès</div>
+      <h2>Venez nous voir</h2>
+      <p>[ADRESSE COMPLÈTE]<br>[CODE POSTAL] [VILLE]<br>Parking gratuit · Accès PMR</p>
+      <a href="tel:[NUMERO_TELEPHONE_SANS_ESPACES]" class="tel">[NUMÉRO DE TÉLÉPHONE]</a>
+      <p>Pharmacie de garde : <a href="tel:3237" style="color:var(--r);">32 37</a></p>
+    </div>
+    <div>
+      <form class="fi" action="https://formspree.io/f/REMPLACER" method="POST">
+        <input type="text" name="nom" placeholder="Votre nom" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <textarea name="message" placeholder="Votre question"></textarea>
+        <button type="submit">Envoyer →</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <span>© [ANNÉE] [NOM DE LA PHARMACIE]</span>
+    <div class="fl"><a onclick="showPage('mentions')">Mentions légales</a><a onclick="showPage('confidentialite')">Confidentialité</a></div>
+  </footer>
+</div>
+
+<div id="page-mentions" class="page">
+  <div class="lp"><span class="lback" onclick="showPage('main')">← Retour</span><h1>Mentions Légales</h1><p class="ldate">Juin 2025</p>
+  <h2>Éditeur</h2><p>[NOM DE LA PHARMACIE] — [FORME JURIDIQUE] · [ADRESSE COMPLÈTE] · SIRET [NUMÉRO SIRET]</p>
+  <h2>Hébergement</h2><p>Vercel Inc. — <a href="https://vercel.com/legal" target="_blank">vercel.com/legal</a></p>
+  <h2>Propriété intellectuelle</h2><p>Tous contenus propriété de [NOM DE LA PHARMACIE]. Reproduction interdite.</p></div>
+  <footer><span>© [ANNÉE] [NOM DE LA PHARMACIE]</span><div class="fl"><a onclick="showPage('mentions')">Mentions légales</a><a onclick="showPage('confidentialite')">Confidentialité</a></div></footer>
+</div>
+
+<div id="page-confidentialite" class="page">
+  <div class="lp"><span class="lback" onclick="showPage('main')">← Retour</span><h1>Confidentialité</h1><p class="ldate">Juin 2025</p>
+  <h2>Données collectées</h2><p>Nom, email, téléphone (facultatif), message.</p>
+  <h2>Finalité</h2><p>Répondre à votre demande. Aucune revente.</p>
+  <h2>Vos droits</h2><p>Contact : [NUMÉRO DE TÉLÉPHONE]. Réclamation : <a href="https://cnil.fr" target="_blank">cnil.fr</a></p>
+  <h2>Cookies</h2><p>Aucun cookie publicitaire. Google Fonts peut transmettre votre IP à Google.</p></div>
+  <footer><span>© [ANNÉE] [NOM DE LA PHARMACIE]</span><div class="fl"><a onclick="showPage('mentions')">Mentions légales</a><a onclick="showPage('confidentialite')">Confidentialité</a></div></footer>
+</div>
+
+<script>
+function showPage(n){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+n).classList.add('active');window.scrollTo(0,0);}
+const d=new Date().getDay();
+document.querySelectorAll('.h-item').forEach(r=>{if(parseInt(r.dataset.day)===d)r.classList.add('today');});
+</script>
+</body>
+</html>

@@ -20,20 +20,24 @@ website-template/
 └── <secteur>/              niveau 1 : artisan, commerce, medecine, sport
     ├── README-<secteur>.md consignes du secteur
     ├── _type/              niveau 2 : template type du secteur
-    │   └── <layout>/       niveau 3 : layouts neutres
+    │   └── <layout>/       niveau 3 : un dossier par layout (5)
     │       └── <secteur>-type-<layout>.html
     └── <metier>/           niveau 2 : macon, pharmacie, coiffeur...
-        └── <layout>/       niveau 3 : même vocabulaire de layouts
-            └── <design>/   niveau 4 : variantes de design propres au métier
-                └── <secteur>-<metier>-<layout>-<design>.html
+        ├── <layout>/       niveau 3 : mêmes 5 dossiers de layout
+        │   └── <secteur>-<metier>-<layout>-<design>.html   niveau 4 : un fichier par design
+        └── <secteur>-<metier>-a-classer-<design>.html      layout pas encore défini
 ```
 
 | Niveau | Contenu | Rôle |
 |---|---|---|
 | 1 | Secteur | Regroupe les métiers qui partagent le même ton et les mêmes obligations |
 | 2 | Métier ou `_type` | `_type` sert de repli quand le métier du client n'existe pas encore |
-| 3 | Layout | Organisation de la page : position, taille, hiérarchie des éléments |
-| 4 | Design | Habillage : couleurs, typographies, formes, ton visuel |
+| 3 | Layout (dossier) | Organisation de la page : position, taille, hiérarchie des éléments |
+| 4 | Design (fichier) | Habillage : couleurs, typographies, formes, ton visuel. Un fichier par design, dans le dossier de son layout |
+
+**Les 5 dossiers de layout existent dans chaque `_type` et chaque métier, même vides.** Git ne conserve pas les dossiers vides : chacun contient un fichier `.gitkeep` (fichier vide).
+
+Un fichier dont le layout n'est pas encore défini se pose directement dans le dossier du métier, avec `a-classer` à la place du layout. Il rejoint son dossier de layout quand il est classé.
 
 **Layout et design sont deux axes distincts.** Test : si on retire les couleurs et les polices, deux layouts d'un même métier doivent encore se distinguer par la structure. Deux designs d'un même layout ont la même structure et un habillage différent.
 
@@ -45,12 +49,14 @@ website-template/
 - Un fichier de template porte le chemin complet : `<secteur>-<metier>-<layout>-<design>.html`.
   Exemple : `medecine-pharmacie-cartes-sombre.html`.
 - Template type : `<secteur>-type-<layout>.html`. Exemple : `artisan-type-hero-plein-ecran.html`.
-- Layout provisoire (pas encore rattaché à la liste de référence) : `a-classer`.
+- Le design est un **type générique** (`minimaliste`, `chaud`, `sombre`, `dynamique`, `naturel`), jamais un nom de client, de lieu ou de boutique.
+- Si deux fichiers du même métier et du même layout ont le même type de design, le second prend le suffixe `-2` (puis `-3`). Le suffixe se retire quand les fichiers sont classés dans des layouts différents.
+- Layout pas encore défini : `a-classer` dans le nom, fichier posé à la racine du dossier du métier.
 - Au déploiement, le fichier est renommé `index.html`.
 
 ---
 
-## 3. Layouts de référence
+## 3. Layouts et types de design de référence
 
 Chaque layout met en avant **un élément différent** par sa position, sa taille et son poids dans la page, pas par ses couleurs. Minimum **5 layouts** dans chaque `_type`. Un métier reprend le même vocabulaire.
 
@@ -63,6 +69,20 @@ Chaque layout met en avant **un élément différent** par sa position, sa taill
 | `corporate` | Multi-pages, navigation structurée | La crédibilité et l'étendue de l'offre | Cabinet, association, entreprise multi-services |
 
 Ajouter un layout = l'ajouter à ce tableau, puis le décliner dans chaque `_type`.
+
+### Types de design (niveau 4, nom de fichier)
+
+Le type de design décrit l'habillage, indépendamment de la structure. Un même layout peut exister dans tous les types.
+
+| Slug | Habillage |
+|---|---|
+| `minimaliste` | Fond blanc ou gris clair, texte noir, un seul accent, beaucoup d'espace |
+| `chaud` | Crèmes, bruns, terre, accent orangé ou doré, titres en serif |
+| `sombre` | Fond noir ou très foncé, texte clair, accent métallique ou froid |
+| `dynamique` | Fond blanc franc, accent vif (bleu, orange, corail), typographies affirmées, contrastes forts |
+| `naturel` | Vert sauge, crème, tons végétaux, ton doux |
+
+Ajouter un type = l'ajouter à ce tableau, avec une description de l'habillage.
 
 ---
 
@@ -131,7 +151,7 @@ Un template livré à un client ne doit contenir aucun crochet ni `REMPLACER`. V
 1. **Cadrer** : secteur, métier, layout, design. Lire ce README et celui du secteur.
 2. **Partir du bon point** :
    - métier existant : dupliquer un layout du même métier ;
-   - métier absent : dupliquer `<secteur>/_type/<layout>/` et créer `<secteur>/<metier>/<layout>/<design>/`.
+   - métier absent : dupliquer `<secteur>/_type/<layout>/` et utiliser le dossier `<secteur>/<metier>/<layout>/` (il existe déjà) et y poser le fichier du design.
 3. **Respecter le layout** : l'élément mis en avant (section 3) doit dominer visuellement. Les éléments indispensables du README secteur sont tous présents.
 4. **Concevoir le design** : palette, polices et formes tirées du métier, avec les interdits de la section 4.
 5. **Écrire le contenu en placeholders** réalistes : structure et longueur crédibles, aucun chiffre ni avis inventé.
@@ -196,10 +216,10 @@ Sous chaque formulaire : courte mention RGPD avec lien vers la politique de conf
 
 | Secteur | Métier | État |
 |---|---|---|
-| artisan | boulanger, macon, platrier | Fichiers en `a-classer`, layouts à définir |
-| commerce | mode, coiffeur, fleuriste | Fichiers en `a-classer`, layouts à définir |
-| medecine | pharmacie | 15 combinaisons layout × design, les 4 layouts sont à refaire selon la section 3 |
-| sport | ecole-surf | Fichier en `a-classer`, layouts à définir |
+| artisan | boulanger, macon, platrier | Fichiers `a-classer` à la racine des dossiers métier, layouts à définir |
+| commerce | mode, coiffeur, fleuriste | Fichiers `a-classer` à la racine des dossiers métier, layouts à définir |
+| medecine | pharmacie | 14 fichiers à la racine du dossier métier, avec les anciens layouts (epure, cartes, hero, asymetrique) à refaire selon la section 3 ; manquent `epure-minimaliste` et `asymetrique-dynamique`. 2 fichiers `a-classer` en `naturel` |
+| sport | ecole-surf | Fichier `a-classer` à la racine du dossier métier, layout à définir |
 | tous | `_type` | À créer : 5 layouts par secteur |
 
 ---
