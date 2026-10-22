@@ -14,13 +14,11 @@ Liste des tâches restantes de la bibliothèque. Cocher au fur et à mesure et t
 
 ## 2. Terminer l'architecture
 
-Structure cible : `<secteur>/` contient `README-<secteur>.md`, `index_<secteur>.html`, 5 fichiers `type-<layout>_<secteur>.html`, les 2 pages légales, et un dossier par métier.
+Structure cible : `<secteur>/` contient `README-<secteur>.md`, `index_<secteur>.html`, 4 fichiers `type-<layout>_<secteur>.html` en plus de l'index, et un dossier par métier. Pas de pages légales préparées : elles se créent par client (`README.md`, section 10).
 
 - [x] Créer `commerce/index_commerce.html` (layout `one-page`, neutre).
-- [ ] Créer `commerce/mentions-legales_commerce.html` et `commerce/confidentialite_commerce.html`.
 - [ ] Sport : décider de l'emplacement de la base du secteur (aujourd'hui dans `sport/ecole-surf/`, alors qu'artisan et medecine l'ont à la racine du secteur) et créer `sport/index_sport.html` si elle remonte.
 - [ ] Rendre `index_artisan.html`, `index_medecine.html` et celui du sport neutres (layout `one-page`) : aujourd'hui `index_artisan.html` est une boulangerie, `index_medecine.html` une pharmacie, celui du sport une école de surf. Aucun design ni contenu propre à un métier.
-- [ ] Reprendre les pages légales de **tous** les secteurs : remplacer le nom de la démo (Boulangerie du Pont, Pharmacie du Centre, École de Surf Atlantique) par `[NOM DE L'ENTREPRISE]`, compléter les passages `[À compléter]`, faire relire par un professionnel.
 
 ---
 
@@ -28,34 +26,46 @@ Structure cible : `<secteur>/` contient `README-<secteur>.md`, `index_<secteur>.
 
 Un fichier par layout de référence, à la racine du secteur (le layout `one-page` est `index_<secteur>.html`), sans personnalisation de métier, en placeholders. Pour chaque secteur, les blocs à inclure et ce qui domine dans chaque layout sont détaillés dans `README-<secteur>.md`, section « Templates types du secteur ». Règles générales : `README.md` sections 3 à 6.
 
-Conseil : faire un secteur complet d'abord, vérifier que les 5 layouts sont vraiment différents et ne ressemblent pas à du contenu généré, puis dupliquer la méthode sur les 3 autres.
+**Nombre de layouts fixé à 5**, chacun mettant en avant un élément différent (tableau de choix : `README.md`, section 3). Ajout d'un layout seulement si un client ne rentre dans aucune case.
+
+**Ordre de priorité de production**, dans chaque secteur :
+
+1. `one-page` : layout par défaut, base des 4 autres. Existe déjà, à rendre neutre (section 2).
+2. `hero-plein-ecran` : « mon lieu, ma vue, mon ambiance », demande la plus courante des commerces et lieux physiques.
+3. `portfolio-grille` : « mes réalisations parlent d'elles-mêmes », fréquent chez les artisans, très différent de `one-page`.
+4. `split-z` : seulement quand il y a deux offres ou deux publics.
+5. `corporate` : le plus lourd (pages à créer) et le moins demandé pour une vitrine de petit client.
+
+Ordre à ajuster si la clientèle réelle change (beaucoup d'artisans : `portfolio-grille` peut passer devant `hero-plein-ecran`).
+
+Conseil : faire un secteur complet d'abord en commençant par les layouts 1 à 3, vérifier que les layouts sont vraiment différents et ne ressemblent pas à du contenu généré, puis dupliquer la méthode sur les 3 autres secteurs et finir par `split-z` et `corporate`.
 
 ### Artisan
 
 - [ ] `artisan/type-hero-plein-ecran_artisan.html`
-- [ ] `artisan/type-split-z_artisan.html`
 - [ ] `artisan/type-portfolio-grille_artisan.html`
+- [ ] `artisan/type-split-z_artisan.html`
 - [ ] `artisan/type-corporate_artisan.html`
 
 ### Commerce
 
 - [ ] `commerce/type-hero-plein-ecran_commerce.html`
-- [ ] `commerce/type-split-z_commerce.html`
 - [ ] `commerce/type-portfolio-grille_commerce.html`
+- [ ] `commerce/type-split-z_commerce.html`
 - [ ] `commerce/type-corporate_commerce.html`
 
 ### Médecine
 
 - [ ] `medecine/type-hero-plein-ecran_medecine.html`
-- [ ] `medecine/type-split-z_medecine.html`
 - [ ] `medecine/type-portfolio-grille_medecine.html`
+- [ ] `medecine/type-split-z_medecine.html`
 - [ ] `medecine/type-corporate_medecine.html`
 
 ### Sport
 
 - [ ] `sport/type-hero-plein-ecran_sport.html`
-- [ ] `sport/type-split-z_sport.html`
 - [ ] `sport/type-portfolio-grille_sport.html`
+- [ ] `sport/type-split-z_sport.html`
 - [ ] `sport/type-corporate_sport.html`
 
 ---

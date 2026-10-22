@@ -17,8 +17,6 @@ website-template/
     ├── README-<secteur>.md             consignes du secteur
     ├── index_<secteur>.html            template type du layout one-page (base par défaut)
     ├── type-<layout>_<secteur>.html    4 autres templates types (un par layout)
-    ├── mentions-legales_<secteur>.html
-    ├── confidentialite_<secteur>.html
     └── <metier>/                       niveau 2 : boulanger, pharmacie, coiffeur...
         └── <fichiers>.html             niveau 3 : templates du métier
 ```
@@ -36,7 +34,7 @@ website-template/
 ## 2. Nommage
 
 - Dossiers et fichiers en kebab-case, sans accents, sans espaces, sans majuscules (`medecine`, `ecole-surf`, `split-z`).
-- **Fichiers du secteur** : le nom du secteur est ajouté après un `_` : `index_artisan.html`, `mentions-legales_artisan.html`, `confidentialite_artisan.html`, `type-hero-plein-ecran_artisan.html`.
+- **Fichiers du secteur** : le nom du secteur est ajouté après un `_` : `index_artisan.html`, `type-hero-plein-ecran_artisan.html`.
 - **Template unique d'un métier** : `<metier>.html`. Exemple : `boulanger/boulanger.html`.
 - **Plusieurs variantes d'un métier** : `NN-<design>-<layout>.html`, avec `NN` le numéro d'ordre dans le dossier. Exemple : `06-chaud-cartes.html`.
 - Le design est un **type générique** (section 3), jamais un nom de client, de lieu ou de boutique.
@@ -56,7 +54,25 @@ Chaque layout met en avant **un élément différent** par sa position, sa taill
 | `portfolio-grille` | Grille de visuels dominante | Les réalisations | Photographe, architecte, designer, agence créative, chantiers avant / après |
 | `corporate` | Multi-pages, navigation structurée | La crédibilité et l'étendue de l'offre | PME, cabinet, association, entreprise multi-services |
 
-Ajouter un layout = l'ajouter à ce tableau, puis produire son template type dans chaque secteur.
+Ajouter un layout = l'ajouter à ce tableau et au tableau de choix ci-dessous, puis produire son template type dans chaque secteur.
+
+### Choisir un layout selon la demande du client
+
+On propose le layout au client, c'est lui qui dit ce qu'il veut mettre en avant. L'élément cité décide du template type.
+
+| Le client veut mettre en avant | Layout | Fichier |
+|---|---|---|
+| Ses services, ses prix, ce qu'il propose | `one-page` | `index_<secteur>.html` |
+| Son lieu, sa vue, son ambiance | `hero-plein-ecran` | `type-hero-plein-ecran_<secteur>.html` |
+| Ses réalisations, ses photos avant / après | `portfolio-grille` | `type-portfolio-grille_<secteur>.html` |
+| Deux offres ou deux publics distincts | `split-z` | `type-split-z_<secteur>.html` |
+| Son sérieux, l'étendue de son offre, un site à plusieurs pages | `corporate` | `type-corporate_<secteur>.html` |
+
+- **Plusieurs priorités** : le layout suit l'élément cité en premier, ou celui qui rapporte le plus au client. Les autres éléments passent dans les sections sous le hero.
+- **Aucune priorité claire** : `one-page`, le layout le plus neutre.
+- **Métier sans dossier** : partir du template type du secteur le plus proche. Les layouts se transfèrent d'un métier à l'autre, seul le vocabulaire change.
+- **Nombre de layouts fixé à 5.** On n'en ajoute un que si un client ne rentre dans aucune case du tableau. Un layout jamais choisi se supprime.
+- Quand le contenu d'un layout change dans un `README-<secteur>.md`, ce tableau est mis à jour.
 
 Les 5 templates types d'un secteur contiennent les **mêmes blocs de contenu**. Seuls l'ordre, la taille et la position changent. La liste des blocs et le détail de chaque layout sont dans `README-<secteur>.md`, section « Templates types du secteur ».
 
@@ -198,7 +214,7 @@ Un design nouveau ne change pas la structure du layout.
 
 1. Créer un repo par client, ou utiliser ce repo marqué **Template repository** (« Use this template »).
 2. Copier le fichier choisi et le renommer `index.html`.
-3. Copier les pages légales du secteur en **retirant le suffixe** : `mentions-legales_<secteur>.html` devient `mentions-legales.html`, `confidentialite_<secteur>.html` devient `confidentialite.html`. Les liens des templates pointent vers ces noms.
+3. Créer les pages légales du client, `mentions-legales.html` et `confidentialite.html`, en suivant la section 10. Les liens des templates pointent vers ces noms.
 4. Ajouter le dossier `images/` à côté.
 5. Remplacer tous les placeholders (section 6).
 6. Vercel : « New Project », importer le repo. HTML pur, aucune configuration de build.
@@ -208,16 +224,27 @@ Un design nouveau ne change pas la structure du layout.
 
 ## 10. Pages légales
 
-Chaque secteur a son jeu, à la racine du dossier du secteur :
+Il n'y a pas de pages légales préparées dans le repo : elles se créent pour chaque client, à partir des consignes ci-dessous. Les lignes propres au métier (numéro d'inscription, ordre, carte professionnelle, assurance) sont dans `README-<secteur>.md`.
 
-- `mentions-legales_<secteur>.html` : obligatoire en France pour tout site professionnel, même sans vente en ligne.
-- `confidentialite_<secteur>.html` : nécessaire dès que le formulaire de contact collecte des données personnelles.
+Deux pages sont nécessaires, `mentions-legales.html` et `confidentialite.html`, liées depuis le footer.
 
-Les jeux existants portent le nom de l'entreprise de démonstration du secteur (Boulangerie du Pont, Pharmacie du Centre, École de Surf Atlantique) : le remplacer partout par celui du client. Pour tout nouveau jeu, utiliser le placeholder `[NOM DE L'ENTREPRISE]`.
+**Mentions légales** : obligatoires en France pour tout site professionnel, même sans vente en ligne.
 
-Les passages `[À compléter]` (SIRET, durée de conservation, hébergeur...) se remplissent avec les informations réelles du client. Ce sont des bases de travail, pas un document validé juridiquement : faire relire la version finale par un professionnel pour une activité qui se lance.
+- **Éditeur** : nom de l'entreprise, forme juridique, adresse, SIRET, téléphone, email, responsable de publication, plus les lignes propres au métier.
+- **Hébergement** : Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, États-Unis. Vérifier l'adresse sur vercel.com/legal et remplacer le bloc si l'hébergeur change.
+- **Propriété intellectuelle** et **liens hypertextes**.
+- **Contact** pour toute question sur les mentions.
 
-Les mentions décrivent le client (éditeur) et son hébergeur. Le prestataire apparaît en crédit de conception, pas comme éditeur.
+**Politique de confidentialité** : nécessaire dès que le formulaire de contact collecte des données personnelles.
+
+- Responsable du traitement, données collectées (nom, email, message), finalité et base légale (consentement donné en envoyant le formulaire).
+- Destinataires : le client et le service branché sur le formulaire (section 11), avec le lieu d'hébergement des données. Un sous-traitant hors Union européenne se mentionne avec l'encadrement du transfert.
+- Durée de conservation, fixée avec le client (par exemple 12 mois après le dernier contact).
+- Droits RGPD (accès, rectification, effacement, opposition), réclamation possible auprès de la CNIL.
+- Cookies et services tiers : Google Fonts peut transférer l'adresse IP vers Google au chargement de la page.
+- Secteur médecine : demander de ne pas indiquer d'informations de santé détaillées dans le formulaire.
+
+Les mentions décrivent le client (éditeur) et son hébergeur. Le prestataire apparaît en crédit de conception, pas comme éditeur. Ce README n'est pas un avis juridique : faire relire la version finale par un professionnel pour une activité qui se lance.
 
 ---
 
@@ -236,10 +263,10 @@ Sous chaque formulaire : courte mention RGPD avec lien vers la politique de conf
 
 | Secteur | Contenu actuel | À faire |
 |---|---|---|
-| artisan | `index_artisan.html` (boulangerie, design chaud), pages légales, `boulanger/boulanger.html`, `macon/macon.html`, `platrier/platrier.html` | Templates types à créer |
-| commerce | `coiffeur/coiffeur.html`, `fleuriste/fleuriste.html`, `mode/` (6 fichiers aux noms d'origine) | `index_commerce.html` et pages légales à créer, fichiers `mode/` à renommer en `NN-design-layout` |
-| medecine | `index_medecine.html` (pharmacie, design naturel), pages légales, `pharmacie/` : 14 fichiers `NN-design-layout`, `Site Pharmacie/index.html`, 3 versions de test (`V2`, `V3`, `V4`) | Layouts de la pharmacie à refaire selon la section 3 ; manquent `01-minimaliste-epure` et `asymetrique-dynamique` ; versions de test à supprimer ou à intégrer ; `Site Pharmacie/` à renommer |
-| sport | `ecole-surf/index_ecole-surf.html` et ses pages légales | Pages légales à reprendre dans tous les secteurs ; emplacement de la base à décider |
+| artisan | `index_artisan.html` (boulangerie, design chaud), `boulanger/boulanger.html`, `macon/macon.html`, `platrier/platrier.html` | Templates types à créer |
+| commerce | `coiffeur/coiffeur.html`, `fleuriste/fleuriste.html`, `mode/` (6 fichiers aux noms d'origine) | `index_commerce.html` à créer, fichiers `mode/` à renommer en `NN-design-layout` |
+| medecine | `index_medecine.html` (pharmacie, design naturel), `pharmacie/` : 14 fichiers `NN-design-layout`, `Site Pharmacie/index.html`, 3 versions de test (`V2`, `V3`, `V4`) | Layouts de la pharmacie à refaire selon la section 3 ; manquent `01-minimaliste-epure` et `asymetrique-dynamique` ; versions de test à supprimer ou à intégrer ; `Site Pharmacie/` à renommer |
+| sport | `ecole-surf/index_ecole-surf.html` | Emplacement de la base à décider |
 | tous | | Templates types à créer : `index_<secteur>.html` et 4 `type-<layout>_<secteur>.html` par secteur |
 
 ---
