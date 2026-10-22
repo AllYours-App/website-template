@@ -4,7 +4,7 @@ Templates HTML/CSS pour sites vitrines de petites entreprises locales. Quand un 
 
 Ce README fixe les règles communes à tous les templates. Chaque secteur a son propre README (`artisan/README-artisan.md`, `commerce/README-commerce.md`, `medecine/README-medecine.md`, `sport/README-sport.md`) avec les consignes et les éléments indispensables du métier. **Les deux se lisent avant de créer ou de modifier un template.** En cas de conflit, le README du secteur l'emporte.
 
-Le workflow Unbounded des wireframes (socle commun, checklist client, conventions Client-First) est détaillé dans `README template type.md`.
+**Ce repo est public : aucun contenu de vrai client** (textes, photos, logo, identifiant de formulaire). Seuls des exemples fictifs y ont leur place.
 
 ---
 
@@ -13,64 +13,56 @@ Le workflow Unbounded des wireframes (socle commun, checklist client, convention
 ```
 website-template/
 ├── README.md
-├── README template type.md
-├── _docs/                  guides (déploiement, personnalisation)
-├── _shared/                pages légales uniques, vercel.json
-├── _archive/               anciennes versions, ne pas utiliser
-└── <secteur>/              niveau 1 : artisan, commerce, medecine, sport
-    ├── README-<secteur>.md consignes du secteur
-    ├── _type/              niveau 2 : template type du secteur
-    │   └── <layout>/       niveau 3 : un dossier par layout (5)
-    │       └── <secteur>-type-<layout>.html
-    └── <metier>/           niveau 2 : macon, pharmacie, coiffeur...
-        ├── <layout>/       niveau 3 : mêmes 5 dossiers de layout
-        │   └── <secteur>-<metier>-<layout>-<design>.html   niveau 4 : un fichier par design
-        └── <secteur>-<metier>-a-classer-<design>.html      layout pas encore défini
+└── <secteur>/                          niveau 1 : artisan, commerce, medecine, sport
+    ├── README-<secteur>.md             consignes du secteur
+    ├── index_<secteur>.html            template type du layout one-page (base par défaut)
+    ├── type-<layout>_<secteur>.html    4 autres templates types (un par layout)
+    ├── mentions-legales_<secteur>.html
+    ├── confidentialite_<secteur>.html
+    └── <metier>/                       niveau 2 : boulanger, pharmacie, coiffeur...
+        └── <fichiers>.html             niveau 3 : templates du métier
 ```
 
 | Niveau | Contenu | Rôle |
 |---|---|---|
-| 1 | Secteur | Regroupe les métiers qui partagent le même ton et les mêmes obligations |
-| 2 | Métier ou `_type` | `_type` sert de repli quand le métier du client n'existe pas encore |
-| 3 | Layout (dossier) | Organisation de la page : position, taille, hiérarchie des éléments |
-| 4 | Design (fichier) | Habillage : couleurs, typographies, formes, ton visuel. Un fichier par design, dans le dossier de son layout |
+| 1 | Secteur | Regroupe les métiers qui partagent le même ton et les mêmes obligations. Contient la base du secteur et les templates types, sans personnalisation de métier : ils servent quand le métier du client n'a pas encore de dossier |
+| 2 | Métier | Un dossier par métier, avec ses templates |
+| 3 | Fichiers du métier | Un fichier par combinaison layout × design |
 
-**Les 5 dossiers de layout existent dans chaque `_type` et chaque métier, même vides.** Git ne conserve pas les dossiers vides : chacun contient un fichier `.gitkeep` (fichier vide).
-
-Un fichier dont le layout n'est pas encore défini se pose directement dans le dossier du métier, avec `a-classer` à la place du layout. Il rejoint son dossier de layout quand il est classé.
-
-**Layout et design sont deux axes distincts.** Test : si on retire les couleurs et les polices, deux layouts d'un même métier doivent encore se distinguer par la structure. Deux designs d'un même layout ont la même structure et un habillage différent.
+**Layout et design sont deux axes distincts.** Le layout est l'organisation de la page (position, taille, hiérarchie des éléments). Le design est l'habillage (couleurs, typographies, formes). Test : si on retire les couleurs et les polices, deux layouts d'un même métier doivent encore se distinguer par la structure. Deux designs d'un même layout ont la même structure et un habillage différent.
 
 ---
 
 ## 2. Nommage
 
 - Dossiers et fichiers en kebab-case, sans accents, sans espaces, sans majuscules (`medecine`, `ecole-surf`, `split-z`).
-- Un fichier de template porte le chemin complet : `<secteur>-<metier>-<layout>-<design>.html`.
-  Exemple : `medecine-pharmacie-cartes-sombre.html`.
-- Template type : `<secteur>-type-<layout>.html`. Exemple : `artisan-type-hero-plein-ecran.html`.
-- Le design est un **type générique** (`minimaliste`, `chaud`, `sombre`, `dynamique`, `naturel`), jamais un nom de client, de lieu ou de boutique.
-- Si deux fichiers du même métier et du même layout ont le même type de design, le second prend le suffixe `-2` (puis `-3`). Le suffixe se retire quand les fichiers sont classés dans des layouts différents.
-- Layout pas encore défini : `a-classer` dans le nom, fichier posé à la racine du dossier du métier.
-- Au déploiement, le fichier est renommé `index.html`.
+- **Fichiers du secteur** : le nom du secteur est ajouté après un `_` : `index_artisan.html`, `mentions-legales_artisan.html`, `confidentialite_artisan.html`, `type-hero-plein-ecran_artisan.html`.
+- **Template unique d'un métier** : `<metier>.html`. Exemple : `boulanger/boulanger.html`.
+- **Plusieurs variantes d'un métier** : `NN-<design>-<layout>.html`, avec `NN` le numéro d'ordre dans le dossier. Exemple : `06-chaud-cartes.html`.
+- Le design est un **type générique** (section 3), jamais un nom de client, de lieu ou de boutique.
+- Au déploiement, les suffixes `_<secteur>` disparaissent (section 9).
 
 ---
 
 ## 3. Layouts et types de design de référence
 
-Chaque layout met en avant **un élément différent** par sa position, sa taille et son poids dans la page, pas par ses couleurs. Minimum **5 layouts** dans chaque `_type`. Un métier reprend le même vocabulaire.
+Chaque layout met en avant **un élément différent** par sa position, sa taille et son poids dans la page, pas par ses couleurs. **5 templates types** par secteur, un par layout : `index_<secteur>.html` pour `one-page`, `type-<layout>_<secteur>.html` pour les 4 autres. Un métier reprend le même vocabulaire.
 
 | Slug | Structure | Élément mis en avant | Adapté à |
 |---|---|---|---|
-| `one-page` | Page unique, sections empilées | L'offre de services | Artisan solo, indépendant, petit prestataire |
-| `hero-plein-ecran` | Visuel plein écran, contenu court dessous | L'ambiance, le lieu | Commerce, restaurant, lieu physique |
-| `split-z` | Blocs en deux colonnes alternées | Deux offres ou deux publics | Particuliers / professionnels, produit / service |
-| `portfolio-grille` | Grille de visuels dominante | Les réalisations | Chantiers, créations, avant / après |
-| `corporate` | Multi-pages, navigation structurée | La crédibilité et l'étendue de l'offre | Cabinet, association, entreprise multi-services |
+| `one-page` | Page unique, sections empilées | L'offre de services | Freelance, consultant, artisan solo, thérapeute, petit prestataire |
+| `hero-plein-ecran` | Visuel plein écran, contenu court dessous | L'ambiance, le lieu | Restaurant, hôtel, commerce, lieu physique, événement |
+| `split-z` | Blocs en deux colonnes alternées | Deux offres ou deux publics | Deux offres ou deux publics (particuliers / professionnels, produit / service) |
+| `portfolio-grille` | Grille de visuels dominante | Les réalisations | Photographe, architecte, designer, agence créative, chantiers avant / après |
+| `corporate` | Multi-pages, navigation structurée | La crédibilité et l'étendue de l'offre | PME, cabinet, association, entreprise multi-services |
 
-Ajouter un layout = l'ajouter à ce tableau, puis le décliner dans chaque `_type`.
+Ajouter un layout = l'ajouter à ce tableau, puis produire son template type dans chaque secteur.
 
-### Types de design (niveau 4, nom de fichier)
+Les 5 templates types d'un secteur contiennent les **mêmes blocs de contenu**. Seuls l'ordre, la taille et la position changent. La liste des blocs et le détail de chaque layout sont dans `README-<secteur>.md`, section « Templates types du secteur ».
+
+**Habillage neutre des templates types** : fond blanc, gris clair et texte gris très foncé, un seul accent gris foncé, une seule famille de polices système, images remplacées par des blocs gris étiquetés `[PHOTO : ...]`. Tout l’habillage passe par les variables du bloc `:root`, pour qu'un design (section 3) se pose sans toucher à la structure.
+
+### Types de design
 
 Le type de design décrit l'habillage, indépendamment de la structure. Un même layout peut exister dans tous les types.
 
@@ -121,7 +113,7 @@ L'objectif : un site qui ressemble au commerce du client, pas à un site génér
 ## 5. Code
 
 - HTML et CSS purs, **un seul fichier `.html`**, CSS dans `<style>`. JavaScript uniquement s'il a une fonction (menu mobile, statut ouvert / fermé).
-- Nommage des classes en **Client-First (Finsweet)** : `page-wrapper`, `padding-global`, `container-large`, `section_hero`, `nav_component`, `heading-style-h1`, variantes en `is-...`. Table complète dans `README template type.md`, section 7.
+- Nommage des classes en **Client-First (Finsweet)** : voir le tableau ci-dessous.
 - Couleurs, polices et espacements en variables CSS dans `:root`. Changer le design = modifier ce bloc.
 - Mobile first. Vérifier à 375 px, 768 px et 1280 px.
 - `lang="fr"`, un seul `<h1>`, `alt` sur toutes les images, focus visible, vrais `<button>` et `<a>`.
@@ -129,6 +121,18 @@ L'objectif : un site qui ressemble au commerce du client, pas à un site génér
 - Aucune librairie externe. Polices : 2 familles maximum, `font-display: swap`. Images en `loading="lazy"` sauf celle du hero.
 - Repères dans le code : `<!-- Zone : hero -->` avant chaque section, `<!-- À PERSONNALISER -->` sur chaque élément propre au client.
 - Commentaires en français pour tout code non trivial.
+
+| Classe | Usage |
+|---|---|
+| `page-wrapper` | Enveloppe de la page |
+| `padding-global` | Marges latérales de chaque section |
+| `container-large` | Largeur maximale du contenu |
+| `padding-section-medium` | Espacement vertical d'une section |
+| `section_<nom>` | Section (`section_hero`) |
+| `<nom>_component`, `<nom>_<element>` | Composant et ses éléments (`nav_component`, `hero_heading`) |
+| `heading-style-h1` à `h6` | Styles de titres |
+| `text-size-large`, `text-size-medium`, `text-align-center` | Tailles et alignement du texte |
+| `button`, `is-primary`, `is-secondary`, `is-reverse`, `is-overlay` | Bouton et variantes (préfixe `is-` pour toute variante) |
 
 Les templates existants avant cette convention utilisent des classes libres (`hero`, `sec`, `fi`). Ils sont à migrer en Client-First quand ils sont refaits.
 
@@ -148,10 +152,10 @@ Un template livré à un client ne doit contenir aucun crochet ni `REMPLACER`. V
 
 ## 7. Générer un nouveau template
 
-1. **Cadrer** : secteur, métier, layout, design. Lire ce README et celui du secteur.
+1. **Cadrer** : secteur, métier, layout, design. Lire ce README et celui du secteur. Pour un site client, remplir le brief (section 14).
 2. **Partir du bon point** :
-   - métier existant : dupliquer un layout du même métier ;
-   - métier absent : dupliquer `<secteur>/_type/<layout>/` et utiliser le dossier `<secteur>/<metier>/<layout>/` (il existe déjà) et y poser le fichier du design.
+   - métier existant : dupliquer un fichier de son dossier ;
+   - métier absent : dupliquer le template type du layout voulu : `type-<layout>_<secteur>.html` (`index_<secteur>.html` pour `one-page`) et créer le dossier `<secteur>/<metier>/`.
 3. **Respecter le layout** : l'élément mis en avant (section 3) doit dominer visuellement. Les éléments indispensables du README secteur sont tous présents.
 4. **Concevoir le design** : palette, polices et formes tirées du métier, avec les interdits de la section 4.
 5. **Écrire le contenu en placeholders** réalistes : structure et longueur crédibles, aucun chiffre ni avis inventé.
@@ -159,11 +163,13 @@ Un template livré à un client ne doit contenir aucun crochet ni `REMPLACER`. V
 7. **Passer la checklist** (section 8).
 8. **Mettre à jour le catalogue** (section 12).
 
-Un layout nouveau pour un métier doit exister dans le `_type` du secteur. Un design nouveau ne change pas la structure du layout.
+Un design nouveau ne change pas la structure du layout.
 
 ---
 
-## 8. Checklist avant livraison d'un template
+## 8. Checklists
+
+### Pour un template de la bibliothèque
 
 - [ ] Aucun emoji, aucun élément de la liste d'interdits (section 4)
 - [ ] Le test « sans le logo » est passé
@@ -176,24 +182,38 @@ Un layout nouveau pour un métier doit exister dans le `_type` du secteur. Un de
 - [ ] Liens des pages légales dans le footer
 - [ ] Aucun texte, chiffre ou avis inventé présenté comme réel
 
+### Avant livraison à un client
+
+- [ ] Plus aucun placeholder, ni texte d'exemple (section 6)
+- [ ] Liens et boutons d'action testés
+- [ ] Rendu vérifié sur mobile, tablette et ordinateur
+- [ ] Mentions légales et politique de confidentialité en ligne, liées depuis le footer
+- [ ] Crédit de conception en place (section 16)
+- [ ] `<title>` et meta description renseignés sur chaque page
+- [ ] HTTPS activé chez l'hébergeur
+
 ---
 
 ## 9. Déploiement d'un site client
 
 1. Créer un repo par client, ou utiliser ce repo marqué **Template repository** (« Use this template »).
-2. Copier le fichier choisi, le renommer `index.html`, ajouter à côté `mentions-legales.html` et `confidentialite.html` (depuis `_shared/legal/`) et le dossier `images/`.
-3. Remplacer tous les placeholders (section 6).
-4. Vercel : « New Project », importer le repo. HTML pur, aucune configuration de build. `_shared/vercel.json` est optionnel.
-5. Brancher le nom de domaine dans les réglages du projet Vercel.
+2. Copier le fichier choisi et le renommer `index.html`.
+3. Copier les pages légales du secteur en **retirant le suffixe** : `mentions-legales_<secteur>.html` devient `mentions-legales.html`, `confidentialite_<secteur>.html` devient `confidentialite.html`. Les liens des templates pointent vers ces noms.
+4. Ajouter le dossier `images/` à côté.
+5. Remplacer tous les placeholders (section 6).
+6. Vercel : « New Project », importer le repo. HTML pur, aucune configuration de build.
+7. Brancher le nom de domaine dans les réglages du projet Vercel.
 
 ---
 
 ## 10. Pages légales
 
-`_shared/legal/` contient un seul jeu, avec le placeholder `[NOM DE L'ENTREPRISE]` :
+Chaque secteur a son jeu, à la racine du dossier du secteur :
 
-- `mentions-legales.html` : obligatoire en France pour tout site professionnel, même sans vente en ligne.
-- `confidentialite.html` : nécessaire dès que le formulaire de contact collecte des données personnelles.
+- `mentions-legales_<secteur>.html` : obligatoire en France pour tout site professionnel, même sans vente en ligne.
+- `confidentialite_<secteur>.html` : nécessaire dès que le formulaire de contact collecte des données personnelles.
+
+Les jeux existants portent le nom de l'entreprise de démonstration du secteur (Boulangerie du Pont, Pharmacie du Centre, École de Surf Atlantique) : le remplacer partout par celui du client. Pour tout nouveau jeu, utiliser le placeholder `[NOM DE L'ENTREPRISE]`.
 
 Les passages `[À compléter]` (SIRET, durée de conservation, hébergeur...) se remplissent avec les informations réelles du client. Ce sont des bases de travail, pas un document validé juridiquement : faire relire la version finale par un professionnel pour une activité qui se lance.
 
@@ -214,16 +234,69 @@ Sous chaque formulaire : courte mention RGPD avec lien vers la politique de conf
 
 ## 12. Catalogue
 
-| Secteur | Métier | État |
+| Secteur | Contenu actuel | À faire |
 |---|---|---|
-| artisan | boulanger, macon, platrier | Fichiers `a-classer` à la racine des dossiers métier, layouts à définir |
-| commerce | mode, coiffeur, fleuriste | Fichiers `a-classer` à la racine des dossiers métier, layouts à définir |
-| medecine | pharmacie | 14 fichiers à la racine du dossier métier, avec les anciens layouts (epure, cartes, hero, asymetrique) à refaire selon la section 3 ; manquent `epure-minimaliste` et `asymetrique-dynamique`. 2 fichiers `a-classer` en `naturel` |
-| sport | ecole-surf | Fichier `a-classer` à la racine du dossier métier, layout à définir |
-| tous | `_type` | À créer : 5 layouts par secteur |
+| artisan | `index_artisan.html` (boulangerie, design chaud), pages légales, `boulanger/boulanger.html`, `macon/macon.html`, `platrier/platrier.html` | Templates types à créer |
+| commerce | `coiffeur/coiffeur.html`, `fleuriste/fleuriste.html`, `mode/` (6 fichiers aux noms d'origine) | `index_commerce.html` et pages légales à créer, fichiers `mode/` à renommer en `NN-design-layout` |
+| medecine | `index_medecine.html` (pharmacie, design naturel), pages légales, `pharmacie/` : 14 fichiers `NN-design-layout`, `Site Pharmacie/index.html`, 3 versions de test (`V2`, `V3`, `V4`) | Layouts de la pharmacie à refaire selon la section 3 ; manquent `01-minimaliste-epure` et `asymetrique-dynamique` ; versions de test à supprimer ou à intégrer ; `Site Pharmacie/` à renommer |
+| sport | `ecole-surf/index_ecole-surf.html` et ses pages légales | Pages légales à reprendre dans tous les secteurs ; emplacement de la base à décider |
+| tous | | Templates types à créer : `index_<secteur>.html` et 4 `type-<layout>_<secteur>.html` par secteur |
 
 ---
 
 ## 13. Montrer plusieurs designs à un client
 
 Dupliquer le template choisi 2 ou 3 fois en changeant uniquement les variables du bloc `:root`, déployer chaque variante sur une URL de preview Vercel, envoyer les liens au client pour qu'il compare sur son téléphone.
+
+---
+
+## 14. Brief client
+
+À récupérer avant de personnaliser un template :
+
+- [ ] Nom de l'entreprise et logo
+- [ ] Message principal (une phrase) et action attendue du visiteur (appeler, réserver, demander un devis)
+- [ ] Coordonnées : adresse, téléphone, email, horaires
+- [ ] Statut juridique, SIREN / SIRET, adresse de l'éditeur, directeur de la publication
+- [ ] Hébergeur du site : nom, adresse, contact
+- [ ] Réseaux sociaux
+- [ ] Textes et visuels fournis, ou à produire
+
+Si le client hésite entre deux layouts, choisir celui dont le hero correspond le mieux à son message principal. Les sections sont indépendantes : on peut en copier une d'un layout vers un autre.
+
+---
+
+## 15. Socle commun (identique sur tous les sites)
+
+- **Header** : logo, navigation, action principale.
+- **Footer** : logo, liens, accès aux pages légales, crédit de conception.
+- **Pages légales** : mentions légales, politique de confidentialité, et politique cookies si le site dépose des cookies non essentiels (statistiques, réseaux sociaux, publicité).
+- **Formulaire de contact** : court texte RGPD sous le formulaire, avec lien vers la politique de confidentialité (section 11).
+- **Balises techniques** : section 5.
+- **HTTPS** activé chez l'hébergeur.
+
+---
+
+## 16. Crédit de conception
+
+À compléter une fois pour toutes :
+
+```
+Nom / studio : [À COMPLÉTER]
+Site / portfolio : [À COMPLÉTER]
+Email / contact : [À COMPLÉTER]
+Formulation du crédit : [À COMPLÉTER]  (ex. « Site réalisé par ... »)
+```
+
+Les mentions légales décrivent le **client** (éditeur) et son hébergeur. Le nom du prestataire apparaît en crédit de conception, pas comme éditeur. Ce README n'est pas un avis juridique : valider le contenu des pages légales selon le statut du client et le contrat.
+
+---
+
+## 17. Pages, sections et périmètre
+
+**Pages secondaires à ajouter selon le besoin** : contact dédié, détail d'un service, tarifs, FAQ, article de blog, mentions légales, politique de confidentialité, 404.
+
+**Sections à ajouter selon le besoin** : tarifs, FAQ, logos clients, carte, newsletter, vidéo, carrousel.
+
+**Hors périmètre des templates** : e-commerce, réservation en ligne, espace membre, site multilingue. Un formulaire qui envoie réellement un message demande un service tiers (section 11).
+

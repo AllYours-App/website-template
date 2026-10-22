@@ -6,9 +6,9 @@
 
 | Slug | État |
 |---|---|
-| `mode` | Fichiers existants en `a-classer` (dont une boutique prêt-à-porter basque) |
-| `coiffeur` | Fichier existant en `a-classer` |
-| `fleuriste` | Fichier existant en `a-classer` |
+| `mode` | 6 fichiers dans `mode/`, aux noms d'origine, dont une boutique prêt-à-porter basque |
+| `coiffeur` | `coiffeur/coiffeur.html` |
+| `fleuriste` | `fleuriste/fleuriste.html` |
 | à venir | `epicerie`, `caviste`, `librairie`, `restaurant` |
 
 **Hors périmètre : la vente en ligne.** Ce sont des sites vitrines. Pas de panier, pas de bouton « Ajouter au panier » factice, pas de tunnel de commande.
@@ -85,6 +85,29 @@ Rappel : ce ne sont pas des conseils juridiques.
 | `portfolio-grille` | Coiffeur (réalisations), fleuriste (créations), mode (lookbook) |
 | `corporate` | Commerce à plusieurs points de vente ou plusieurs activités |
 
-## Contenu du `_type`
+## Templates types du secteur
 
-Les 5 layouts neutres du secteur incluent : hero avec le lieu et l'adresse, horaires, produits ou prestations avec prix, présentation de l'équipe, galerie, accès et plan, lien réseau social, footer légal. Textes en placeholders, aucun design propre à un métier.
+Cinq fichiers à la racine de `commerce/`, un par layout de référence : `index_commerce.html` pour `one-page` (base par défaut du secteur) et `type-<layout>_commerce.html` pour les 4 autres. Ils restent neutres : libellés génériques, textes en placeholders, aucun contenu propre à un métier, habillage neutre (README racine, section 3).
+
+Les 5 fichiers contiennent **les mêmes blocs de contenu**. Seuls l'ordre, la taille et la position changent : c'est ce qui met un élément différent en avant. Dans les tableaux, l'ordre cite les blocs mis en tête ; les autres blocs de la liste suivent. Chaque template reprend aussi le socle commun du `README.md` racine (section 15).
+
+### Blocs communs aux 5 templates
+
+1. **Hero** : devanture ou ambiance, nom `[NOM BOUTIQUE]`, adresse, horaires du jour.
+2. **Produits ou prestations** : 6 emplacements `[PRODUIT 1]` à `[PRODUIT 6]` avec prix `[PRIX]` en TTC ou « à partir de ». Aucun panier.
+3. **Univers de la boutique** : le lieu, la personne, trois phrases.
+4. **Galerie** : 6 photos réelles (boutique, produits, équipe).
+5. **Équipe** : prénoms `[PRÉNOM]` et spécialités.
+6. **Horaires** : jour par jour, fermetures exceptionnelles.
+7. **Accès** : adresse, plan, parking et transports, accessibilité.
+8. **Contact et réservation** : téléphone, lien de réservation `[LIEN RÉSERVATION]` vers l'outil déjà utilisé par le client, réseau social.
+
+### Les 5 layouts
+
+| Fichier | Ce qui domine | Ordre des sections |
+|---|---|---|
+| `index_commerce.html` | Les informations pratiques et l'offre, compactes | Hero compact, produits avec prix, univers, horaires et accès, contact. Barre fixe mobile (adresse, horaires, appel) |
+| `type-hero-plein-ecran_commerce.html` | L'ambiance de la boutique plein écran, adresse et horaires en bandeau sur le hero | Hero, sélection de produits en grandes images, univers, galerie, accès |
+| `type-split-z_commerce.html` | Deux univers en blocs alternés (femme / homme, boutique / atelier, produits / services) | Hero compact, univers A, univers B, équipe, horaires et accès |
+| `type-portfolio-grille_commerce.html` | Une grille de visuels pleine largeur (lookbook, créations, réalisations) | Hero court, grille, produits et prix en liste sous la grille, accès |
+| `type-corporate_commerce.html` | Un sommaire pour commerce à plusieurs points de vente ou plusieurs activités | Navigation à 5 entrées (Boutiques, Activités, Équipe, Actualités, Contact) vers des pages à créer, un bloc adresse et horaires par point de vente |

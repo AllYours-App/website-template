@@ -6,7 +6,7 @@
 
 | Slug | État |
 |---|---|
-| `ecole-surf` | Fichier existant en `a-classer` |
+| `ecole-surf` | `ecole-surf/index_ecole-surf.html` et ses pages légales |
 | à venir | `coach`, `salle-de-sport`, `club`, `yoga`, `ecole-de-voile` |
 
 **Hors périmètre** : réservation en ligne intégrée, paiement, espace adhérent. La réservation passe par le téléphone, un message, ou un lien vers l'outil déjà utilisé par le client.
@@ -64,6 +64,30 @@ Rappel : ce ne sont pas des conseils juridiques. À confirmer avec le client et 
 | `portfolio-grille` | Galerie de séances et d'événements au centre |
 | `corporate` | Club ou structure avec plusieurs activités, sections et équipes |
 
-## Contenu du `_type`
+## Templates types du secteur
 
-Les 5 layouts neutres du secteur incluent : hero avec activité et lieu, offres avec niveau et prix, encadrement et qualifications, FAQ, galerie, lieu de rendez-vous et plan, moyen de réservation, footer légal. Textes en placeholders, aucun design propre à un métier.
+Cinq fichiers à la racine de `sport/`, un par layout de référence : `index_sport.html` pour `one-page` (base par défaut du secteur) et `type-<layout>_sport.html` pour les 4 autres. Ils restent neutres : libellés génériques, textes en placeholders, aucun contenu propre à un métier, habillage neutre (README racine, section 3).
+
+Les 5 fichiers contiennent **les mêmes blocs de contenu**. Seuls l'ordre, la taille et la position changent : c'est ce qui met un élément différent en avant. Dans les tableaux, l'ordre cite les blocs mis en tête ; les autres blocs de la liste suivent. Chaque template reprend aussi le socle commun du `README.md` racine (section 15).
+
+### Blocs communs aux 5 templates
+
+1. **Hero** : `[ACTIVITÉ]`, lieu, moyen de réserver.
+2. **Offres** : 4 emplacements `[ACTIVITÉ 1]` à `[ACTIVITÉ 4]`, chacun avec niveau, durée, âge minimum, taille du groupe, prix TTC et matériel fourni.
+3. **Planning et saison** : jours, créneaux, période d'ouverture, dépendance aux conditions (météo, marées).
+4. **Lieu de rendez-vous** : plan, accès, parking.
+5. **Encadrement** : prénoms, diplômes `[DIPLÔME]`, numéro de carte professionnelle `[N° CARTE PRO]`.
+6. **Réservation et annulation** : comment réserver `[LIEN RÉSERVATION]`, conditions d'annulation et de report.
+7. **FAQ** : 5 questions (niveau requis, âge, savoir nager, quoi apporter, annulation).
+8. **Galerie** : 6 photos de séances réelles, avec accord de droit à l'image.
+9. **Contact** : téléphone, formulaire, réseaux sociaux. Mention de l'assurance `[ASSURANCE]` dans le footer.
+
+### Les 5 layouts
+
+| Fichier | Ce qui domine | Ordre des sections |
+|---|---|---|
+| `index_sport.html` | Les offres avec niveau et prix, en blocs de tailles différentes | Hero compact, offres, planning, encadrement, FAQ, lieu, contact. Bouton « Réserver » fixe sur mobile |
+| `type-hero-plein-ecran_sport.html` | L'activité en situation, plein écran (image réelle, ou vidéo muette légère avec image fixe de secours sur mobile) | Hero, offres, planning, lieu, encadrement, galerie, FAQ |
+| `type-split-z_sport.html` | Deux publics ou deux offres en blocs alternés (enfants et adultes, cours et stages) | Hero compact, offre A, offre B, planning, encadrement, réservation et annulation, FAQ |
+| `type-portfolio-grille_sport.html` | Une galerie de séances en grille | Hero court, galerie, offres en liste compacte, encadrement, lieu, contact |
+| `type-corporate_sport.html` | Un sommaire pour club ou structure multi-activités | Navigation à 5 entrées (Activités, Planning, Équipe, Tarifs, Contact) vers des pages à créer, un bloc par activité |

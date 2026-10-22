@@ -6,9 +6,9 @@
 
 | Slug | État |
 |---|---|
-| `boulanger` | Fichiers existants en `a-classer` |
-| `macon` | Fichier existant en `a-classer` |
-| `platrier` | Fichier existant en `a-classer` |
+| `boulanger` | `boulanger/boulanger.html` |
+| `macon` | `macon/macon.html` |
+| `platrier` | `platrier/platrier.html` |
 | à venir | `peintre`, `menuisier`, `electricien`, `plombier`, `couvreur` |
 
 Deux familles dans le secteur : les **métiers du bâtiment** (maçon, plâtrier, peintre...), où le visiteur cherche un devis, et les **métiers de bouche** (boulanger...), où il cherche une adresse et des horaires. Les éléments indispensables diffèrent, voir plus bas.
@@ -77,6 +77,29 @@ Rappel : ce ne sont pas des conseils juridiques. À confirmer avec le client et 
 | `portfolio-grille` | Métiers où les réalisations font la vente : peintre, plâtrier, maçon, menuisier |
 | `corporate` | Entreprise avec plusieurs corps de métier ou plusieurs équipes |
 
-## Contenu du `_type`
+## Templates types du secteur
 
-Les 5 layouts neutres du secteur incluent : hero avec métier, zone d'intervention et appel à l'action, prestations, réalisations, preuves de confiance, formulaire de devis, coordonnées et horaires, footer légal. Textes en placeholders, aucun design propre à un métier.
+Cinq fichiers à la racine de `artisan/`, un par layout de référence : `index_artisan.html` pour `one-page` (base par défaut du secteur) et `type-<layout>_artisan.html` pour les 4 autres. Ils restent neutres : libellés génériques, textes en placeholders, aucun contenu propre à un métier, habillage neutre (README racine, section 3).
+
+Les 5 fichiers contiennent **les mêmes blocs de contenu**. Seuls l'ordre, la taille et la position changent : c'est ce qui met un élément différent en avant. Dans les tableaux, l'ordre cite les blocs mis en tête ; les autres blocs de la liste suivent. Chaque template reprend aussi le socle commun du `README.md` racine (section 15).
+
+### Blocs communs aux 5 templates
+
+1. **Hero** : nom, `[MÉTIER]`, zone d'intervention, phrase de promesse concrète, deux actions (appeler, demander un devis).
+2. **Prestations** : 6 emplacements `[PRESTATION 1]` à `[PRESTATION 6]`, chacun avec une phrase. Pour un métier de bouche, ce bloc devient « Produits ».
+3. **Réalisations** : 6 visuels légendés (commune, type de travaux), dont un emplacement avant / après.
+4. **Preuves** : ancienneté `[ANNÉES]`, assurances et labels `[LABEL]` (seulement s'ils sont détenus), avis réels `[AVIS]`.
+5. **L'artisan** : photo et trois phrases à la première personne.
+6. **Zone d'intervention** : liste des communes `[COMMUNE]`.
+7. **Devis** : formulaire de 5 champs (nom, téléphone, commune, type de travaux, message) et mention RGPD.
+8. **Coordonnées et horaires** : téléphone, email, adresse, horaires jour par jour.
+
+### Les 5 layouts
+
+| Fichier | Ce qui domine | Ordre des sections |
+|---|---|---|
+| `index_artisan.html` | Les prestations, en liste pleine largeur, plus grande que le reste | Hero compact, prestations, réalisations, preuves, l'artisan, zone, devis, contact. Bouton d'appel fixe sur mobile |
+| `type-hero-plein-ecran_artisan.html` | Une photo de chantier ou de réalisation plein écran, avec nom, métier et zone par-dessus | Hero, prestations (4 maximum), réalisations, preuves, devis, contact |
+| `type-split-z_artisan.html` | Deux offres en blocs alternés texte / visuel (par exemple particuliers et professionnels, ou deux familles de travaux) | Hero compact, bloc offre A, bloc offre B, réalisations, preuves, zone, devis |
+| `type-portfolio-grille_artisan.html` | Une grille de 6 à 9 visuels de tailles variées, juste sous un hero court | Hero court, réalisations en grille, prestations en liste compacte, preuves, devis |
+| `type-corporate_artisan.html` | La crédibilité : accueil qui sert de sommaire d'un site multi-pages | Navigation à 5 entrées (Prestations, Réalisations, L'entreprise, Zone, Contact) vers des pages à créer, accueil avec chiffres `[CHIFFRE]`, équipe, labels, aperçus des pages |
