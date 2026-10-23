@@ -266,7 +266,7 @@ Sous chaque formulaire : courte mention RGPD avec lien vers la politique de conf
 | artisan | 5 templates types (`type-one-page_artisan.html` et 4 `type-<layout>_artisan.html`), `boulanger/boulanger.html`, `macon/macon.html`, `platrier/platrier.html` | Aucun |
 | commerce | 5 templates types (`type-one-page_commerce.html` et 4 `type-<layout>_commerce.html`), `coiffeur/coiffeur.html`, `fleuriste/fleuriste.html`, `mode/` (6 fichiers aux noms d'origine) | Fichiers `mode/` à renommer en `NN-design-layout` |
 | medecine | `index_medecine.html` (pharmacie, design naturel), `pharmacie/` : 14 fichiers `NN-design-layout`, `Site Pharmacie/index.html`, 3 versions de test (`V2`, `V3`, `V4`) | `index_medecine.html` à rendre neutre et à renommer `type-one-page_medecine.html`, 4 `type-<layout>_medecine.html` à créer ; layouts de la pharmacie à refaire selon la section 3 ; manquent `01-minimaliste-epure` et `asymetrique-dynamique` ; versions de test à supprimer ou à intégrer ; `Site Pharmacie/` à renommer |
-| sport | `ecole-surf/index_ecole-surf.html` | Emplacement de la base à décider, 5 `type-<layout>_sport.html` à créer |
+| sport | 5 templates types (`type-one-page_sport.html` et 4 `type-<layout>_sport.html`), `ecole-surf/index_ecole-surf.html` | `index_ecole-surf.html` à rendre neutre ou à intégrer comme métier `ecole-surf` |
 
 ---
 

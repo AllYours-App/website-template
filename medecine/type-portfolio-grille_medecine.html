@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[NOM DE L’ÉTABLISSEMENT] | [PROFESSION] à [VILLE]</title>
+<meta name="description" content="[TEXTE : une phrase qui dit la profession, la ville et comment joindre l’établissement]">
+<meta property="og:title" content="[NOM DE L’ÉTABLISSEMENT] | [PROFESSION] à [VILLE]">
+<meta property="og:description" content="[TEXTE : même phrase que la meta description]">
+<meta property="og:type" content="website">
+<meta property="og:image" content="[URL IMAGE DE PARTAGE]">
+<link rel="icon" href="favicon.ico">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"MedicalBusiness","name":"[NOM DE L’ÉTABLISSEMENT]","url":"[URL DU SITE]","telephone":"[TÉLÉPHONE]","openingHours":"[HORAIRES]","address":{"@type":"PostalAddress","streetAddress":"[ADRESSE]","postalCode":"[CODE POSTAL]","addressLocality":"[VILLE]","addressCountry":"FR"}}
+</script>
+<style>
+
+/* Habillage : tout passe par ces variables. Pour poser un design, ne modifier que ce bloc. */
+:root{
+  --color-bg:#ffffff;
+  --color-surface:#f1f1ef;
+  --color-line:#d3d3cf;
+  --color-text:#1b1b1b;
+  --color-muted:#575757;
+  --color-accent:#2a2a2a;
+  --color-on-accent:#ffffff;
+  --font-body:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --space-s:.75rem;--space-m:1.5rem;--space-l:3rem;--space-xl:5rem;
+  --radius:4px;--max:72rem;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:4.5rem}
+body{margin:0;font-family:var(--font-body);color:var(--color-text);background:var(--color-bg);line-height:1.6;font-size:1rem}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--color-accent);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Structure globale (Client-First) */
+.page-wrapper{overflow-x:clip}
+.padding-global{padding-inline:clamp(1rem,4vw,2.5rem)}
+.container-large{max-width:var(--max);margin-inline:auto}
+.padding-section-medium{padding-block:var(--space-l)}
+.padding-section-large{padding-block:var(--space-xl)}
+.heading-style-h1{font-size:clamp(2rem,5vw,3.25rem);line-height:1.1;font-weight:700;margin:0 0 var(--space-s)}
+.heading-style-h2{font-size:clamp(1.5rem,3vw,2.125rem);line-height:1.2;font-weight:700;margin:0 0 var(--space-m)}
+.heading-style-h3{font-size:1.125rem;line-height:1.3;font-weight:700;margin:0}
+.text-size-large{font-size:1.125rem}
+.text-color-muted{color:var(--color-muted)}
+.button{display:inline-block;padding:.8rem 1.4rem;background:var(--color-accent);color:var(--color-on-accent);border:2px solid var(--color-accent);border-radius:var(--radius);font:inherit;font-weight:600;text-decoration:none;cursor:pointer}
+.button.is-secondary{background:transparent;color:var(--color-accent)}
+.button_group{display:flex;flex-wrap:wrap;gap:var(--space-s);margin-top:var(--space-m)}
+.placeholder{display:flex;align-items:center;justify-content:center;text-align:center;min-height:12rem;padding:1rem;background:var(--color-surface);border:1px dashed var(--color-line);color:var(--color-muted);font-size:.875rem}
+
+
+/* Zone : navigation */
+.nav_component{position:sticky;top:0;z-index:10;background:var(--color-bg);border-bottom:1px solid var(--color-line)}
+.nav_container{display:flex;align-items:center;justify-content:space-between;gap:var(--space-m);min-height:4rem}
+.nav_logo{font-weight:700;text-decoration:none}
+.nav_links{display:flex;gap:var(--space-m);list-style:none;margin:0;padding:0}
+.nav_links a{text-decoration:none}
+.nav_links a:hover{text-decoration:underline}
+
+/* Accessibilité renforcée : lien d'évitement, cibles tactiles larges, texte de 16 px minimum */
+.skip_link{position:absolute;left:1rem;top:-4rem;z-index:30;padding:.75rem 1rem;background:var(--color-accent);color:var(--color-on-accent)}
+.skip_link:focus{top:1rem}
+.button{display:inline-flex;align-items:center;justify-content:center;min-height:3rem}
+.nav_links a{display:inline-block;padding:.6rem 0}
+.hero_info{margin:var(--space-m) 0 0;padding:0;list-style:none;border-top:1px solid var(--color-line)}
+.hero_info li{padding:.6rem 0;border-bottom:1px solid var(--color-line)}
+.hero_info strong{display:inline-block;min-width:6.5rem}
+
+/* Zone : bandeau de statut */
+.status_component{background:var(--color-surface);border-bottom:1px solid var(--color-line)}
+.status_container{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem var(--space-m);padding-block:var(--space-s)}
+.status_text{margin:0;font-size:1.125rem}
+.status_label{display:inline-block;margin-right:.5rem;padding:.1rem .6rem;border:2px solid var(--color-accent);border-radius:var(--radius);font-weight:700}
+
+/* Zone : urgence */
+.urgence_component{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-s) var(--space-l);padding:var(--space-m);background:var(--color-surface);border-left:6px solid var(--color-accent)}
+.urgence_component h2{margin:0}
+.urgence_component p{margin:0;font-size:1.25rem}
+.urgence_component a{font-weight:700}
+
+/* Zone : services */
+.services_list{list-style:none;margin:0;padding:0}
+.services_item{padding:var(--space-m) 0;border-top:1px solid var(--color-muted)}
+.services_item p{margin:.25rem 0 0;max-width:50ch}
+
+/* Zone : équipe */
+.equipe_list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr));gap:var(--space-m)}
+.equipe_item .placeholder{min-height:12rem;margin-bottom:.5rem}
+.equipe_item p{margin:0}
+
+/* Zone : horaires */
+.horaires_table{width:100%;border-collapse:collapse}
+.horaires_table th,.horaires_table td{padding:.6rem 0;border-bottom:1px solid var(--color-line);text-align:left;font-weight:400}
+.horaires_table th{font-weight:600;width:40%}
+.horaires_note{margin:var(--space-s) 0 0}
+
+/* Zone : accès */
+.acces_map{min-height:16rem;margin-bottom:var(--space-s)}
+.acces_text p{margin:var(--space-s) 0}
+
+/* Zone : contact */
+.section_contact{background:var(--color-surface)}
+.contact_component{display:grid;grid-template-columns:.9fr 1.1fr;gap:var(--space-l)}
+.contact_list{list-style:none;margin:0;padding:0}
+.contact_list li{padding:.6rem 0;border-bottom:1px solid var(--color-line)}
+.form_warning{margin:0 0 var(--space-m);padding:var(--space-s) var(--space-m);border:2px solid var(--color-accent);border-radius:var(--radius);font-weight:600}
+.form_field{display:block;margin-bottom:var(--space-s)}
+.form_field span{display:block;margin-bottom:.25rem;font-weight:600}
+.form_input{width:100%;min-height:3rem;padding:.7rem .8rem;font:inherit;color:inherit;background:var(--color-bg);border:1px solid var(--color-muted);border-radius:var(--radius)}
+textarea.form_input{min-height:8rem;resize:vertical}
+.form_legal{font-size:1rem;margin:var(--space-s) 0 0}
+
+/* Zone : footer */
+.footer_component{border-top:1px solid var(--color-line);padding-block:var(--space-m);font-size:1rem}
+.footer_container{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--space-s) var(--space-m)}
+.footer_links{display:flex;flex-wrap:wrap;gap:var(--space-m);list-style:none;margin:0;padding:0}
+.footer_legal{width:100%;margin:0;color:var(--color-muted)}
+
+/* Zone : hero court */
+.hero_component{display:grid;grid-template-columns:1.1fr .9fr;gap:var(--space-l);align-items:end}
+.hero_component .hero_info{margin-top:var(--space-s)}
+
+/* Zone : grille lieu et équipe (bloc dominant), 6 colonnes, tailles variées */
+.grille_grid{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(12rem,auto);grid-auto-flow:dense;gap:var(--space-s)}
+.grille_item{margin:0;display:flex;flex-direction:column;gap:.5rem;grid-column:span 2}
+.grille_item .placeholder{flex:1;min-height:0}
+.grille_item.is-large{grid-column:span 4;grid-row:span 2}
+.grille_item.is-tall{grid-row:span 2}
+.grille_item.is-wide{grid-column:span 3}
+.grille_item figcaption{font-size:1rem}
+
+/* Zone : services en liste compacte */
+.section_services{background:var(--color-surface)}
+.services_list{columns:2;column-gap:var(--space-l)}
+.services_item{break-inside:avoid;padding:var(--space-s) 0}
+.services_item .heading-style-h3{margin:0}
+.section_horaires{background:var(--color-bg)}
+.ha_component{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-l);align-items:start}
+.ha_component .acces_map{min-height:12rem}
+
+@media (max-width:991px){
+  .nav_container{flex-wrap:wrap;min-height:0;padding-block:.5rem;gap:.25rem var(--space-s)}
+  .nav_logo{flex:1;min-width:0}
+  .nav_container .button{padding:.5rem .9rem}
+  .nav_links{order:3;width:100%;overflow-x:auto;gap:var(--space-m);padding-bottom:.25rem;white-space:nowrap}
+  .hero_component{grid-template-columns:1fr}
+}
+@media (max-width:767px){
+  .padding-section-large{padding-block:var(--space-l)}
+  .contact_component{grid-template-columns:1fr;gap:var(--space-m)}
+  .hero_component,.ha_component{grid-template-columns:1fr;gap:var(--space-s)}
+  .grille_grid{grid-template-columns:1fr 1fr;grid-auto-rows:minmax(10rem,auto)}
+  .grille_item{grid-column:span 1}
+  .grille_item.is-large,.grille_item.is-wide{grid-column:span 2}
+  .services_list{columns:1}
+}
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+
+<a class="skip_link" href="#haut">Aller au contenu</a>
+
+<!-- Zone : navigation -->
+<header class="nav_component">
+  <div class="padding-global">
+    <div class="container-large nav_container">
+      <a class="nav_logo" href="#haut">[NOM DE L’ÉTABLISSEMENT]</a><!-- À PERSONNALISER : logo -->
+      <ul class="nav_links">
+        <li><a href="#equipe">Le lieu et l’équipe</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#horaires">Horaires et accès</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a class="button" href="tel:[TÉLÉPHONE]">[TÉLÉPHONE]</a>
+    </div>
+  </div>
+</header>
+
+<main id="haut">
+
+<!-- Zone : bandeau de statut -->
+<div class="status_component" role="status">
+  <div class="padding-global">
+    <div class="container-large status_container">
+      <p class="status_text" data-statut><strong class="status_label">[STATUT : Ouvert ou Fermé]</strong> <span class="status_detail">[TEXTE : horaires du jour, par exemple de 8 h 30 à 19 h 30]</span></p><!-- À PERSONNALISER : texte de secours, remplacé par le script en bas de page quand les horaires sont renseignés -->
+      <a href="#horaires">Voir tous les horaires</a>
+    </div>
+  </div>
+</div>
+
+<!-- Zone : hero court -->
+<section class="section_hero">
+  <div class="padding-global">
+    <div class="container-large padding-section-medium">
+      <div class="hero_component">
+        <h1 class="heading-style-h1">[NOM DE L’ÉTABLISSEMENT], [PROFESSION] à [VILLE]</h1>
+        <div class="hero_content">
+          <p class="text-size-large">[TEXTE : ce que fait l’établissement et à qui il s’adresse, en une phrase simple]</p>
+          <ul class="hero_info">
+            <li><strong>Adresse</strong> [ADRESSE], [CODE POSTAL] [VILLE]</li>
+            <li><strong>Téléphone</strong> <a href="tel:[TÉLÉPHONE]">[TÉLÉPHONE]</a></li>
+          </ul>
+          <div class="button_group">
+            <a class="button" href="tel:[TÉLÉPHONE]">Appeler</a>
+            <a class="button is-secondary" href="#acces">Itinéraire</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Zone : grille lieu et équipe (bloc dominant) -->
+<section class="section_grille" id="equipe">
+  <div class="padding-global">
+    <div class="container-large padding-section-medium">
+      <h2 class="heading-style-h2">Le lieu et l’équipe</h2>
+      <div class="grille_grid"><!-- À PERSONNALISER : 6 à 9 photos réelles du lieu et de l’équipe, avec accord des personnes -->
+        <figure class="grille_item is-large"><div class="placeholder">[PHOTO : la façade ou la salle principale]</div><figcaption>[LÉGENDE : ce que montre la photo]</figcaption></figure>
+        <figure class="grille_item"><div class="placeholder">[PHOTO : le lieu]</div><figcaption>[LÉGENDE : ce que montre la photo]</figcaption></figure>
+        <figure class="grille_item"><div class="placeholder">[PHOTO : le lieu]</div><figcaption>[LÉGENDE : ce que montre la photo]</figcaption></figure>
+        <figure class="grille_item is-tall"><div class="placeholder">[PHOTO : portrait, avec accord]</div><figcaption><strong>[PRÉNOM NOM]</strong>, [FONCTION]</figcaption></figure>
+        <figure class="grille_item"><div class="placeholder">[PHOTO : le lieu]</div><figcaption>[LÉGENDE : ce que montre la photo]</figcaption></figure>
+        <figure class="grille_item is-tall"><div class="placeholder">[PHOTO : portrait, avec accord]</div><figcaption><strong>[PRÉNOM NOM]</strong>, [FONCTION]</figcaption></figure>
+        <figure class="grille_item"><div class="placeholder">[PHOTO : portrait, avec accord]</div><figcaption><strong>[PRÉNOM NOM]</strong>, [FONCTION]</figcaption></figure>
+        <figure class="grille_item is-wide"><div class="placeholder">[PHOTO : l’équipe réunie, avec accord]</div><figcaption>[LÉGENDE : l’équipe]</figcaption></figure>
+        <figure class="grille_item is-wide"><div class="placeholder">[PHOTO : le lieu]</div><figcaption>[LÉGENDE : ce que montre la photo]</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Zone : services en liste compacte -->
+<section class="section_services" id="services">
+  <div class="padding-global">
+    <div class="container-large padding-section-medium">
+      <h2 class="heading-style-h2">[SERVICES]</h2>
+      <ul class="services_list"><!-- À PERSONNALISER : 6 emplacements, uniquement des services réellement proposés, sans prix ni promotion -->
+        <li class="services_item"><h3 class="heading-style-h3">[SERVICE 1]</h3><p class="text-color-muted">[TEXTE : une phrase simple sur ce service]</p></li><li class="services_item"><h3 class="heading-style-h3">[SERVICE 2]</h3><p class="text-color-muted">[TEXTE : une phrase simple sur ce service]</p></li><li class="services_item"><h3 class="heading-style-h3">[SERVICE 3]</h3><p class="text-color-muted">[TEXTE : une phrase simple sur ce service]</p></li>
+        <li class="services_item"><h3 class="heading-style-h3">[SERVICE 4]</h3><p class="text-color-muted">[TEXTE : une phrase simple sur ce service]</p></li><li class="services_item"><h3 class="heading-style-h3">[SERVICE 5]</h3><p class="text-color-muted">[TEXTE : une phrase simple sur ce service]</p></li><li class="services_item"><h3 class="heading-style-h3">[SERVICE 6]</h3><p class="text-color-muted">[TEXTE : une phrase simple sur ce service]</p></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Zone : horaires et accès -->
+<section class="section_horaires" id="horaires">
+  <div class="padding-global">
+    <div class="container-large padding-section-large">
+      <div class="ha_component">
+        <div>
+          <h2 class="heading-style-h2">Horaires</h2>
+          <table class="horaires_table"><!-- À PERSONNALISER : horaires réels. data-creneaux au format 08:30-12:30,14:00-19:30 (vide si fermé) : il alimente le bandeau de statut -->
+          <tr data-jour="1" data-creneaux="[CRÉNEAUX]"><th scope="row">Lundi</th><td>[HORAIRES]</td></tr>
+          <tr data-jour="2" data-creneaux="[CRÉNEAUX]"><th scope="row">Mardi</th><td>[HORAIRES]</td></tr>
+          <tr data-jour="3" data-creneaux="[CRÉNEAUX]"><th scope="row">Mercredi</th><td>[HORAIRES]</td></tr>
+          <tr data-jour="4" data-creneaux="[CRÉNEAUX]"><th scope="row">Jeudi</th><td>[HORAIRES]</td></tr>
+          <tr data-jour="5" data-creneaux="[CRÉNEAUX]"><th scope="row">Vendredi</th><td>[HORAIRES]</td></tr>
+          <tr data-jour="6" data-creneaux="[CRÉNEAUX]"><th scope="row">Samedi</th><td>[HORAIRES]</td></tr>
+          <tr data-jour="7" data-creneaux="[CRÉNEAUX]"><th scope="row">Dimanche</th><td>[HORAIRES]</td></tr>
+        </table>
+          <p class="horaires_note">[TEXTE : fermetures exceptionnelles, jours fériés, congés]</p>
+        <p class="horaires_note"><a href="[LIEN GARDE]">[TEXTE : renvoi vers la source officielle de garde]</a></p><!-- À PERSONNALISER : préfecture, ARS ou Ordre ; à retirer si l’établissement n’est pas concerné -->
+        </div>
+        <div class="acces_text" id="acces">
+          <h2 class="heading-style-h2">Accès</h2>
+          <div class="placeholder acces_map">[CARTE : plan ou lien vers l’itinéraire]</div>
+          <p><strong>Adresse</strong><br>[ADRESSE], [CODE POSTAL] [VILLE]</p>
+          <p><strong>Accessibilité PMR</strong><br>[TEXTE : accès pour les personnes à mobilité réduite]</p>
+          <p><strong>Stationnement</strong><br>[TEXTE : parking, places réservées, transports]</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Zone : contact -->
+<section class="section_contact" id="contact">
+  <div class="padding-global">
+    <div class="container-large padding-section-large">
+      <div class="contact_component">
+        <div>
+          <h2 class="heading-style-h2">Contact</h2>
+          <ul class="contact_list">
+            <li><strong>Téléphone</strong><br><a href="tel:[TÉLÉPHONE]">[TÉLÉPHONE]</a></li>
+            <li><strong>Email</strong><br><a href="mailto:[EMAIL]">[EMAIL]</a></li>
+            <li><strong>Adresse</strong><br>[ADRESSE], [CODE POSTAL] [VILLE]</li>
+          </ul>
+        </div>
+        <form action="https://formspree.io/f/REMPLACER_ID_FORMSPREE" method="POST">
+          <p class="form_warning">Ne transmettez aucune information médicale par ce formulaire. Pour une question de santé, appelez ou consultez un professionnel.</p>
+          <label class="form_field"><span>Nom</span><input class="form_input" type="text" name="nom" autocomplete="name" required></label>
+          <label class="form_field"><span>Email</span><input class="form_input" type="email" name="email" autocomplete="email" required></label>
+          <label class="form_field"><span>Message</span><textarea class="form_input" name="message" required></textarea></label>
+          <button class="button" type="submit">Envoyer le message</button>
+          <p class="form_legal text-color-muted">Ces informations servent uniquement à répondre à votre message. Voir la <a href="confidentialite.html">politique de confidentialité</a>.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Zone : urgence -->
+<section class="section_urgence" id="urgence">
+  <div class="padding-global">
+    <div class="container-large padding-section-medium">
+      <aside class="urgence_component" aria-labelledby="urgence-titre">
+        <h2 class="heading-style-h3" id="urgence-titre">Urgence médicale</h2>
+        <p>En cas d’urgence vitale, appelez le <a href="tel:15">15</a> (SAMU) ou le <a href="tel:112">112</a>. Ce site ne remplace pas un avis médical.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Zone : footer -->
+<footer class="footer_component">
+  <div class="padding-global">
+    <div class="container-large footer_container">
+      <span>[NOM DE L’ÉTABLISSEMENT]</span>
+      <ul class="footer_links">
+        <li><a href="mentions-legales.html">Mentions légales</a></li>
+        <li><a href="confidentialite.html">Politique de confidentialité</a></li>
+        <li>[CRÉDIT DE CONCEPTION]</li><!-- À PERSONNALISER : formulation du crédit -->
+      </ul>
+      <p class="footer_legal">[ORDRE PROFESSIONNEL] : [N° ORDRE] · SIRET [SIRET]</p>
+    </div>
+  </div>
+</footer>
+
+</div>
+<script>
+/* Statut ouvert / fermé, calculé à l'heure de Paris depuis le tableau des horaires.
+   Chaque ligne du tableau porte data-jour (1 = lundi ... 7 = dimanche) et data-creneaux
+   (par exemple "08:30-12:30,14:00-19:30", vide si fermé). Pas de créneau à cheval sur minuit.
+   Si une valeur est illisible ou manquante, le texte de secours du bandeau reste affiché. */
+(function () {
+  var el = document.querySelector('[data-statut]');
+  var rows = document.querySelectorAll('[data-creneaux]');
+  if (!el || !rows.length) return;
+  var noms = ['', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'];
+  var fmt = function (min) { var m = min % 60; return Math.floor(min / 60) + ' h' + (m ? ' ' + ('0' + m).slice(-2) : ''); };
+  try {
+    var parts = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Paris', weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date());
+    var get = function (t) { return parts.filter(function (p) { return p.type === t; })[0].value; };
+    var jour = { Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6, Sun: 7 }[get('weekday')];
+    var now = parseInt(get('hour'), 10) * 60 + parseInt(get('minute'), 10);
+    var table = {};
+    Array.prototype.forEach.call(rows, function (r) {
+      var v = r.getAttribute('data-creneaux').trim(), list = [];
+      if (v) v.split(',').forEach(function (c) {
+        var m = c.trim().match(/^(\d{1,2}):(\d{2})-(\d{1,2}):(\d{2})$/);
+        if (!m) throw new Error('format');
+        list.push([+m[1] * 60 + +m[2], +m[3] * 60 + +m[4]]);
+      });
+      table[parseInt(r.getAttribute('data-jour'), 10)] = list;
+    });
+    for (var d = 1; d <= 7; d++) if (!table[d]) throw new Error('jour manquant');
+    var today = table[jour], label, detail = '';
+    var cur = today.filter(function (c) { return now >= c[0] && now < c[1]; })[0];
+    if (cur) { label = 'Ouvert'; detail = 'jusqu’à ' + fmt(cur[1]); }
+    else {
+      label = 'Fermé';
+      var next = today.filter(function (c) { return c[0] > now; })[0];
+      if (next) detail = 'réouverture à ' + fmt(next[0]);
+      else for (var i = 1; i <= 7 && !detail; i++) {
+        var dd = ((jour - 1 + i) % 7) + 1;
+        if (table[dd].length) detail = 'réouverture ' + (i === 1 ? 'demain' : 'le ' + noms[dd]) + ' à ' + fmt(table[dd][0][0]);
+      }
+    }
+    el.querySelector('.status_label').textContent = label;
+    el.querySelector('.status_detail').textContent = detail;
+  } catch (e) { /* horaires non renseignés : on garde le texte de secours */ }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[NOM DE L’ENTREPRISE] | [ACTIVITÉ] à [VILLE]</title>
+<meta name="description" content="[TEXTE : une phrase qui dit l’activité, le lieu et comment réserver]">
+<meta property="og:title" content="[NOM DE L’ENTREPRISE] | [ACTIVITÉ] à [VILLE]">
+<meta property="og:description" content="[TEXTE : même phrase que la meta description]">
+<meta property="og:type" content="website">
+<meta property="og:image" content="[URL IMAGE DE PARTAGE]">
+<link rel="icon" href="favicon.ico">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"[NOM DE L’ENTREPRISE]","url":"[URL DU SITE]","telephone":"[TÉLÉPHONE]","address":{"@type":"PostalAddress","streetAddress":"[ADRESSE]","postalCode":"[CODE POSTAL]","addressLocality":"[VILLE]","addressCountry":"FR"}}
+</script>
+<style>
+/* Habillage neutre : tout passe par ces variables. Pour poser un design, ne modifier que ce bloc. */
+:root{
+  --color-bg:#ffffff;--color-surface:#f1f1ef;--color-line:#d3d3cf;--color-text:#1b1b1b;--color-muted:#575757;
+  --color-accent:#2a2a2a;--color-on-accent:#ffffff;--color-media:#c9c9c4;--color-on-media:#3a3a3a;
+  --font-body:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --space-s:.75rem;--space-m:1.5rem;--space-l:3rem;--space-xl:5rem;--radius:4px;--max:72rem;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:4.5rem}
+body{margin:0;font-family:var(--font-body);color:var(--color-text);background:var(--color-bg);line-height:1.6;font-size:1rem}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--color-accent);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Structure globale (Client-First) */
+.page-wrapper{overflow-x:clip}
+.padding-global{padding-inline:clamp(1rem,4vw,2.5rem)}
+.container-large{max-width:var(--max);margin-inline:auto}
+.padding-section-medium,.padding-section-large{padding-block:var(--space-l)}
+.is-surface{background:var(--color-surface)}
+.heading-style-h1{font-size:clamp(2rem,6vw,3.25rem);line-height:1.1;font-weight:700;margin:0 0 var(--space-s)}
+.heading-style-h2{font-size:clamp(1.5rem,3.5vw,2.125rem);line-height:1.2;font-weight:700;margin:0 0 var(--space-m)}
+.heading-style-h3{font-size:1.125rem;line-height:1.3;font-weight:700;margin:0 0 .35rem}
+.text-size-large{font-size:1.125rem}
+.text-color-muted{color:var(--color-muted)}
+.button{display:inline-block;padding:.8rem 1.4rem;background:var(--color-accent);color:var(--color-on-accent);border:2px solid var(--color-accent);border-radius:var(--radius);font:inherit;font-weight:600;text-decoration:none;cursor:pointer}
+.button.is-secondary{background:transparent;color:var(--color-accent)}
+.button_group{display:flex;flex-wrap:wrap;gap:var(--space-s);margin-top:var(--space-m)}
+.placeholder{display:flex;align-items:center;justify-content:center;text-align:center;min-height:12rem;padding:1rem;background:var(--color-surface);border:1px dashed var(--color-line);color:var(--color-muted);font-size:.875rem}
+.is-surface .placeholder{background:var(--color-bg)}
+
+/* Zone : navigation */
+.nav_component{position:sticky;top:0;z-index:10;background:var(--color-bg);border-bottom:1px solid var(--color-line)}
+.nav_container{display:flex;align-items:center;justify-content:space-between;gap:var(--space-m);min-height:4rem}
+.nav_logo{font-weight:700;text-decoration:none}
+.nav_links{display:none;gap:var(--space-m);list-style:none;margin:0;padding:0}
+.nav_links a{text-decoration:none}
+.nav_links a:hover{text-decoration:underline}
+
+/* Zone : hero (commun) */
+.hero_lieu{margin:var(--space-m) 0 0;padding:.6rem 0;border-top:1px solid var(--color-line);border-bottom:1px solid var(--color-line)}
+.hero_text{margin:0}
+
+/* Zone : offres */
+.offre_item,.activite_bloc{background:var(--color-bg)}
+.offre_item{padding:var(--space-m);border:1px solid var(--color-line)}
+.offre_title{font-size:1.375rem;line-height:1.2;font-weight:700;margin:0 0 var(--space-s)}
+.offre_body p{margin:0}
+.offre_meta{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-s);margin:var(--space-m) 0 0}
+.offre_meta dt{font-size:.875rem;color:var(--color-muted)}
+.offre_meta dd{margin:0;font-weight:600}
+
+/* Zone : planning et saison */
+.planning_component{display:grid;gap:var(--space-l)}
+.planning_table{width:100%;border-collapse:collapse}
+.planning_table th,.planning_table td{padding:.6rem 0;border-bottom:1px solid var(--color-muted);text-align:left;vertical-align:top}
+.planning_table th{width:40%;font-weight:600}
+.planning_note p{margin:0 0 var(--space-s)}
+
+/* Zone : lieu de rendez-vous */
+.lieu_component{display:grid;gap:var(--space-m)}
+.lieu_map{min-height:16rem}
+.lieu_list{list-style:none;margin:0;padding:0}
+.lieu_list li{padding:.6rem 0;border-bottom:1px solid var(--color-line)}
+
+/* Zone : encadrement */
+.equipe_list{list-style:none;margin:0;padding:0}
+.equipe_item{display:grid;grid-template-columns:5rem 1fr;gap:var(--space-m);align-items:center;padding:var(--space-s) 0;border-top:1px solid var(--color-line)}
+.equipe_item:last-child{border-bottom:1px solid var(--color-line)}
+.equipe_photo{min-height:5rem;padding:.25rem;font-size:.75rem}
+.equipe_item p{margin:0}
+
+/* Zone : réservation et annulation */
+.reservation_component{display:grid;gap:var(--space-l)}
+.reservation_component p{margin:0 0 var(--space-s)}
+
+/* Zone : FAQ */
+.faq_list{border-top:1px solid var(--color-muted)}
+.faq_item{border-bottom:1px solid var(--color-muted)}
+.faq_item summary{padding:var(--space-s) 0;font-weight:600;cursor:pointer}
+.faq_item p{margin:0 0 var(--space-s);max-width:60ch}
+
+/* Zone : galerie */
+.galerie_grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-s)}
+.galerie_grid .placeholder{min-height:10rem}
+.galerie_note{margin:var(--space-s) 0 0;font-size:.875rem;color:var(--color-muted)}
+
+/* Zone : contact */
+.contact_component{display:grid;gap:var(--space-l)}
+.contact_list{list-style:none;margin:0;padding:0}
+.contact_list li{padding:.6rem 0;border-bottom:1px solid var(--color-line)}
+.form_field{display:block;margin-bottom:var(--space-s)}
+.form_field span{display:block;margin-bottom:.25rem;font-weight:600}
+.form_input{width:100%;padding:.7rem .8rem;font:inherit;color:inherit;background:var(--color-bg);border:1px solid var(--color-muted);border-radius:var(--radius)}
+textarea.form_input{min-height:8rem;resize:vertical}
+.form_legal{font-size:.875rem;margin:var(--space-s) 0 0}
+
+/* Zone : footer */
+.footer_component{border-top:1px solid var(--color-line);padding-block:var(--space-m);font-size:.9375rem}
+.footer_container{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--space-s) var(--space-m)}
+.footer_links{display:flex;flex-wrap:wrap;gap:var(--space-m);list-style:none;margin:0;padding:0}
+.footer_legal{width:100%;margin:0;color:var(--color-muted)}
+
+@media (min-width:768px){
+  .padding-section-large{padding-block:var(--space-xl)}
+  .nav_links{display:flex}
+  .planning_component{grid-template-columns:1fr 1fr}
+  .lieu_component{grid-template-columns:1.2fr .8fr}
+  .reservation_component{grid-template-columns:1fr 1fr}
+  .contact_component{grid-template-columns:.9fr 1.1fr}
+  .galerie_grid{grid-template-columns:repeat(3,1fr)}
+}
+
+/* Layout corporate : navigation à 5 entrées vers des pages à créer, un bloc par activité */
+.nav_top{background:var(--color-surface);border-bottom:1px solid var(--color-line);font-size:.875rem}
+.nav_top_container{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.25rem var(--space-m);padding-block:.5rem}
+.nav_container{flex-wrap:wrap;min-height:0;padding-block:.5rem}
+.nav_links{display:flex;order:3;width:100%;overflow-x:auto;white-space:nowrap}
+.hero_component{display:grid;gap:var(--space-l);align-items:center}
+.hero_image{min-height:14rem}
+.activite_list{display:grid}
+.activite_bloc{display:grid;gap:var(--space-m);padding:var(--space-m) 0;border-top:1px solid var(--color-muted)}
+.activite_bloc:last-child{border-bottom:1px solid var(--color-muted)}
+.activite_bloc .placeholder{min-height:12rem}
+.apercu_link{margin-top:var(--space-m)}
+@media (min-width:768px){
+  .nav_container{min-height:4rem;flex-wrap:nowrap}.nav_links{order:0;width:auto}
+  .hero_component{grid-template-columns:.9fr 1.1fr}.hero_image{min-height:20rem}
+  .activite_bloc{grid-template-columns:1fr 1.5fr}
+}
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+
+<!-- Zone : bandeau d’infos -->
+<div class="nav_top">
+  <div class="padding-global">
+    <div class="container-large nav_top_container">
+      <span>[ADRESSE], [VILLE]</span>
+      <span><a href="tel:[TÉLÉPHONE]">[TÉLÉPHONE]</a>, <a href="mailto:[EMAIL]">[EMAIL]</a></span>
+    </div>
+  </div>
+</div>
+
+<!-- Zone : navigation -->
+<header class="nav_component">
+  <div class="padding-global">
+    <div class="container-large nav_container">
+      <a class="nav_logo" href="#haut">[NOM DE L’ENTREPRISE]</a><!-- À PERSONNALISER : logo ; pages à créer : activites.html, planning.html, equipe.html, tarifs.html, contact.html -->
+      <ul class="nav_links"><li><a href="activites.html">Activités</a></li><li><a href="planning.html">Planning</a></li><li><a href="equipe.html">Équipe</a></li><li><a href="tarifs.html">Tarifs</a></li><li><a href="contact.html">Contact</a></li></ul>
+      <a class="button" href="[LIEN RÉSERVATION]">Réserver</a>
+    </div>
+  </div>
+</header>
+
+<main id="haut">
+
+<!-- Zone : hero compact -->
+<section class="section_hero">
+  <div class="padding-global">
+    <div class="container-large padding-section-large">
+      <div class="hero_component">
+        <div class="hero_content">
+          <h1 class="heading-style-h1">[ACTIVITÉ] à [VILLE]</h1>
+          <p class="text-size-large hero_text">[TEXTE : pour qui, quoi et où, en deux phrases concrètes]</p>
+          <p class="hero_lieu"><strong>Lieu</strong> [LIEU DE RENDEZ-VOUS], [VILLE]</p><!-- À PERSONNALISER -->
+          <div class="button_group">
+            <a class="button" href="[LIEN RÉSERVATION]">Réserver</a>
+            <a class="button is-secondary" href="tel:[TÉLÉPHONE]">Appeler</a>
+          </div>
+        </div>
+        <div class="placeholder hero_image">[PHOTO : l’activité en situation]</div><!-- À PERSONNALISER : photo réelle -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Zone : un bloc par activité -->
+<section class="section_offres" id="activites">
+  <div class="padding-global">
+    <div class="container-large padding-section-large">
+<h2 class="heading-style-h2">Activités et tarifs</h2>
+      <div class="activite_list"><!-- À PERSONNALISER : 4 blocs, un par activité -->
+      <article class="activite_bloc " id="activite-1"><div class="placeholder offre_image">[PHOTO : séance 1]</div>
+        <div class="offre_body">
+          <h3 class="offre_title">[ACTIVITÉ 1]</h3><!-- À PERSONNALISER : nom de l’activité -->
+          <p>[TEXTE : ce que fait le participant, en une phrase]</p>
+          <dl class="offre_meta"><div><dt>Niveau</dt><dd>[NIVEAU]</dd></div><div><dt>Durée</dt><dd>[DURÉE]</dd></div><div><dt>Âge minimum</dt><dd>[ÂGE MINIMUM]</dd></div><div><dt>Taille du groupe</dt><dd>[TAILLE DU GROUPE]</dd></div><div><dt>Prix TTC</dt><dd>[PRIX TTC]</dd></div><div><dt>Fourni</dt><dd>[MATÉRIEL FOURNI]</dd></div></dl>
+          <div class="button_group"><a class="button" href="[LIEN RÉSERVATION]">Réserver</a><a class="button is-secondary" href="activites.html#activite-1">Détail de l’activité</a><!-- À PERSONNALISER : page à créer --></div>
+        </div>
+      </article>
+      <article class="activite_bloc " id="activite-2"><div class="placeholder offre_image">[PHOTO : séance 2]</div>
+        <div class="offre_body">
+          <h3 class="offre_title">[ACTIVITÉ 2]</h3><!-- À PERSONNALISER : nom de l’activité -->
+          <p>[TEXTE : ce que fait le participant, en une phrase]</p>
+          <dl class="offre_meta"><div><dt>Niveau</dt><dd>[NIVEAU]</dd></div><div><dt>Durée</dt><dd>[DURÉE]</dd></div><div><dt>Âge minimum</dt><dd>[ÂGE MINIMUM]</dd></div><div><dt>Taille du groupe</dt><dd>[TAILLE DU GROUPE]</dd></div><div><dt>Prix TTC</dt><dd>[PRIX TTC]</dd></div><div><dt>Fourni</dt><dd>[MATÉRIEL FOURNI]</dd></div></dl>
+          <div class="button_group"><a class="button" href="[LIEN RÉSERVATION]">Réserver</a><a class="button is-secondary" href="activites.html#activite-2">Détail de l’activité</a><!-- À PERSONNALISER : page à créer --></div>
+        </div>
+      </article>
+      <article class="activite_bloc " id="activite-3"><div class="placeholder offre_image">[PHOTO : séance 3]</div>
+        <div class="offre_body">
+          <h3 class="offre_title">[ACTIVITÉ 3]</h3><!-- À PERSONNALISER : nom de l’activité -->
+          <p>[TEXTE : ce que fait le participant, en une phrase]</p>
+          <dl class="offre_meta"><div><dt>Niveau</dt><dd>[NIVEAU]</dd></div><div><dt>Durée</dt><dd>[DURÉE]</dd></div><div><dt>Âge minimum</dt><dd>[ÂGE MINIMUM]</dd></div><div><dt>Taille du groupe</dt><dd>[TAILLE DU GROUPE]</dd></div><div><dt>Prix TTC</dt><dd>[PRIX TTC]</dd></div><div><dt>Fourni</dt><dd>[MATÉRIEL FOURNI]</dd></div></dl>
+          <div class="button_group"><a class="button" href="[LIEN RÉSERVATION]">Réserver</a><a class="button is-secondary" href="activites.html#activite-3">Détail de l’activité</a><!-- À PERSONNALISER : page à créer --></div>
+        </div>
+      </article>
+      <article class="activite_bloc " id="activite-4"><div class="placeholder offre_image">[PHOTO : séance 4]</div>
+        <div class="offre_body">
+          <h3 class="offre_title">[ACTIVITÉ 4]</h3><!-- À PERSONNALISER : nom de l’activité -->
+          <p>[TEXTE : ce que fait le participant, en une phrase]</p>
+          <dl class="offre_meta"><div><dt>Niveau</dt><dd>[NIVEAU]</dd></div><div><dt>Durée</dt><dd>[DURÉE]</dd></div><div><dt>Âge minimum</dt><dd>[ÂGE MINIMUM]</dd></div><div><dt>Taille du groupe</dt><dd>[TAILLE DU GROUPE]</dd></div><div><dt>Prix TTC</dt><dd>[PRIX TTC]</dd></div><div><dt>Fourni</dt><dd>[MATÉRIEL FOURNI]</dd></div></dl>
+          <div class="button_group"><a class="button" href="[LIEN RÉSERVATION]">Réserver</a><a class="button is-secondary" href="activites.html#activite-4">Détail de l’activité</a><!-- À PERSONNALISER : page à créer --></div>
+        </div>
+      </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Zone : planning et saison -->
+<section class="section_planning is-surface" id="planning">
+  <div class="padding-global">
+    <div class="container-large padding-section-large">
+      <h2 class="heading-style-h2">Planning et saison</h2>
+      <div class="planning_component">
+        <table class="planning_table"><!-- À PERSONNALISER : jours et créneaux réels -->
+          <thead><tr><th scope="col">Jour</th><th scope="col">Créneaux</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">[JOURS 1]</th><td>[CRÉNEAUX]</td></tr>
+            <tr><th scope="row">[JOURS 2]</th><td>[CRÉNEAUX]</td></tr>
+            <tr><th scope="row">[JOURS 3]</th><td>[CRÉNEAUX]</td></tr>
+          </tbody>
+        </table>
+        <div class="planning_note">
+          <p><strong>Période d’ouverture</strong> [DATES D’OUVERTURE]</p>
+          <p><strong>Selon les conditions</strong> [TEXTE : ce qui dépend de la météo, des marées, de la houle, et comment le client est prévenu]</p>
+          <a class="button is-secondary apercu_link" href="planning.html">Planning complet</a><!-- À PERSONNALISER : page à créer -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Zone : encadrement -->
+<section class="section_encadrement" id="equipe">
+  <div class="padding-global">
+    <div class="container-large padding-section-large">
+      <h2 class="heading-style-h2">Encadrement</h2>
+      <ul class="equipe_list"><!-- À PERSONNALISER : éducateurs réels, diplôme et carte professionnelle à faire valider -->
+        <li class="equipe_item">
+          <div class="placeholder equipe_photo">[PHOTO]</div>
+          <div><h3 class="heading-style-h3">[PRÉNOM 1]</h3><p>[DIPLÔME]</p><p>Carte professionnelle : [N° CARTE PRO]</p></div>
+        </li>
+        <li class="equipe_item">
+          <div class="placeholder equipe_photo">[PHOTO]</div>
+          <div><h3 class="heading-style-h3">[PRÉNOM 2]</h3><p>[DIPLÔME]</p><p>Carte professionnelle : [N° CARTE PRO]</p></div>
+        </li>
+        <li class="equipe_item">
+          <div class="placeholder equipe_photo">[PHOTO]</div>
+          <div><h3 class="heading-style-h3">[PRÉNOM 3]</h3><p>[DIPLÔME]</p><p>Carte professionnelle : [N° CARTE PRO]</p></div>
+        </li>
+      </ul>
+      <a class="button is-secondary apercu_link" href="equipe.html">Toute l’équipe</a><!-- À PERSONNALISER : page à créer -->
+    </div>
+  </div>
+</section>
+
+<!-- Zone : lieu de rendez-vous -->
+<section class="section_lieu" id="lieu">
+  <div class="padding-global">
+    <div class="container-large padding-section-large">
+      <h2 class="heading-style-h2">Lieu de rendez-vous</h2>
+      <div class="lieu_component">
+        <div class="placeholder lieu_map">[PLAN : carte du lieu de rendez-vous]</div><!-- À PERSONNALISER : lien REMPLACER_URL_MAPS -->
+        <ul class="lieu_list">
+          <li><strong>Adresse</strong> [ADRESSE], [VILLE]</li>
+          <li><strong>Accès</strong> [TEXTE : accès à pied, à vélo, en transport, indications pour trouver le spot]</li>
+          <li><strong>Parking</strong> [TEXTE : où se garer, nombre de places, durée, tarif]</li>
+          <li><a href="REMPLACER_URL_MAPS">Ouvrir dans le plan</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Zone : galerie -->
+<section class="section_galerie is-surface" id="galerie">
+  <div class="padding-global">
+    <div class="container-large padding-section-large">
+      <h2 class="heading-style-h2">Galerie</h2>
+      <div class="galerie_grid"><!-- À PERSONNALISER : 6 photos réelles de séances -->
+        <div class="placeholder ">[PHOTO : séance 1]</div>
+        <div class="placeholder ">[PHOTO : séance 2]</div>
+        <div class="placeholder ">[PHOTO : séance 3]</div>
+        <div class="placeholder ">[PHOTO : séance 4]</div>
+        <div class="placeholder ">[PHOTO : séance 5]</div>
+        <div class="placeholder ">[PHOTO : séance 6]</div>
+      </div>
+      <p class="galerie_note">[À VÉRIFIER : accord écrit de droit à l’image pour toute personne reconnaissable, et des responsables légaux pour les mineurs]</p>
+      <a class="button is-secondary apercu_link" href="galerie.html">Toute la galerie</a><!-- À PERSONNALISER : page à créer -->
+    </div>
+  </div>
+</section>
+
+<!-- Zone : réservation et annulation -->
+<section class="section_reservation is-surface" id="reservation">
+  <div class="padding-global">
+    <div class="container-large padding-section-large">
+      <h2 class="heading-style-h2">Réservation et annulation</h2>
+      <div class="reservation_component">
+        <div>
+          <h3 class="heading-style-h3">Réserver</h3>
+          <p>[TEXTE : comment réserver, par lien, téléphone ou message, et sous quel délai la réponse arrive]</p>
+          <div class="button_group">
+            <a class="button" href="[LIEN RÉSERVATION]">Réserver en ligne</a>
+            <a class="button is-secondary" href="tel:[TÉLÉPHONE]">[TÉLÉPHONE]</a>
+          </div>
+        </div>
+        <div>
+          <h3 class="heading-style-h3">Annulation et report</h3>
+          <p>[TEXTE : délai d’annulation, remboursement ou report]</p>
+          <p>[TEXTE : report en cas de mauvaises conditions météo, qui décide et comment le client est prévenu]</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Zone : FAQ -->
+<section class="section_faq" id="faq">
+  <div class="padding-global">
+    <div class="container-large padding-section-large">
+      <h2 class="heading-style-h2">Questions fréquentes</h2>
+      <div class="faq_list"><!-- À PERSONNALISER : 5 questions, réponses du client -->
+        <details class="faq_item"><summary>Quel niveau faut-il avoir ?</summary><p>[TEXTE : réponse précise du client]</p></details>
+        <details class="faq_item"><summary>À partir de quel âge ?</summary><p>[TEXTE : réponse précise du client]</p></details>
+        <details class="faq_item"><summary>Faut-il savoir nager ?</summary><p>[TEXTE : réponse précise du client]</p></details>
+        <details class="faq_item"><summary>Qu’est-ce qu’il faut apporter ?</summary><p>[TEXTE : réponse précise du client]</p></details>
+        <details class="faq_item"><summary>Comment annuler ou reporter ?</summary><p>[TEXTE : réponse précise du client]</p></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Zone : contact -->
+<section class="section_contact is-surface" id="contact">
+  <div class="padding-global">
+    <div class="container-large padding-section-large">
+      <div class="contact_component">
+        <div>
+          <h2 class="heading-style-h2">Contact</h2>
+          <ul class="contact_list">
+            <li><a href="tel:[TÉLÉPHONE]">[TÉLÉPHONE]</a></li>
+            <li><a href="mailto:[EMAIL]">[EMAIL]</a></li>
+            <li>[ADRESSE], [VILLE]</li>
+            <li><a href="[LIEN INSTAGRAM]">Instagram</a>, <a href="[LIEN FACEBOOK]">Facebook</a></li><!-- À PERSONNALISER : réseaux du client -->
+          </ul>
+        </div>
+        <form action="https://formspree.io/f/REMPLACER_ID_FORMSPREE" method="post"><!-- À PERSONNALISER : identifiant Formspree -->
+          <label class="form_field"><span>Nom</span><input class="form_input" type="text" name="name" autocomplete="name" required></label>
+          <label class="form_field"><span>Email</span><input class="form_input" type="email" name="email" autocomplete="email" required></label>
+          <label class="form_field"><span>Message</span><textarea class="form_input" name="message" required></textarea></label>
+          <button class="button" type="submit">Envoyer</button>
+          <p class="form_legal">Ces informations servent à répondre à votre demande. Voir la <a href="confidentialite.html">politique de confidentialité</a>.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Zone : footer -->
+<footer class="footer_component">
+  <div class="padding-global">
+    <div class="container-large footer_container">
+      <a class="nav_logo" href="#haut">[NOM DE L’ENTREPRISE]</a>
+      <ul class="footer_links">
+        <li><a href="mentions-legales.html">Mentions légales</a></li>
+        <li><a href="confidentialite.html">Politique de confidentialité</a></li>
+        <li>[CRÉDIT DE CONCEPTION]</li><!-- À PERSONNALISER : formulation du crédit -->
+      </ul>
+      <p class="footer_legal">SIRET [SIRET]. Assurance : [ASSURANCE : nom de l’assureur et zone couverte]</p><!-- À PERSONNALISER -->
+    </div>
+  </div>
+</footer>
+
+</div>
+</body>
+</html>

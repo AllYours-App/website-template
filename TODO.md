@@ -17,7 +17,7 @@ Liste des tâches restantes de la bibliothèque. Cocher au fur et à mesure et t
 Structure cible : `<secteur>/` contient `README-<secteur>.md`, 5 fichiers `type-<layout>_<secteur>.html` (dont `type-one-page_<secteur>.html`), et un dossier par métier. Pas de pages légales préparées : elles se créent par client (`README.md`, section 10).
 
 - [x] Créer `commerce/index_commerce.html` (layout `one-page`, neutre).
-- [ ] Sport : décider de l'emplacement de la base du secteur (aujourd'hui dans `sport/ecole-surf/`, alors qu'artisan et medecine l'ont à la racine du secteur) et créer `sport/type-one-page_sport.html` si elle remonte.
+- [x] Sport : décider de l'emplacement de la base du secteur (aujourd'hui dans `sport/ecole-surf/`, alors qu'artisan et medecine l'ont à la racine du secteur) et créer `sport/type-one-page_sport.html` si elle remonte.
 - [x] Rendre `artisan/type-one-page_artisan.html` neutre (layout `one-page`), renommé depuis `index_artisan.html`.
 - [ ] Renommer `commerce/index_commerce.html` en `commerce/type-one-page_commerce.html`.
 - [ ] Rendre `index_medecine.html` et celui du sport neutres (layout `one-page`), puis les renommer `type-one-page_medecine.html` et `type-one-page_sport.html` : aujourd'hui `index_medecine.html` est une pharmacie, celui du sport une école de surf. Aucun design ni contenu propre à un métier.
@@ -65,10 +65,10 @@ Conseil : faire un secteur complet d'abord en commençant par les layouts 1 à 3
 
 ### Sport
 
-- [ ] `sport/type-hero-plein-ecran_sport.html`
-- [ ] `sport/type-portfolio-grille_sport.html`
-- [ ] `sport/type-split-z_sport.html`
-- [ ] `sport/type-corporate_sport.html`
+- [x] `sport/type-hero-plein-ecran_sport.html`
+- [x] `sport/type-portfolio-grille_sport.html`
+- [x] `sport/type-split-z_sport.html`
+- [x] `sport/type-corporate_sport.html`
 
 ---
 
