@@ -87,7 +87,7 @@ Rappel : ce ne sont pas des conseils juridiques.
 
 ## Templates types du secteur
 
-Cinq fichiers à la racine de `commerce/`, un par layout de référence : `index_commerce.html` pour `one-page` (base par défaut du secteur) et `type-<layout>_commerce.html` pour les 4 autres. Ils restent neutres : libellés génériques, textes en placeholders, aucun contenu propre à un métier, habillage neutre (README racine, section 3).
+Cinq fichiers à la racine de `commerce/`, un par layout de référence, nommés `type-<layout>_commerce.html` (`type-one-page_commerce.html` pour `one-page`, base par défaut du secteur). Ils restent neutres : libellés génériques, textes en placeholders, aucun contenu propre à un métier, habillage neutre (README racine, section 3).
 
 Les 5 fichiers contiennent **les mêmes blocs de contenu**. Seuls l'ordre, la taille et la position changent : c'est ce qui met un élément différent en avant. Dans les tableaux, l'ordre cite les blocs mis en tête ; les autres blocs de la liste suivent. Chaque template reprend aussi le socle commun du `README.md` racine (section 15).
 
@@ -106,7 +106,7 @@ Les 5 fichiers contiennent **les mêmes blocs de contenu**. Seuls l'ordre, la ta
 
 | Fichier | Ce qui domine | Ordre des sections |
 |---|---|---|
-| `index_commerce.html` | Les informations pratiques et l'offre, compactes | Hero compact, produits avec prix, univers, horaires et accès, contact. Barre fixe mobile (adresse, horaires, appel) |
+| `type-one-page_commerce.html` | Les informations pratiques et l'offre, compactes | Hero compact, produits avec prix, univers, horaires et accès, contact. Barre fixe mobile (adresse, horaires, appel) |
 | `type-hero-plein-ecran_commerce.html` | L'ambiance de la boutique plein écran, adresse et horaires en bandeau sur le hero | Hero, sélection de produits en grandes images, univers, galerie, accès |
 | `type-split-z_commerce.html` | Deux univers en blocs alternés (femme / homme, boutique / atelier, produits / services) | Hero compact, univers A, univers B, équipe, horaires et accès |
 | `type-portfolio-grille_commerce.html` | Une grille de visuels pleine largeur (lookbook, créations, réalisations) | Hero court, grille, produits et prix en liste sous la grille, accès |

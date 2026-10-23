@@ -80,7 +80,7 @@ Rappel : ce ne sont pas des conseils juridiques. Les professions de santé sont 
 
 ## Templates types du secteur
 
-Cinq fichiers à la racine de `medecine/`, un par layout de référence : `index_medecine.html` pour `one-page` (base par défaut du secteur) et `type-<layout>_medecine.html` pour les 4 autres. Ils restent neutres : libellés génériques, textes en placeholders, aucun contenu propre à un métier, habillage neutre (README racine, section 3).
+Cinq fichiers à la racine de `medecine/`, un par layout de référence, nommés `type-<layout>_medecine.html` (`type-one-page_medecine.html` pour `one-page`, base par défaut du secteur). Ils restent neutres : libellés génériques, textes en placeholders, aucun contenu propre à un métier, habillage neutre (README racine, section 3).
 
 Les 5 fichiers contiennent **les mêmes blocs de contenu**. Seuls l'ordre, la taille et la position changent : c'est ce qui met un élément différent en avant. Dans les tableaux, l'ordre cite les blocs mis en tête ; les autres blocs de la liste suivent. Chaque template reprend aussi le socle commun du `README.md` racine (section 15).
 
@@ -102,7 +102,7 @@ Contraintes communes : corps de texte de 16 px minimum, contraste élevé, aucun
 
 | Fichier | Ce qui domine | Ordre des sections |
 |---|---|---|
-| `index_medecine.html` | Les informations pratiques : statut, horaires, téléphone et adresse dans le premier écran | Statut, hero compact, urgence, services, équipe, accès, contact |
+| `type-one-page_medecine.html` | Les informations pratiques : statut, horaires, téléphone et adresse dans le premier écran | Statut, hero compact, urgence, services, équipe, accès, contact |
 | `type-hero-plein-ecran_medecine.html` | Une photo réelle du lieu plein écran, avec le statut ouvert / fermé en évidence | Hero, urgence, services, équipe, horaires, accès, contact |
 | `type-split-z_medecine.html` | Deux services ou deux publics en blocs alternés (comptoir et orthopédie, cabinet et soins à domicile) | Statut, hero compact, service A, service B, équipe, horaires et accès, contact |
 | `type-portfolio-grille_medecine.html` | Le lieu et l'équipe en images, dans une grille (pas de réalisations ni d'avant / après) | Statut, hero court, grille lieu et équipe, services en liste, horaires et accès, contact |

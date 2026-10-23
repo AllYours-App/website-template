@@ -79,7 +79,7 @@ Rappel : ce ne sont pas des conseils juridiques. À confirmer avec le client et 
 
 ## Templates types du secteur
 
-Cinq fichiers à la racine de `artisan/`, un par layout de référence : `index_artisan.html` pour `one-page` (base par défaut du secteur) et `type-<layout>_artisan.html` pour les 4 autres. Ils restent neutres : libellés génériques, textes en placeholders, aucun contenu propre à un métier, habillage neutre (README racine, section 3).
+Cinq fichiers à la racine de `artisan/`, un par layout de référence, nommés `type-<layout>_artisan.html` (`type-one-page_artisan.html` pour `one-page`, base par défaut du secteur). Ils restent neutres : libellés génériques, textes en placeholders, aucun contenu propre à un métier, habillage neutre (README racine, section 3).
 
 Les 5 fichiers contiennent **les mêmes blocs de contenu**. Seuls l'ordre, la taille et la position changent : c'est ce qui met un élément différent en avant. Dans les tableaux, l'ordre cite les blocs mis en tête ; les autres blocs de la liste suivent. Chaque template reprend aussi le socle commun du `README.md` racine (section 15).
 
@@ -98,7 +98,7 @@ Les 5 fichiers contiennent **les mêmes blocs de contenu**. Seuls l'ordre, la ta
 
 | Fichier | Ce qui domine | Ordre des sections |
 |---|---|---|
-| `index_artisan.html` | Les prestations, en liste pleine largeur, plus grande que le reste | Hero compact, prestations, réalisations, preuves, l'artisan, zone, devis, contact. Bouton d'appel fixe sur mobile |
+| `type-one-page_artisan.html` | Les prestations, en liste pleine largeur, plus grande que le reste | Hero compact, prestations, réalisations, preuves, l'artisan, zone, devis, contact. Bouton d'appel fixe sur mobile |
 | `type-hero-plein-ecran_artisan.html` | Une photo de chantier ou de réalisation plein écran, avec nom, métier et zone par-dessus | Hero, prestations (4 maximum), réalisations, preuves, devis, contact |
 | `type-split-z_artisan.html` | Deux offres en blocs alternés texte / visuel (par exemple particuliers et professionnels, ou deux familles de travaux) | Hero compact, bloc offre A, bloc offre B, réalisations, preuves, zone, devis |
 | `type-portfolio-grille_artisan.html` | Une grille de 6 à 9 visuels de tailles variées, juste sous un hero court | Hero court, réalisations en grille, prestations en liste compacte, preuves, devis |

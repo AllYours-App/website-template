@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[NOM BOUTIQUE] | [TYPE DE COMMERCE] à [VILLE]</title>
+<meta name="description" content="[TEXTE : une phrase qui dit ce que vend la boutique, où, et à qui]">
+<meta property="og:title" content="[NOM BOUTIQUE] | [TYPE DE COMMERCE] à [VILLE]">
+<meta property="og:description" content="[TEXTE : même phrase que la meta description]">
+<meta property="og:type" content="website">
+<meta property="og:image" content="[URL IMAGE DE PARTAGE]">
+<link rel="icon" href="favicon.ico">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Store","name":"[NOM BOUTIQUE]","url":"[URL DU SITE]","telephone":"[TÉLÉPHONE]","openingHours":"[HORAIRES]","address":{"@type":"PostalAddress","streetAddress":"[ADRESSE]","postalCode":"[CODE POSTAL]","addressLocality":"[VILLE]","addressCountry":"FR"}}
+</script>
+<style>
+
+/* Habillage : tout passe par ces variables. Pour poser un design, ne modifier que ce bloc. */
+:root{
+  --color-bg:#ffffff;
+  --color-surface:#f1f1ef;
+  --color-line:#d3d3cf;
+  --color-text:#1b1b1b;
+  --color-muted:#575757;
+  --color-accent:#2a2a2a;
+  --color-on-accent:#ffffff;
+  --font-body:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --space-s:.75rem;--space-m:1.5rem;--space-l:3rem;--space-xl:5rem;
+  --radius:4px;--max:72rem;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:4.5rem}
+body{margin:0;font-family:var(--font-body);color:var(--color-text);background:var(--color-bg);line-height:1.6;font-size:1rem}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--color-accent);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Structure globale (Client-First) */
+.page-wrapper{overflow-x:clip}
+.padding-global{padding-inline:clamp(1rem,4vw,2.5rem)}
+.container-large{max-width:var(--max);margin-inline:auto}
+.padding-section-medium{padding-block:var(--space-l)}
+.padding-section-large{padding-block:var(--space-xl)}
+.heading-style-h1{font-size:clamp(2rem,5vw,3.25rem);line-height:1.1;font-weight:700;margin:0 0 var(--space-s)}
+.heading-style-h2{font-size:clamp(1.5rem,3vw,2.125rem);line-height:1.2;font-weight:700;margin:0 0 var(--space-m)}
+.heading-style-h3{font-size:1.125rem;line-height:1.3;font-weight:700;margin:0}
+.text-size-large{font-size:1.125rem}
+.text-color-muted{color:var(--color-muted)}
+.button{display:inline-block;padding:.8rem 1.4rem;background:var(--color-accent);color:var(--color-on-accent);border:2px solid var(--color-accent);border-radius:var(--radius);font:inherit;font-weight:600;text-decoration:none;cursor:pointer}
+.button.is-secondary{background:transparent;color:var(--color-accent)}
+.button_group{display:flex;flex-wrap:wrap;gap:var(--space-s);margin-top:var(--space-m)}
+.placeholder{display:flex;align-items:center;justify-content:center;text-align:center;min-height:12rem;padding:1rem;background:var(--color-surface);border:1px dashed var(--color-line);color:var(--color-muted);font-size:.875rem}
+
+
+/* Zone : navigation */
+.nav_component{position:sticky;top:0;z-index:10;background:var(--color-bg);border-bottom:1px solid var(--color-line)}
+.nav_container{display:flex;align-items:center;justify-content:space-between;gap:var(--space-m);min-height:4rem}
+.nav_logo{font-weight:700;text-decoration:none}
+.nav_links{display:flex;gap:var(--space-m);list-style:none;margin:0;padding:0}
+.nav_links a{text-decoration:none}
+.nav_links a:hover{text-decoration:underline}
+/* Zone : hero compact */
+.hero_component{display:grid;grid-template-columns:1.1fr .9fr;gap:var(--space-l);align-items:center}
+.hero_info{margin:var(--space-m) 0 0;padding:0;list-style:none;border-top:1px solid var(--color-line)}
+.hero_info li{padding:.6rem 0;border-bottom:1px solid var(--color-line)}
+.hero_info strong{display:inline-block;min-width:6.5rem}
+.hero_image{min-height:20rem}
+/* Zone : galerie */
+.galerie_grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:9rem;gap:var(--space-s)}
+.galerie_grid .placeholder{min-height:0}
+.galerie_item.is-large{grid-column:span 2;grid-row:span 2}
+.galerie_item.is-wide{grid-column:span 2}
+/* Zone : équipe */
+.equipe_list{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:var(--space-m) var(--space-l)}
+.equipe_item{display:flex;align-items:center;gap:var(--space-s)}
+.equipe_photo{width:4rem;height:4rem;min-height:0;border-radius:50%;padding:0;font-size:.6875rem}
+/* Zone : horaires et accès */
+.acces_component{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-l)}
+.horaires_table{width:100%;border-collapse:collapse}
+.horaires_table th,.horaires_table td{padding:.55rem 0;border-bottom:1px solid var(--color-line);text-align:left;font-weight:400}
+.horaires_table th{font-weight:600;width:40%}
+.acces_text p{margin:var(--space-s) 0}
+.acces_map{min-height:14rem;margin-bottom:var(--space-s)}
+/* Zone : contact */
+.section_contact{background:var(--color-surface)}
+.contact_component{display:grid;grid-template-columns:.9fr 1.1fr;gap:var(--space-l)}
+.contact_list{list-style:none;margin:0;padding:0}
+.contact_list li{padding:.6rem 0;border-bottom:1px solid var(--color-line)}
+.form_field{display:block;margin-bottom:var(--space-s)}
+.form_field span{display:block;margin-bottom:.25rem;font-weight:600}
+.form_input{width:100%;padding:.7rem .8rem;font:inherit;color:inherit;background:var(--color-bg);border:1px solid var(--color-muted);border-radius:var(--radius)}
+textarea.form_input{min-height:8rem;resize:vertical}
+.form_legal{font-size:.875rem;margin:var(--space-s) 0 0}
+/* Zone : footer */
+.footer_component{border-top:1px solid var(--color-line);padding-block:var(--space-m);font-size:.9375rem}
+.footer_container{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--space-s) var(--space-m)}
+.footer_links{display:flex;flex-wrap:wrap;gap:var(--space-m);list-style:none;margin:0;padding:0}
+
+/* Zone : hero compact, avec accès aux deux univers */
+.hero_component{grid-template-columns:1.2fr .8fr;align-items:end}
+.hero_univers{border-top:1px solid var(--color-muted)}
+.hero_univers_link{display:block;padding:var(--space-m) 0;border-bottom:1px solid var(--color-muted);text-decoration:none}
+.hero_univers_title{display:block;font-size:1.25rem;font-weight:700}
+.hero_univers_link:hover .hero_univers_title{text-decoration:underline}
+
+/* Zone : univers en blocs alternés (bloc dominant), produits et prix inclus */
+.section_univers.is-surface{background:var(--color-surface)}
+.univers_component{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-l);align-items:center}
+.univers_image{min-height:30rem}
+.univers_component.is-reverse .univers_image{order:-1}
+.univers_list{list-style:none;margin:var(--space-m) 0 0;padding:0}
+.univers_item{display:grid;grid-template-columns:1fr auto;gap:.15rem var(--space-m);padding:.85rem 0;border-top:1px solid var(--color-line)}
+.univers_item:last-child{border-bottom:1px solid var(--color-line)}
+.univers_item p{grid-column:1;margin:0}
+.univers_price{grid-column:2;grid-row:1;font-weight:700;white-space:nowrap}
+.univers_note{margin:var(--space-s) 0 0;font-size:.875rem}
+.section_acces{background:var(--color-surface)}
+
+@media (max-width:991px){
+  .galerie_grid{grid-template-columns:repeat(2,1fr)}
+  .hero_component{grid-template-columns:1fr}
+}
+@media (max-width:767px){
+  .nav_links{display:none}
+  .padding-section-large{padding-block:var(--space-l)}
+  .acces_component{grid-template-columns:1fr;gap:var(--space-m)}
+  .contact_component{grid-template-columns:1fr;gap:var(--space-m)}
+  .hero_component,.univers_component{grid-template-columns:1fr;gap:var(--space-s)}
+  .univers_image{min-height:14rem}
+  .univers_component.is-reverse .univers_image{order:0}
+}
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+
+<!-- Zone : navigation -->
+<header class="nav_component">
+  <div class="padding-global">
+    <div class="container-large nav_container">
+      <a class="nav_logo" href="#haut">[NOM BOUTIQUE]</a><!-- À PERSONNALISER : logo -->
+      <ul class="nav_links">
+        <li><a href="#univers-a">[UNIVERS A]</a></li>
+        <li><a href="#univers-b">[UNIVERS B]</a></li>
+        <li><a href="#horaires">Horaires et accès</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a class="button" href="tel:[TÉLÉPHONE]">[TÉLÉPHONE]</a>
+    </div>
+  </div>
+</header>
+
+<main id="haut">
+
+<!-- Zone : hero compact -->
+<section class="section_hero">
+  <div class="padding-global">
+    <div class="container-large padding-section-large">
+      <div class="hero_component">
+        <div class="hero_content">
+          <h1 class="heading-style-h1">[NOM BOUTIQUE], [TYPE DE COMMERCE] à [VILLE]</h1>
+          <p class="text-size-large">[TEXTE : ce que la boutique vend et ce qui la distingue, en deux phrases concrètes]</p>
+          <ul class="hero_info">
+            <li><strong>Adresse</strong> [ADRESSE], [CODE POSTAL] [VILLE]</li>
+            <li><strong>Aujourd’hui</strong> [HORAIRES DU JOUR]</li><!-- À PERSONNALISER : horaires du jour -->
+          </ul>
+          <div class="button_group">
+            <a class="button" href="#horaires">Voir les horaires et l’accès</a>
+            <a class="button is-secondary" href="#contact">[LIBELLÉ DU CONTACT OU DE LA RÉSERVATION]</a>
+          </div>
+        </div>
+        <nav class="hero_univers" aria-label="Choisir un univers">
+          <a class="hero_univers_link" href="#univers-a"><span class="hero_univers_title">[UNIVERS A]</span>[TEXTE : une phrase]</a>
+          <a class="hero_univers_link" href="#univers-b"><span class="hero_univers_title">[UNIVERS B]</span>[TEXTE : une phrase]</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Zone : univers A -->
+<section class="section_univers" id="univers-a">
+  <div class="padding-global">
+    <div class="container-large padding-section-large">
+      <div class="univers_component">
+        <div class="univers_text">
+          <h2 class="heading-style-h2">[UNIVERS A : par exemple femme, homme, boutique, atelier]</h2>
+          <p class="text-size-large">[TEXTE : ce que le client trouve dans cet univers, en deux phrases]</p>
+          <ul class="univers_list"><!-- À PERSONNALISER : 3 produits par univers, prix en TTC -->
+            <li class="univers_item"><h3 class="heading-style-h3">[PRODUIT 1]</h3><span class="univers_price">[PRIX] €</span><p class="text-color-muted">[TEXTE : une phrase sur le produit]</p></li>
+            <li class="univers_item"><h3 class="heading-style-h3">[PRODUIT 2]</h3><span class="univers_price">[PRIX] €</span><p class="text-color-muted">[TEXTE : une phrase sur le produit]</p></li>
+            <li class="univers_item"><h3 class="heading-style-h3">[PRODUIT 3]</h3><span class="univers_price">[PRIX] €</span><p class="text-color-muted">[TEXTE : une phrase sur le produit]</p></li>
+          </ul>
+          <p class="univers_note text-color-muted">Prix en euros TTC.</p>
+        </div>
+        <div class="placeholder univers_image">[PHOTO : l’univers A de la boutique]</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Zone : univers B -->
+<section class="section_univers is-surface" id="univers-b">
+  <div class="padding-global">
+    <div class="container-large padding-section-large">
+      <div class="univers_component is-reverse">
+        <div class="univers_text">
+          <h2 class="heading-style-h2">[UNIVERS B : par exemple femme, homme, boutique, atelier]</h2>
+          <p class="text-size-large">[TEXTE : ce que le client trouve dans cet univers, en deux phrases]</p>
+          <ul class="univers_list"><!-- À PERSONNALISER : 3 produits par univers, prix en TTC -->
+            <li class="univers_item"><h3 class="heading-style-h3">[PRODUIT 4]</h3><span class="univers_price">à partir de [PRIX] €</span><p class="text-color-muted">[TEXTE : une phrase sur le produit]</p></li>
+            <li class="univers_item"><h3 class="heading-style-h3">[PRODUIT 5]</h3><span class="univers_price">à partir de [PRIX] €</span><p class="text-color-muted">[TEXTE : une phrase sur le produit]</p></li>
+            <li class="univers_item"><h3 class="heading-style-h3">[PRODUIT 6]</h3><span class="univers_price">à partir de [PRIX] €</span><p class="text-color-muted">[TEXTE : une phrase sur le produit]</p></li>
+          </ul>
+          <p class="univers_note text-color-muted">Prix en euros TTC.</p>
+        </div>
+        <div class="placeholder univers_image">[PHOTO : l’univers B de la boutique]</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Zone : équipe -->
+<section class="section_equipe">
+  <div class="padding-global">
+    <div class="container-large padding-section-medium">
+      <h2 class="heading-style-h2">L’équipe</h2>
+      <ul class="equipe_list"><!-- À PERSONNALISER : prénoms et spécialités réels -->
+        <li class="equipe_item"><div class="placeholder equipe_photo">[PHOTO]</div><div><h3 class="heading-style-h3">[PRÉNOM]</h3><span class="text-color-muted">[SPÉCIALITÉ]</span></div></li>
+        <li class="equipe_item"><div class="placeholder equipe_photo">[PHOTO]</div><div><h3 class="heading-style-h3">[PRÉNOM]</h3><span class="text-color-muted">[SPÉCIALITÉ]</span></div></li>
+        <li class="equipe_item"><div class="placeholder equipe_photo">[PHOTO]</div><div><h3 class="heading-style-h3">[PRÉNOM]</h3><span class="text-color-muted">[SPÉCIALITÉ]</span></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Zone : horaires et accès -->
+<section class="section_acces" id="horaires">
+  <div class="padding-global">
+    <div class="container-large padding-section-large">
+      <div class="acces_component">
+        <div>
+          <h2 class="heading-style-h2">Horaires</h2>
+          <table class="horaires_table"><!-- À PERSONNALISER : horaires réels, fermetures exceptionnelles -->
+            <tr><th scope="row">Lundi</th><td>[HORAIRES]</td></tr>
+            <tr><th scope="row">Mardi</th><td>[HORAIRES]</td></tr>
+            <tr><th scope="row">Mercredi</th><td>[HORAIRES]</td></tr>
+            <tr><th scope="row">Jeudi</th><td>[HORAIRES]</td></tr>
+            <tr><th scope="row">Vendredi</th><td>[HORAIRES]</td></tr>
+            <tr><th scope="row">Samedi</th><td>[HORAIRES]</td></tr>
+            <tr><th scope="row">Dimanche</th><td>[HORAIRES]</td></tr>
+          </table>
+          <p class="text-color-muted">[TEXTE : fermetures exceptionnelles, jours fériés, congés]</p>
+        </div>
+        <div class="acces_text">
+          <h2 class="heading-style-h2">Accès</h2>
+          <div class="placeholder acces_map">[CARTE : plan ou lien vers l’itinéraire]</div>
+          <p><strong>Adresse</strong><br>[ADRESSE], [CODE POSTAL] [VILLE]</p>
+          <p><strong>Parking et transports</strong><br>[TEXTE : parking, arrêt de bus, vélo]</p>
+          <p><strong>Accessibilité</strong><br>[TEXTE : accès pour les personnes à mobilité réduite]</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Zone : galerie -->
+<section class="section_galerie">
+  <div class="padding-global">
+    <div class="container-large padding-section-medium">
+      <div class="galerie_grid"><!-- À PERSONNALISER : 6 photos réelles -->
+        <div class="placeholder galerie_item is-large">[PHOTO 1 : la boutique]</div>
+        <div class="placeholder galerie_item">[PHOTO 2]</div>
+        <div class="placeholder galerie_item">[PHOTO 3]</div>
+        <div class="placeholder galerie_item is-wide">[PHOTO 4 : produits]</div>
+        <div class="placeholder galerie_item">[PHOTO 5]</div>
+        <div class="placeholder galerie_item">[PHOTO 6]</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Zone : contact et réservation -->
+<section class="section_contact" id="contact">
+  <div class="padding-global">
+    <div class="container-large padding-section-large">
+      <div class="contact_component">
+        <div>
+          <h2 class="heading-style-h2">Contact</h2>
+          <ul class="contact_list">
+            <li><strong>Téléphone</strong><br><a href="tel:[TÉLÉPHONE]">[TÉLÉPHONE]</a></li>
+            <li><strong>Email</strong><br><a href="mailto:[EMAIL]">[EMAIL]</a></li>
+            <li><strong>Réservation</strong><br><a href="[LIEN RÉSERVATION]">[TEXTE : libellé du lien vers l’outil de réservation du client]</a></li>
+            <li><strong>Réseau social</strong><br><a href="[LIEN RÉSEAU SOCIAL]">[NOM DU COMPTE]</a></li>
+          </ul>
+        </div>
+        <form action="https://formspree.io/f/REMPLACER_ID_FORMSPREE" method="POST">
+          <label class="form_field"><span>Nom</span><input class="form_input" type="text" name="nom" autocomplete="name" required></label>
+          <label class="form_field"><span>Email</span><input class="form_input" type="email" name="email" autocomplete="email" required></label>
+          <label class="form_field"><span>Message</span><textarea class="form_input" name="message" required></textarea></label>
+          <button class="button" type="submit">Envoyer le message</button>
+          <p class="form_legal text-color-muted">Ces informations servent uniquement à répondre à votre message. Voir la <a href="confidentialite.html">politique de confidentialité</a>.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Zone : footer -->
+<footer class="footer_component">
+  <div class="padding-global">
+    <div class="container-large footer_container">
+      <span>[NOM BOUTIQUE] · SIRET [SIRET]</span>
+      <ul class="footer_links">
+        <li><a href="mentions-legales.html">Mentions légales</a></li>
+        <li><a href="confidentialite.html">Politique de confidentialité</a></li>
+        <li>[CRÉDIT DE CONCEPTION]</li><!-- À PERSONNALISER : formulation du crédit -->
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</div>
+</body>
+</html>

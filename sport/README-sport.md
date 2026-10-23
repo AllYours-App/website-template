@@ -66,7 +66,7 @@ Rappel : ce ne sont pas des conseils juridiques. À confirmer avec le client et 
 
 ## Templates types du secteur
 
-Cinq fichiers à la racine de `sport/`, un par layout de référence : `index_sport.html` pour `one-page` (base par défaut du secteur) et `type-<layout>_sport.html` pour les 4 autres. Ils restent neutres : libellés génériques, textes en placeholders, aucun contenu propre à un métier, habillage neutre (README racine, section 3).
+Cinq fichiers à la racine de `sport/`, un par layout de référence, nommés `type-<layout>_sport.html` (`type-one-page_sport.html` pour `one-page`, base par défaut du secteur). Ils restent neutres : libellés génériques, textes en placeholders, aucun contenu propre à un métier, habillage neutre (README racine, section 3).
 
 Les 5 fichiers contiennent **les mêmes blocs de contenu**. Seuls l'ordre, la taille et la position changent : c'est ce qui met un élément différent en avant. Dans les tableaux, l'ordre cite les blocs mis en tête ; les autres blocs de la liste suivent. Chaque template reprend aussi le socle commun du `README.md` racine (section 15).
 
@@ -86,7 +86,7 @@ Les 5 fichiers contiennent **les mêmes blocs de contenu**. Seuls l'ordre, la ta
 
 | Fichier | Ce qui domine | Ordre des sections |
 |---|---|---|
-| `index_sport.html` | Les offres avec niveau et prix, en blocs de tailles différentes | Hero compact, offres, planning, encadrement, FAQ, lieu, contact. Bouton « Réserver » fixe sur mobile |
+| `type-one-page_sport.html` | Les offres avec niveau et prix, en blocs de tailles différentes | Hero compact, offres, planning, encadrement, FAQ, lieu, contact. Bouton « Réserver » fixe sur mobile |
 | `type-hero-plein-ecran_sport.html` | L'activité en situation, plein écran (image réelle, ou vidéo muette légère avec image fixe de secours sur mobile) | Hero, offres, planning, lieu, encadrement, galerie, FAQ |
 | `type-split-z_sport.html` | Deux publics ou deux offres en blocs alternés (enfants et adultes, cours et stages) | Hero compact, offre A, offre B, planning, encadrement, réservation et annulation, FAQ |
 | `type-portfolio-grille_sport.html` | Une galerie de séances en grille | Hero court, galerie, offres en liste compacte, encadrement, lieu, contact |

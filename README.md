@@ -15,7 +15,7 @@ website-template/
 ├── README.md
 └── <secteur>/                          niveau 1 : artisan, commerce, medecine, sport
     ├── README-<secteur>.md             consignes du secteur
-    ├── index_<secteur>.html            template type du layout one-page (base par défaut)
+    ├── type-one-page_<secteur>.html    template type du layout one-page (base par défaut)
     ├── type-<layout>_<secteur>.html    4 autres templates types (un par layout)
     └── <metier>/                       niveau 2 : boulanger, pharmacie, coiffeur...
         └── <fichiers>.html             niveau 3 : templates du métier
@@ -34,7 +34,7 @@ website-template/
 ## 2. Nommage
 
 - Dossiers et fichiers en kebab-case, sans accents, sans espaces, sans majuscules (`medecine`, `ecole-surf`, `split-z`).
-- **Fichiers du secteur** : le nom du secteur est ajouté après un `_` : `index_artisan.html`, `type-hero-plein-ecran_artisan.html`.
+- **Fichiers du secteur** : le nom du secteur est ajouté après un `_` : `type-one-page_artisan.html`, `type-hero-plein-ecran_artisan.html`.
 - **Template unique d'un métier** : `<metier>.html`. Exemple : `boulanger/boulanger.html`.
 - **Plusieurs variantes d'un métier** : `NN-<design>-<layout>.html`, avec `NN` le numéro d'ordre dans le dossier. Exemple : `06-chaud-cartes.html`.
 - Le design est un **type générique** (section 3), jamais un nom de client, de lieu ou de boutique.
@@ -44,7 +44,7 @@ website-template/
 
 ## 3. Layouts et types de design de référence
 
-Chaque layout met en avant **un élément différent** par sa position, sa taille et son poids dans la page, pas par ses couleurs. **5 templates types** par secteur, un par layout : `index_<secteur>.html` pour `one-page`, `type-<layout>_<secteur>.html` pour les 4 autres. Un métier reprend le même vocabulaire.
+Chaque layout met en avant **un élément différent** par sa position, sa taille et son poids dans la page, pas par ses couleurs. **5 templates types** par secteur, un par layout, nommés `type-<layout>_<secteur>.html` (`type-one-page_<secteur>.html` pour `one-page`). Un métier reprend le même vocabulaire.
 
 | Slug | Structure | Élément mis en avant | Adapté à |
 |---|---|---|---|
@@ -62,7 +62,7 @@ On propose le layout au client, c'est lui qui dit ce qu'il veut mettre en avant.
 
 | Le client veut mettre en avant | Layout | Fichier |
 |---|---|---|
-| Ses services, ses prix, ce qu'il propose | `one-page` | `index_<secteur>.html` |
+| Ses services, ses prix, ce qu'il propose | `one-page` | `type-one-page_<secteur>.html` |
 | Son lieu, sa vue, son ambiance | `hero-plein-ecran` | `type-hero-plein-ecran_<secteur>.html` |
 | Ses réalisations, ses photos avant / après | `portfolio-grille` | `type-portfolio-grille_<secteur>.html` |
 | Deux offres ou deux publics distincts | `split-z` | `type-split-z_<secteur>.html` |
@@ -171,7 +171,7 @@ Un template livré à un client ne doit contenir aucun crochet ni `REMPLACER`. V
 1. **Cadrer** : secteur, métier, layout, design. Lire ce README et celui du secteur. Pour un site client, remplir le brief (section 14).
 2. **Partir du bon point** :
    - métier existant : dupliquer un fichier de son dossier ;
-   - métier absent : dupliquer le template type du layout voulu : `type-<layout>_<secteur>.html` (`index_<secteur>.html` pour `one-page`) et créer le dossier `<secteur>/<metier>/`.
+   - métier absent : dupliquer le template type du layout voulu : `type-<layout>_<secteur>.html` et créer le dossier `<secteur>/<metier>/`.
 3. **Respecter le layout** : l'élément mis en avant (section 3) doit dominer visuellement. Les éléments indispensables du README secteur sont tous présents.
 4. **Concevoir le design** : palette, polices et formes tirées du métier, avec les interdits de la section 4.
 5. **Écrire le contenu en placeholders** réalistes : structure et longueur crédibles, aucun chiffre ni avis inventé.
@@ -263,11 +263,10 @@ Sous chaque formulaire : courte mention RGPD avec lien vers la politique de conf
 
 | Secteur | Contenu actuel | À faire |
 |---|---|---|
-| artisan | `index_artisan.html` (boulangerie, design chaud), `boulanger/boulanger.html`, `macon/macon.html`, `platrier/platrier.html` | Templates types à créer |
-| commerce | `coiffeur/coiffeur.html`, `fleuriste/fleuriste.html`, `mode/` (6 fichiers aux noms d'origine) | `index_commerce.html` à créer, fichiers `mode/` à renommer en `NN-design-layout` |
-| medecine | `index_medecine.html` (pharmacie, design naturel), `pharmacie/` : 14 fichiers `NN-design-layout`, `Site Pharmacie/index.html`, 3 versions de test (`V2`, `V3`, `V4`) | Layouts de la pharmacie à refaire selon la section 3 ; manquent `01-minimaliste-epure` et `asymetrique-dynamique` ; versions de test à supprimer ou à intégrer ; `Site Pharmacie/` à renommer |
-| sport | `ecole-surf/index_ecole-surf.html` | Emplacement de la base à décider |
-| tous | | Templates types à créer : `index_<secteur>.html` et 4 `type-<layout>_<secteur>.html` par secteur |
+| artisan | 5 templates types (`type-one-page_artisan.html` et 4 `type-<layout>_artisan.html`), `boulanger/boulanger.html`, `macon/macon.html`, `platrier/platrier.html` | Aucun |
+| commerce | 5 templates types (`type-one-page_commerce.html` et 4 `type-<layout>_commerce.html`), `coiffeur/coiffeur.html`, `fleuriste/fleuriste.html`, `mode/` (6 fichiers aux noms d'origine) | Fichiers `mode/` à renommer en `NN-design-layout` |
+| medecine | `index_medecine.html` (pharmacie, design naturel), `pharmacie/` : 14 fichiers `NN-design-layout`, `Site Pharmacie/index.html`, 3 versions de test (`V2`, `V3`, `V4`) | `index_medecine.html` à rendre neutre et à renommer `type-one-page_medecine.html`, 4 `type-<layout>_medecine.html` à créer ; layouts de la pharmacie à refaire selon la section 3 ; manquent `01-minimaliste-epure` et `asymetrique-dynamique` ; versions de test à supprimer ou à intégrer ; `Site Pharmacie/` à renommer |
+| sport | `ecole-surf/index_ecole-surf.html` | Emplacement de la base à décider, 5 `type-<layout>_sport.html` à créer |
 
 ---
 

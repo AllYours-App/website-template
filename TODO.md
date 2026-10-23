@@ -6,25 +6,27 @@ Liste des tâches restantes de la bibliothèque. Cocher au fur et à mesure et t
 
 ## 1. Nettoyage du repo
 
-- [ ] Supprimer `artisan/Peintre irazoqui/` : contenu d'un vrai client, contraire à la règle du README (aucun vrai client dans le repo).
-- [ ] Remplacer `README.md` et les 4 `README-<secteur>.md` par les dernières versions.
+- [x] Supprimer `artisan/Peintre irazoqui/` : contenu d'un vrai client, contraire à la règle du README (aucun vrai client dans le repo).
+- [x] Remplacer `README.md` et les 4 `README-<secteur>.md` par les dernières versions.
 - [ ] Activer **Template repository** dans les réglages GitHub du repo (le README suppose « Use this template »).
 
 ---
 
 ## 2. Terminer l'architecture
 
-Structure cible : `<secteur>/` contient `README-<secteur>.md`, `index_<secteur>.html`, 4 fichiers `type-<layout>_<secteur>.html` en plus de l'index, et un dossier par métier. Pas de pages légales préparées : elles se créent par client (`README.md`, section 10).
+Structure cible : `<secteur>/` contient `README-<secteur>.md`, 5 fichiers `type-<layout>_<secteur>.html` (dont `type-one-page_<secteur>.html`), et un dossier par métier. Pas de pages légales préparées : elles se créent par client (`README.md`, section 10).
 
 - [x] Créer `commerce/index_commerce.html` (layout `one-page`, neutre).
-- [ ] Sport : décider de l'emplacement de la base du secteur (aujourd'hui dans `sport/ecole-surf/`, alors qu'artisan et medecine l'ont à la racine du secteur) et créer `sport/index_sport.html` si elle remonte.
-- [ ] Rendre `index_artisan.html`, `index_medecine.html` et celui du sport neutres (layout `one-page`) : aujourd'hui `index_artisan.html` est une boulangerie, `index_medecine.html` une pharmacie, celui du sport une école de surf. Aucun design ni contenu propre à un métier.
+- [ ] Sport : décider de l'emplacement de la base du secteur (aujourd'hui dans `sport/ecole-surf/`, alors qu'artisan et medecine l'ont à la racine du secteur) et créer `sport/type-one-page_sport.html` si elle remonte.
+- [x] Rendre `artisan/type-one-page_artisan.html` neutre (layout `one-page`), renommé depuis `index_artisan.html`.
+- [ ] Renommer `commerce/index_commerce.html` en `commerce/type-one-page_commerce.html`.
+- [ ] Rendre `index_medecine.html` et celui du sport neutres (layout `one-page`), puis les renommer `type-one-page_medecine.html` et `type-one-page_sport.html` : aujourd'hui `index_medecine.html` est une pharmacie, celui du sport une école de surf. Aucun design ni contenu propre à un métier.
 
 ---
 
-## 3. Créer les templates types (4 `type-<layout>` par secteur, en plus de `index_<secteur>.html`)
+## 3. Créer les templates types (5 `type-<layout>_<secteur>.html` par secteur)
 
-Un fichier par layout de référence, à la racine du secteur (le layout `one-page` est `index_<secteur>.html`), sans personnalisation de métier, en placeholders. Pour chaque secteur, les blocs à inclure et ce qui domine dans chaque layout sont détaillés dans `README-<secteur>.md`, section « Templates types du secteur ». Règles générales : `README.md` sections 3 à 6.
+Un fichier par layout de référence, à la racine du secteur (le layout `one-page` est `type-one-page_<secteur>.html`), sans personnalisation de métier, en placeholders. Pour chaque secteur, les blocs à inclure et ce qui domine dans chaque layout sont détaillés dans `README-<secteur>.md`, section « Templates types du secteur ». Règles générales : `README.md` sections 3 à 6.
 
 **Nombre de layouts fixé à 5**, chacun mettant en avant un élément différent (tableau de choix : `README.md`, section 3). Ajout d'un layout seulement si un client ne rentre dans aucune case.
 
@@ -42,17 +44,17 @@ Conseil : faire un secteur complet d'abord en commençant par les layouts 1 à 3
 
 ### Artisan
 
-- [ ] `artisan/type-hero-plein-ecran_artisan.html`
-- [ ] `artisan/type-portfolio-grille_artisan.html`
-- [ ] `artisan/type-split-z_artisan.html`
-- [ ] `artisan/type-corporate_artisan.html`
+- [x] `artisan/type-hero-plein-ecran_artisan.html`
+- [x] `artisan/type-portfolio-grille_artisan.html`
+- [x] `artisan/type-split-z_artisan.html`
+- [x] `artisan/type-corporate_artisan.html`
 
 ### Commerce
 
-- [ ] `commerce/type-hero-plein-ecran_commerce.html`
-- [ ] `commerce/type-portfolio-grille_commerce.html`
-- [ ] `commerce/type-split-z_commerce.html`
-- [ ] `commerce/type-corporate_commerce.html`
+- [x] `commerce/type-hero-plein-ecran_commerce.html`
+- [x] `commerce/type-portfolio-grille_commerce.html`
+- [x] `commerce/type-split-z_commerce.html`
+- [x] `commerce/type-corporate_commerce.html`
 
 ### Médecine
 
