@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[NOM ENTREPRISE] | [MÉTIER] à [VILLE]</title>
+<meta name="description" content="[TEXTE : une phrase qui dit le métier, la zone d’intervention et comment obtenir un devis]">
+<meta property="og:title" content="[NOM ENTREPRISE] | [MÉTIER] à [VILLE]">
+<meta property="og:description" content="[TEXTE : même phrase que la meta description]">
+<meta property="og:type" content="website">
+<meta property="og:image" content="[URL IMAGE DE PARTAGE]">
+<link rel="icon" href="favicon.ico">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"[NOM ENTREPRISE]","url":"[URL DU SITE]","telephone":"[TÉLÉPHONE]","areaServed":"[ZONE D’INTERVENTION]","address":{"@type":"PostalAddress","streetAddress":"[ADRESSE]","postalCode":"[CODE POSTAL]","addressLocality":"[VILLE]","addressCountry":"FR"}}
+</script>
+<style>
+
+/* Habillage : tout passe par ces variables. Pour poser un design, ne modifier que ce bloc. */
+:root{
+  --color-bg:#ffffff;
+  --color-surface:#f1f1ef;
+  --color-line:#d3d3cf;
+  --color-text:#1b1b1b;
+  --color-muted:#575757;
+  --color-accent:#2a2a2a;
+  --color-on-accent:#ffffff;
+  --font-body:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --space-s:.75rem;--space-m:1.5rem;--space-l:3rem;--space-xl:5rem;
+  --radius:4px;--max:72rem;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:4.5rem}
+body{margin:0;font-family:var(--font-body);color:var(--color-text);background:var(--color-bg);line-height:1.6;font-size:1rem}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--color-accent);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Structure globale (Client-First) */
+.page-wrapper{overflow-x:clip}
+.padding-global{padding-inline:clamp(1rem,4vw,2.5rem)}
+.container-large{max-width:var(--max);margin-inline:auto}
+.padding-section-medium{padding-block:var(--space-l)}
+.padding-section-large{padding-block:var(--space-xl)}
+.heading-style-h1{font-size:clamp(2rem,5vw,3.25rem);line-height:1.1;font-weight:700;margin:0 0 var(--space-s)}
+.heading-style-h2{font-size:clamp(1.5rem,3vw,2.125rem);line-height:1.2;font-weight:700;margin:0 0 var(--space-m)}
+.heading-style-h3{font-size:1.125rem;line-height:1.3;font-weight:700;margin:0 0 .35rem}
+.text-size-large{font-size:1.125rem}
+.text-color-muted{color:var(--color-muted)}
+.button{display:inline-block;padding:.8rem 1.4rem;background:var(--color-accent);color:var(--color-on-accent);border:2px solid var(--color-accent);border-radius:var(--radius);font:inherit;font-weight:600;text-decoration:none;cursor:pointer}
+.button.is-secondary{background:transparent;color:var(--color-accent)}
+.button_group{display:flex;flex-wrap:wrap;gap:var(--space-s);margin-top:var(--space-m)}
+.placeholder{display:flex;align-items:center;justify-content:center;text-align:center;min-height:12rem;padding:1rem;background:var(--color-surface);border:1px dashed var(--color-line);color:var(--color-muted);font-size:.875rem}
+
+
+/* Zone : navigation */
+.nav_component{position:sticky;top:0;z-index:10;background:var(--color-bg);border-bottom:1px solid var(--color-line)}
+.nav_container{display:flex;align-items:center;justify-content:space-between;gap:var(--space-m);min-height:4rem}
+.nav_logo{font-weight:700;text-decoration:none}
+.nav_links{display:flex;gap:var(--space-m);list-style:none;margin:0;padding:0}
+.nav_links a{text-decoration:none}
+.nav_links a:hover{text-decoration:underline}
+/* Zone : hero compact */
+.hero_component{display:grid;grid-template-columns:1.1fr .9fr;gap:var(--space-l);align-items:center}
+.hero_zone{margin:var(--space-m) 0 0;padding:.6rem 0;border-top:1px solid var(--color-line);border-bottom:1px solid var(--color-line)}
+.hero_image{min-height:18rem}
+/* Zone : preuves */
+.preuves_component{display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--space-l)}
+.preuves_item{padding-left:var(--space-m);border-left:3px solid var(--color-accent)}
+.preuves_item p{margin:0 0 var(--space-s)}
+.preuves_figure{font-size:1.5rem;font-weight:700}
+/* Zone : l'artisan */
+.section_artisan{background:var(--color-surface)}
+.artisan_component{display:grid;grid-template-columns:.8fr 1.2fr;gap:var(--space-l);align-items:center}
+.artisan_text p{margin:0 0 var(--space-s);max-width:60ch}
+/* Zone : zone d'intervention */
+.zone_list{columns:3;column-gap:var(--space-l);list-style:none;margin:0;padding:0}
+.zone_list li{padding:.3rem 0;break-inside:avoid}
+/* Zone : devis */
+.section_devis{background:var(--color-surface)}
+.devis_component{display:grid;grid-template-columns:.9fr 1.1fr;gap:var(--space-l)}
+.form_field{display:block;margin-bottom:var(--space-s)}
+.form_field span{display:block;margin-bottom:.25rem;font-weight:600}
+.form_input{width:100%;padding:.7rem .8rem;font:inherit;color:inherit;background:var(--color-bg);border:1px solid var(--color-muted);border-radius:var(--radius)}
+textarea.form_input{min-height:8rem;resize:vertical}
+.form_legal{font-size:.875rem;margin:var(--space-s) 0 0}
+/* Zone : coordonnées et horaires */
+.contact_component{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-l)}
+.contact_list{list-style:none;margin:0;padding:0}
+.contact_list li{padding:.6rem 0;border-bottom:1px solid var(--color-line)}
+.horaires_table{width:100%;border-collapse:collapse}
+.horaires_table th,.horaires_table td{padding:.5rem 0;border-bottom:1px solid var(--color-line);text-align:left;font-weight:400}
+.horaires_table th{font-weight:600;width:40%}
+/* Zone : footer */
+.footer_component{border-top:1px solid var(--color-line);padding-block:var(--space-m);font-size:.9375rem}
+.footer_container{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--space-s) var(--space-m)}
+.footer_links{display:flex;flex-wrap:wrap;gap:var(--space-m);list-style:none;margin:0;padding:0}
+.footer_legal{width:100%;margin:0;color:var(--color-muted)}
+
+/* Zone : hero court */
+.hero_component{grid-template-columns:1.2fr .8fr;align-items:end}
+.hero_component .hero_zone{margin-top:var(--space-s)}
+
+/* Zone : réalisations en grille (bloc dominant), 6 colonnes, tailles variées */
+.realisations_grid{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(12rem,auto);grid-auto-flow:dense;gap:var(--space-s)}
+.realisations_item{margin:0;display:flex;flex-direction:column;gap:.5rem;grid-column:span 2}
+.realisations_item .placeholder{flex:1;min-height:0}
+.realisations_item.is-large{grid-column:span 4;grid-row:span 2}
+.realisations_item.is-tall{grid-row:span 2}
+.realisations_item.is-wide{grid-column:span 3}
+.realisations_item figcaption{font-size:.9375rem}
+.realisations_pair{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:var(--space-s)}
+
+/* Zone : prestations en liste compacte */
+.section_prestations{background:var(--color-surface)}
+.prestations_list{list-style:none;margin:0;padding:0;columns:2;column-gap:var(--space-l)}
+.prestations_item{break-inside:avoid;padding:var(--space-s) 0;border-top:1px solid var(--color-muted)}
+.prestations_item p{margin:0}
+.section_artisan{background:var(--color-bg)}
+.section_zone{background:var(--color-surface)}
+
+@media (max-width:991px){
+  .preuves_component{grid-template-columns:1fr;gap:var(--space-m)}
+  .zone_list{columns:2}
+  .hero_component{grid-template-columns:1fr}
+}
+@media (max-width:767px){
+  .nav_links{display:none}
+  .artisan_component{grid-template-columns:1fr;gap:var(--space-s)}
+  .zone_list{columns:1}
+  .devis_component{grid-template-columns:1fr;gap:var(--space-s)}
+  .contact_component{grid-template-columns:1fr;gap:var(--space-s)}
+  .hero_component{grid-template-columns:1fr;gap:var(--space-s)}
+  .realisations_grid{grid-template-columns:1fr 1fr;grid-auto-rows:minmax(10rem,auto)}
+  .realisations_item{grid-column:span 1}
+  .realisations_item.is-large,.realisations_item.is-wide{grid-column:span 2}
+  .prestations_list{columns:1}
+}
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+
+<!-- Zone : navigation -->
+<header class="nav_component">
+  <div class="padding-global">
+    <div class="container-large nav_container">
+      <a class="nav_logo" href="#haut">[NOM ENTREPRISE]</a><!-- À PERSONNALISER : logo -->
+      <ul class="nav_links">
+        <li><a href="#prestations">[PRESTATIONS OU PRODUITS]</a></li>
+        <li><a href="#realisations">Réalisations</a></li>
+        <li><a href="#zone">Zone d’intervention</a></li>
+        <li><a href="#devis">Devis</a></li>
+      </ul>
+      <a class="button" href="tel:[TÉLÉPHONE]">[TÉLÉPHONE]</a>
+    </div>
+  </div>
+</header>
+
+<main id="haut">
+
+<!-- Zone : hero court -->
+<section class="section_hero">
+  <div class="padding-global">
+    <div class="container-large padding-section-medium">
+      <div class="hero_component">
+        <h1 class="heading-style-h1">[NOM ENTREPRISE], [MÉTIER] à [VILLE]</h1>
+        <div class="hero_content">
+          <p class="text-size-large">[TEXTE : ce que l’artisan fait, en une phrase concrète]</p>
+          <p class="hero_zone"><strong>Zone d’intervention</strong> [ZONE D’INTERVENTION]</p><!-- À PERSONNALISER -->
+          <div class="button_group">
+            <a class="button" href="tel:[TÉLÉPHONE]">Appeler</a>
+            <a class="button is-secondary" href="#devis">Demander un devis</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Zone : réalisations en grille (bloc dominant) -->
+<section class="section_realisations" id="realisations">
+  <div class="padding-global">
+    <div class="container-large padding-section-medium">
+      <h2 class="heading-style-h2">Réalisations</h2>
+      <div class="realisations_grid"><!-- À PERSONNALISER : 6 à 9 photos réelles, légende = commune et type de travaux -->
+        <figure class="realisations_item is-large">
+          <div class="realisations_pair">
+            <div class="placeholder">[PHOTO AVANT]</div>
+            <div class="placeholder">[PHOTO APRÈS]</div>
+          </div>
+          <figcaption>[COMMUNE] : [TYPE DE TRAVAUX], avant et après</figcaption>
+        </figure>
+        <figure class="realisations_item"><div class="placeholder">[PHOTO 2]</div><figcaption>[COMMUNE] : [TYPE DE TRAVAUX]</figcaption></figure>
+        <figure class="realisations_item"><div class="placeholder">[PHOTO 3]</div><figcaption>[COMMUNE] : [TYPE DE TRAVAUX]</figcaption></figure>
+        <figure class="realisations_item is-tall"><div class="placeholder">[PHOTO 4]</div><figcaption>[COMMUNE] : [TYPE DE TRAVAUX]</figcaption></figure>
+        <figure class="realisations_item"><div class="placeholder">[PHOTO 5]</div><figcaption>[COMMUNE] : [TYPE DE TRAVAUX]</figcaption></figure>
+        <figure class="realisations_item is-tall"><div class="placeholder">[PHOTO 6]</div><figcaption>[COMMUNE] : [TYPE DE TRAVAUX]</figcaption></figure>
+        <figure class="realisations_item"><div class="placeholder">[PHOTO 7]</div><figcaption>[COMMUNE] : [TYPE DE TRAVAUX]</figcaption></figure>
+        <figure class="realisations_item is-wide"><div class="placeholder">[PHOTO 8]</div><figcaption>[COMMUNE] : [TYPE DE TRAVAUX]</figcaption></figure>
+        <figure class="realisations_item is-wide"><div class="placeholder">[PHOTO 9]</div><figcaption>[COMMUNE] : [TYPE DE TRAVAUX]</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Zone : prestations ou produits (liste compacte) -->
+<section class="section_prestations" id="prestations">
+  <div class="padding-global">
+    <div class="container-large padding-section-medium">
+      <h2 class="heading-style-h2">[PRESTATIONS OU PRODUITS]</h2>
+      <ul class="prestations_list"><!-- À PERSONNALISER : 6 emplacements, liste précise de ce qui est fait -->
+        <li class="prestations_item"><h3 class="heading-style-h3">[PRESTATION 1]</h3><p>[TEXTE : une phrase sur ce qui est fait]</p></li><li class="prestations_item"><h3 class="heading-style-h3">[PRESTATION 2]</h3><p>[TEXTE : une phrase sur ce qui est fait]</p></li><li class="prestations_item"><h3 class="heading-style-h3">[PRESTATION 3]</h3><p>[TEXTE : une phrase sur ce qui est fait]</p></li>
+        <li class="prestations_item"><h3 class="heading-style-h3">[PRESTATION 4]</h3><p>[TEXTE : une phrase sur ce qui est fait]</p></li><li class="prestations_item"><h3 class="heading-style-h3">[PRESTATION 5]</h3><p>[TEXTE : une phrase sur ce qui est fait]</p></li><li class="prestations_item"><h3 class="heading-style-h3">[PRESTATION 6]</h3><p>[TEXTE : une phrase sur ce qui est fait]</p></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Zone : preuves -->
+<section class="section_preuves">
+  <div class="padding-global">
+    <div class="container-large padding-section-medium">
+      <div class="preuves_component"><!-- À PERSONNALISER : uniquement des éléments réels et vérifiables -->
+        <div class="preuves_item">
+          <h3 class="heading-style-h3">Expérience</h3>
+          <p class="preuves_figure">[ANNÉES] ans</p>
+          <p class="text-color-muted">[TEXTE : depuis quand, et sur quel type de travaux]</p>
+        </div>
+        <div class="preuves_item">
+          <h3 class="heading-style-h3">Assurances et qualifications</h3>
+          <p>[ASSURANCE : nom de l’assureur et zone couverte]</p>
+          <p>[LABEL : uniquement s’il est détenu]</p>
+        </div>
+        <div class="preuves_item">
+          <h3 class="heading-style-h3">Avis de clients</h3>
+          <p>[AVIS : texte d’un avis réel]</p>
+          <p class="text-color-muted">[PRÉNOM], [COMMUNE]</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Zone : devis -->
+<section class="section_devis" id="devis">
+  <div class="padding-global">
+    <div class="container-large padding-section-large">
+      <div class="devis_component">
+        <div>
+          <h2 class="heading-style-h2">Demander un devis</h2>
+          <p>[TEXTE : ce qu’il faut décrire dans le message, et le délai de réponse réel]</p>
+          <p class="text-color-muted">Pour une urgence, appelez le <a href="tel:[TÉLÉPHONE]">[TÉLÉPHONE]</a>.</p>
+        </div>
+        <form action="https://formspree.io/f/REMPLACER_ID_FORMSPREE" method="POST">
+          <label class="form_field"><span>Nom</span><input class="form_input" type="text" name="nom" autocomplete="name" required></label>
+          <label class="form_field"><span>Téléphone</span><input class="form_input" type="tel" name="telephone" autocomplete="tel" required></label>
+          <label class="form_field"><span>Commune</span><input class="form_input" type="text" name="commune" autocomplete="address-level2" required></label>
+          <label class="form_field"><span>Type de travaux</span><input class="form_input" type="text" name="travaux" required></label>
+          <label class="form_field"><span>Message</span><textarea class="form_input" name="message"></textarea></label>
+          <button class="button" type="submit">Envoyer ma demande</button>
+          <p class="form_legal text-color-muted">Ces informations servent uniquement à répondre à votre demande. Voir la <a href="confidentialite.html">politique de confidentialité</a>.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Zone : l'artisan -->
+<section class="section_artisan">
+  <div class="padding-global">
+    <div class="container-large padding-section-large">
+      <div class="artisan_component">
+        <div class="placeholder">[PHOTO : l’artisan au travail]</div>
+        <div class="artisan_text">
+          <h2 class="heading-style-h2">[TITRE : propre à l’artisan]</h2>
+          <p>[TEXTE : comment j’ai appris le métier, à la première personne]</p>
+          <p>[TEXTE : ma façon de travailler, concrètement]</p>
+          <p>[TEXTE : ce que mes clients trouvent chez moi qu’ils ne trouvent pas ailleurs]</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Zone : zone d'intervention -->
+<section class="section_zone" id="zone">
+  <div class="padding-global">
+    <div class="container-large padding-section-medium">
+      <h2 class="heading-style-h2">Zone d’intervention</h2>
+      <ul class="zone_list"><!-- À PERSONNALISER : communes réellement desservies -->
+        <li>[COMMUNE 1]</li><li>[COMMUNE 2]</li><li>[COMMUNE 3]</li><li>[COMMUNE 4]</li>
+        <li>[COMMUNE 5]</li><li>[COMMUNE 6]</li><li>[COMMUNE 7]</li><li>[COMMUNE 8]</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Zone : coordonnées et horaires -->
+<section class="section_contact" id="contact">
+  <div class="padding-global">
+    <div class="container-large padding-section-large">
+      <div class="contact_component">
+        <div>
+          <h2 class="heading-style-h2">Coordonnées</h2>
+          <ul class="contact_list">
+            <li><strong>Téléphone</strong><br><a href="tel:[TÉLÉPHONE]">[TÉLÉPHONE]</a></li>
+            <li><strong>Email</strong><br><a href="mailto:[EMAIL]">[EMAIL]</a></li>
+            <li><strong>Adresse</strong><br>[ADRESSE], [CODE POSTAL] [VILLE]</li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="heading-style-h2">Horaires</h2>
+          <table class="horaires_table"><!-- À PERSONNALISER : horaires pendant lesquels l’artisan est joignable -->
+            <tr><th scope="row">Lundi</th><td>[HORAIRES]</td></tr>
+            <tr><th scope="row">Mardi</th><td>[HORAIRES]</td></tr>
+            <tr><th scope="row">Mercredi</th><td>[HORAIRES]</td></tr>
+            <tr><th scope="row">Jeudi</th><td>[HORAIRES]</td></tr>
+            <tr><th scope="row">Vendredi</th><td>[HORAIRES]</td></tr>
+            <tr><th scope="row">Samedi</th><td>[HORAIRES]</td></tr>
+            <tr><th scope="row">Dimanche</th><td>[HORAIRES]</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Zone : footer -->
+<footer class="footer_component">
+  <div class="padding-global">
+    <div class="container-large footer_container">
+      <span>[NOM ENTREPRISE]</span>
+      <ul class="footer_links">
+        <li><a href="mentions-legales.html">Mentions légales</a></li>
+        <li><a href="confidentialite.html">Politique de confidentialité</a></li>
+        <li>[CRÉDIT DE CONCEPTION]</li><!-- À PERSONNALISER : formulation du crédit -->
+      </ul>
+      <p class="footer_legal">SIRET [SIRET] · [N° RÉPERTOIRE DES MÉTIERS] · [ASSURANCE : nom de l’assureur et zone couverte]</p>
+    </div>
+  </div>
+</footer>
+
+</div>
+</body>
+</html>
